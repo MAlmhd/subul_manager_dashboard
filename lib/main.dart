@@ -18,6 +18,11 @@ class MyApp extends StatelessWidget {
       minTextAdapt: true,
       splitScreenMode: true,
       builder: (context, child) => MaterialApp(
+
+        locale: Locale('ar'),
+        supportedLocales: [Locale('en')],
+
+
         debugShowCheckedModeBanner: false,
         title: 'Subul Manager Dashboard',
         theme: ThemeData(textTheme: GoogleFonts.almaraiTextTheme()),
