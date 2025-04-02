@@ -7,13 +7,8 @@ import 'package:subul_manager_dashboard/core/helpers/assets_data.dart';
 import 'package:subul_manager_dashboard/core/helpers/constants.dart';
 import 'package:subul_manager_dashboard/core/helpers/styles.dart';
 import 'package:subul_manager_dashboard/core/theming/app_colors.dart';
-import 'package:subul_manager_dashboard/features/enter_code_for_client/ui/enter_code_for_client.dart';
 import 'package:subul_manager_dashboard/core/widgets/side_bar_button.dart';
 import 'package:subul_manager_dashboard/core/widgets/text_logo.dart';
-import 'package:subul_manager_dashboard/features/enter_code_for_client/ui/widgets/registeration_client.dart';
-import 'package:subul_manager_dashboard/features/enter_code_for_company/ui/enter_code_for_company.dart';
-import 'package:subul_manager_dashboard/features/enter_code_for_company/ui/widgets/registeration_company.dart';
-import 'package:subul_manager_dashboard/features/home_view/ui/widgets/animations.dart';
 import 'package:subul_manager_dashboard/features/home_view/ui/widgets/toggle_client_company_button.dart';
 
 class HomeView extends StatefulWidget {
