@@ -6,8 +6,9 @@ import 'package:subul_manager_dashboard/core/helpers/styles.dart';
 import 'package:subul_manager_dashboard/core/theming/app_colors.dart';
 
 class EnterCodeWidget extends StatelessWidget {
-  const EnterCodeWidget({super.key, required this.label});
+  const EnterCodeWidget({super.key, required this.label, required this.onTap});
   final String label;
+  final Function() onTap;
 
   @override
   Widget build(BuildContext context) {
@@ -54,11 +55,14 @@ class EnterCodeWidget extends StatelessWidget {
               children: [
                 MouseRegion(
                   cursor: SystemMouseCursors.click,
-                  child: Text(
-                    'أنشئ واحد',
-                    style: Styles.textStyle12.copyWith(
-                      fontSize: 3.5.sp,
-                      color: AppColors.deepPurple,
+                  child: GestureDetector(
+                    onTap: onTap,
+                    child: Text(
+                      'أنشئ واحد',
+                      style: Styles.textStyle12.copyWith(
+                        fontSize: 3.5.sp,
+                        color: AppColors.deepPurple,
+                      ),
                     ),
                   ),
                 ),
