@@ -57,7 +57,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "0.0.5"
-
   country_code_picker:
     dependency: "direct main"
     description:
@@ -66,7 +65,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "3.3.0"
-
   crypto:
     dependency: transitive
     description:
