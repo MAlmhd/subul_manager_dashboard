@@ -21,7 +21,7 @@ class CancelShipment extends StatelessWidget {
             ),
           ],
         ),
-        SizedBox(height: size.height / 20),
+        SizedBox(height: size.height / 8),
         TitleOfColumns(),
         SizedBox(height: size.height / 50),
         SizedBox(
