@@ -38,7 +38,7 @@ class EnterOneDigitNumberWidget extends StatelessWidget {
           keyboardType: TextInputType.number,
           inputFormatters: [FilteringTextInputFormatter.digitsOnly],
           maxLength: 1,
-          style: Styles.textStyle20.copyWith(fontSize: 6.sp),
+          style: Styles.textStyle6Sp
         ),
       ),
     );

@@ -26,7 +26,7 @@ class CustomTextFiled extends StatelessWidget {
             ),
             label: Text(
               label,
-              style: Styles.textStyle14.copyWith(color: AppColors.deepGray),
+              style: Styles.textStyle3Sp.copyWith(color: AppColors.deepGray),
             ),
             border: OutlineInputBorder(
               borderRadius: BorderRadius.circular(cornerRadius),

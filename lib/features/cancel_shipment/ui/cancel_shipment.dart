@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:subul_manager_dashboard/core/widgets/custom_search_item.dart';
 import 'package:subul_manager_dashboard/features/cancel_shipment/ui/widgets/custom_shipment_item.dart';
 import 'package:subul_manager_dashboard/features/cancel_shipment/ui/widgets/title_of_columns.dart';
 
@@ -11,6 +12,16 @@ class CancelShipment extends StatelessWidget {
     var size = MediaQuery.of(context).size;
     return Column(
       children: [
+        Row(
+          mainAxisAlignment: MainAxisAlignment.end,
+          children: [
+            Padding(
+              padding: EdgeInsets.only(right: 10.w),
+              child: CustomSearchItem(),
+            ),
+          ],
+        ),
+        SizedBox(height: size.height / 20),
         TitleOfColumns(),
         SizedBox(height: size.height / 50),
         SizedBox(

@@ -1,6 +1,5 @@
 
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:subul_manager_dashboard/core/helpers/styles.dart';
 
 class TitleOfColumns extends StatelessWidget {
@@ -12,13 +11,13 @@ class TitleOfColumns extends StatelessWidget {
     return Row(
       children: [
         SizedBox(width: size.width / 8),
-        Text('حالة الشحنة', style: Styles.textStyle20.copyWith(fontSize: 6.sp)),
+        Flexible(child: Text('حالة الشحنة', style: Styles.textStyle6Sp)),
         SizedBox(width: size.width / 16),
-        Text('عدد الطرود', style: Styles.textStyle20.copyWith(fontSize: 6.sp)),
+        Flexible(child: Text('عدد الطرود', style: Styles.textStyle6Sp)),
         SizedBox(width: size.width / 16),
-        Text('العميل', style: Styles.textStyle20.copyWith(fontSize: 6.sp)),
+        Flexible(child: Text('العميل', style: Styles.textStyle6Sp)),
         SizedBox(width: size.width / 16),
-        Text('كود الشحنة', style: Styles.textStyle20.copyWith(fontSize: 6.sp)),
+        Flexible(child: Text('كود الشحنة', style: Styles.textStyle6Sp)),
         SizedBox(width: size.width / 20),
       ],
     );

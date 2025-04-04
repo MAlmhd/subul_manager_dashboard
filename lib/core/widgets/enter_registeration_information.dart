@@ -28,7 +28,7 @@ class EnterRegisterationInformation extends StatelessWidget {
             child: Center(
               child: Text(
                 label,
-                style: Styles.textStyle20.copyWith(fontSize: 6.sp),
+                style: Styles.textStyle6Sp
               ),
             ),
           ),
@@ -94,10 +94,7 @@ class EnterRegisterationInformation extends StatelessWidget {
               child: Center(
                 child: Text(
                   'موافق',
-                  style: Styles.textStyle14.copyWith(
-                    fontSize: 4.sp,
-                    color: AppColors.white,
-                  ),
+                  style: Styles.textStyle4Sp.copyWith(color: AppColors.white,),
                 ),
               ),
             ),

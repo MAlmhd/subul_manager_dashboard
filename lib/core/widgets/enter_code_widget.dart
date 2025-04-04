@@ -27,7 +27,7 @@ class EnterCodeWidget extends StatelessWidget {
             SizedBox(height: size.height / 20),
             Text(
               label,
-              style: Styles.textStyle24.copyWith(fontSize: 5.sp),
+              style: Styles.textStyle5Sp
             ),
             SizedBox(height: size.height / 40),
             Stack(
@@ -59,16 +59,13 @@ class EnterCodeWidget extends StatelessWidget {
                     onTap: onTap,
                     child: Text(
                       'أنشئ واحد',
-                      style: Styles.textStyle12.copyWith(
-                        fontSize: 3.5.sp,
-                        color: AppColors.deepPurple,
-                      ),
+                      style: Styles.textStyle3Sp.copyWith(color: AppColors.deepPurple,),
                     ),
                   ),
                 ),
                 Text(
                   '     ليس لديك رمز؟',
-                  style: Styles.textStyle13.copyWith(fontSize: 3.5.sp),
+                  style: Styles.textStyle3Sp
                 ),
               ],
             ),

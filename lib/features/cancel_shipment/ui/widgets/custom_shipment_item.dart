@@ -36,7 +36,7 @@ class CustomShipmentItem extends StatelessWidget {
                 child: Center(
                   child: Text(
                     'مكتملة',
-                    style: Styles.textStyle20.copyWith(fontSize: 4.5.sp),
+                    style: Styles.textStyle4Sp
                   ),
                 ),
               ),
@@ -44,13 +44,13 @@ class CustomShipmentItem extends StatelessWidget {
               Text(
                 '4',
                 overflow: TextOverflow.visible,
-                style: Styles.textStyle20.copyWith(fontSize: 5.sp),
+                style: Styles.textStyle5Sp
               ),
               SizedBox(width: size.width / 10),
               Flexible(
                 child: Text(
                   'محمد ابراهيم المحمود',
-                  style: Styles.textStyle20.copyWith(fontSize: 5.sp),
+                  style: Styles.textStyle5Sp,
                   softWrap: true,
                   overflow: TextOverflow.visible,
                 ),
@@ -60,7 +60,7 @@ class CustomShipmentItem extends StatelessWidget {
                 child: Text(
                   '74747437345',
                   softWrap: true,
-                  style: Styles.textStyle20.copyWith(fontSize: 5.sp),
+                  style: Styles.textStyle5Sp,
                   overflow: TextOverflow.visible,
                   maxLines: 4,
                 ),

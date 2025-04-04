@@ -40,10 +40,7 @@ class OTP extends StatelessWidget {
                 children: [
                   Text(
                     'رقم الجوال',
-                    style: Styles.textStyle24.copyWith(
-                      color: AppColors.deepPurple,
-                      fontSize: 7.sp,
-                    ),
+                    style: Styles.textStyle7Sp.copyWith(color: AppColors.deepPurple,),
                   ),
                   SizedBox(height: size.height / 14),
                   Padding(
@@ -116,7 +113,7 @@ class OTP extends StatelessWidget {
                     children: [
                       Text(
                         'رمز التحقق',
-                        style: Styles.textStyle12.copyWith(fontSize: 4.sp),
+                        style: Styles.textStyle4Sp
                       ),
                       SizedBox(width: size.width / 60),
                       SvgPicture.asset(AssetsData.lockIcon),
@@ -141,10 +138,7 @@ class OTP extends StatelessWidget {
                     children: [
                       Text(
                         '9.00',
-                        style: Styles.textStyle30.copyWith(
-                          fontSize: 4.sp,
-                          fontWeight: FontWeight.bold,
-                        ),
+                        style: Styles.textStyle4Sp
                       ),
                       SizedBox(width: size.width / 60),
                       Container(
@@ -173,11 +167,7 @@ class OTP extends StatelessWidget {
                         child: Center(
                           child: Text(
                             'إعادة الحصول على الرمز',
-                            style: Styles.textStyle13.copyWith(
-                              fontSize: 4.sp,
-                              fontWeight: FontWeight.w900,
-                              color: AppColors.deepPurple,
-                            ),
+                            style: Styles.textStyle4Sp.copyWith(color: AppColors.deepPurple,fontWeight: FontWeight.w900,)
                           ),
                         ),
                       ),
@@ -201,10 +191,7 @@ class OTP extends StatelessWidget {
                   child: Center(
                     child: Text(
                       'تحقق',
-                      style: Styles.textStyle20.copyWith(
-                        fontSize: 4.sp,
-                        color: AppColors.white,
-                      ),
+                      style: Styles.textStyle4Sp.copyWith(color: AppColors.white)
                     ),
                   ),
                 ),

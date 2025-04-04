@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:subul_manager_dashboard/core/helpers/styles.dart';
 import 'package:subul_manager_dashboard/core/theming/app_colors.dart';
 
@@ -15,7 +14,7 @@ class BuildAnimatedWelcomeText extends StatelessWidget {
         opacity: opacity,
         child: Text(
           'أهلاً بك في سُبُل',
-          style: Styles.textStyle48.copyWith(color: AppColors.deepPurple,fontSize: 10.sp),
+          style: Styles.textStyle10Sp.copyWith(color: AppColors.deepPurple,),
         ),
       ),
     );

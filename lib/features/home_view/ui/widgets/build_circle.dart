@@ -33,10 +33,7 @@ class BuildCircle extends StatelessWidget {
         SizedBox(height: size.height * 0.04),
         Text(
           label,
-          style: Styles.textStyle36.copyWith(
-            color: AppColors.deepPurple,
-            fontSize: 8.sp,
-          ),
+          style: Styles.textStyle8Sp.copyWith(color: AppColors.deepPurple,),
         ),
       ],
     );

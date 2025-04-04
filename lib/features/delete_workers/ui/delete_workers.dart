@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_svg/svg.dart';
-import 'package:subul_manager_dashboard/core/helpers/assets_data.dart';
 import 'package:subul_manager_dashboard/core/helpers/styles.dart';
 import 'package:subul_manager_dashboard/core/theming/app_colors.dart';
+import 'package:subul_manager_dashboard/core/widgets/custom_search_item.dart';
 import 'package:subul_manager_dashboard/core/widgets/select_worker.dart';
 import 'package:subul_manager_dashboard/features/delete_workers/ui/widgets/confirm_delete.dart';
 import 'package:subul_manager_dashboard/features/delete_workers/ui/widgets/success_dialog.dart';
@@ -31,46 +30,7 @@ class DeleteWorkers extends StatelessWidget {
               children: [
                 Padding(
                   padding: EdgeInsets.only(right: 10.w),
-                  child: Container(
-                    width: size.width * 0.2,
-                    height: size.height * 0.08,
-                    decoration: BoxDecoration(
-                      color: AppColors.grey,
-                      borderRadius: BorderRadius.circular(20),
-                    ),
-
-                    child: TextField(
-                      textAlign: TextAlign.right,
-
-                      decoration: InputDecoration(
-                        border: InputBorder.none,
-                        hintText: ' ...بحث',
-                        hintStyle: Styles.textStyle16.copyWith(
-                          color: Colors.grey,
-                        ),
-                        contentPadding: EdgeInsets.all(16.0),
-                        suffixIcon: Padding(
-                          padding: const EdgeInsets.only(right: 4),
-                          child: Container(
-                            width: 40,
-                            height: 20,
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(16),
-                              color: AppColors.goldenYellow,
-                            ),
-                            child: Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: Center(
-                                child: SvgPicture.asset(AssetsData.searchIcon),
-                              ),
-                            ),
-                          ),
-                        ),
-                      ),
-
-                      textDirection: TextDirection.rtl,
-                    ),
-                  ),
+                  child: CustomSearchItem()
                 ),
               ],
             ),
@@ -110,13 +70,9 @@ class DeleteWorkers extends StatelessWidget {
                                       children: [
                                         SelectWorker(isSelected: false),
                                         SizedBox(width: size.width / 70),
-                                        Text(
+                                        Text( // 6 deep purble w400
                                           "shahed",
-                                          style: Styles.textStyle20.copyWith(
-                                            color: AppColors.deepPurple,
-                                            fontWeight: FontWeight.w400,
-                                            fontSize: 6.sp,
-                                          ),
+                                          style: Styles.textStyle6Sp.copyWith(color: AppColors.deepPurple,fontWeight: FontWeight.w400,),
                                           overflow: TextOverflow.ellipsis,
                                         ),
                                       ],

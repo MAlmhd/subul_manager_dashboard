@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:subul_manager_dashboard/core/helpers/styles.dart';
 import 'package:subul_manager_dashboard/core/theming/app_colors.dart';
 import 'package:subul_manager_dashboard/core/widgets/custom_dialog.dart';
@@ -49,10 +48,7 @@ class _SuccessDialogState extends State<SuccessDialog>
           children: [
             Text(
               'تمّ الحذف',
-              style: Styles.textStyle20.copyWith(
-                fontSize: 6.sp,
-                color: AppColors.goldenYellow,
-              ),
+              style: Styles.textStyle6Sp.copyWith(color: AppColors.goldenYellow),
             ),
             SizedBox(width: size.width / 70),
             Icon(Icons.check_circle, color: AppColors.goldenYellow),

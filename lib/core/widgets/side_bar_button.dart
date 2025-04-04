@@ -23,10 +23,10 @@ class SideBarButton extends StatelessWidget {
             color: isSelected ? AppColors.deepPurple : AppColors.goldenYellow,
             borderRadius: BorderRadius.circular(cornerRadius),
           ),
-          child: Center(
+          child: Center(// 5 white : black
             child: Text(
               text,
-              style: Styles.textStyle20.copyWith(fontSize: 5.sp,color: isSelected ? AppColors.white : AppColors.black),
+              style: Styles.textStyle5Sp.copyWith(color:  isSelected ? AppColors.white : AppColors.black)
             ),
           ),
         ),

@@ -9,6 +9,12 @@ import 'package:subul_manager_dashboard/core/theming/app_colors.dart';
 import 'package:subul_manager_dashboard/core/widgets/side_bar_button.dart';
 import 'package:subul_manager_dashboard/core/widgets/text_logo.dart';
 import 'package:subul_manager_dashboard/features/cancel_shipment/ui/cancel_shipment.dart';
+import 'package:subul_manager_dashboard/features/delete_workers/ui/delete_workers.dart';
+import 'package:subul_manager_dashboard/features/enter_code_for_client/ui/enter_code_for_client.dart';
+import 'package:subul_manager_dashboard/features/enter_code_for_client/ui/widgets/registeration_client.dart';
+import 'package:subul_manager_dashboard/features/enter_code_for_company/ui/enter_code_for_company.dart';
+import 'package:subul_manager_dashboard/features/enter_code_for_company/ui/widgets/registeration_company.dart';
+import 'package:subul_manager_dashboard/features/home_view/ui/widgets/animations.dart';
 import 'package:subul_manager_dashboard/features/home_view/ui/widgets/toggle_client_company_button.dart';
 
 class HomeView extends StatefulWidget {
@@ -150,10 +156,10 @@ class _HomeViewState extends State<HomeView> {
                             SizedBox(height: size.height / 16),
                             SideBarButton(
                               onTap: () {
-                                // onButtonTap(4);
+                                onButtonTap(6);
                               },
                               text: 'الغاء شحنة',
-                              isSelected: false, // selectedButtonIndex == 4,
+                              isSelected:  selectedButtonIndex == 6,
                             ),
                             SizedBox(height: size.height / 16),
                             SideBarButton(
@@ -185,63 +191,63 @@ class _HomeViewState extends State<HomeView> {
                         child: IndexedStack(
                           index: selectedButtonIndex,
                           children: [
-                            // //----------0-------------
-                            // Padding(
-                            //   padding: EdgeInsets.only(top: 200.h),
-                            //   child: Animations(step: step, opacity: opacity),
-                            // ),
-                            // //----------1-------------
-                            // Padding(
-                            //   padding: EdgeInsets.only(top: 200.h),
-                            //   child: EnterCodeForCompany(
-                            //     onTap: () {
-                            //       onButtonTap(3);
-                            //     },
-                            //   ),
-                            // ),
-                            // //----------2-------------
-                            // Padding(
-                            //   padding: EdgeInsets.only(top: 200.h),
-                            //   child: EnterCodeForClient(
-                            //     onTap: () {
-                            //       onButtonTap(4);
-                            //     },
-                            //   ),
-                            // ),
-                            // //----------3-------------
-                            // RegisterationCompany(
-                            //   onTap: () {
-                            //     setState(() {
-                            //       showOtp = !showOtp;
-                            //     });
-                            //   },
-                            //   showOtp: showOtp,
-                            // ),
-                            // //----------4-----------
-                            // RegisterationClient(
-                            //   onTap: () {
-                            //     showOtp = !showOtp;
-                            //   },
-                            //   showOtp: showOtp,
-                            // ),
-                            // //---------5------------
-                            // DeleteWorkers(
-                            //   onTap: () {
-                            //     setState(() {
-                            //       showConfirmDelete = !showConfirmDelete;
-                            //     });
-                            //   },
-                            //   showConfirmDelete: showConfirmDelete,
-                            //   confirmDeleteButton: () {
-                            //    setState(() {
-                            //       showSuccessDialog = !showSuccessDialog;
-                            //     showConfirmDelete = false;
-                            //    });
-                            //   },
-                            //   deleteIsConfirmed: showSuccessDialog,
-                            // ),
+                            //----------0-------------
+                            Padding(
+                              padding: EdgeInsets.only(top: 200.h),
+                              child: Animations(step: step, opacity: opacity),
+                            ),
+                            //----------1-------------
+                            Padding(
+                              padding: EdgeInsets.only(top: 200.h),
+                              child: EnterCodeForCompany(
+                                onTap: () {
+                                  onButtonTap(3);
+                                },
+                              ),
+                            ),
+                            //----------2-------------
+                            Padding(
+                              padding: EdgeInsets.only(top: 200.h),
+                              child: EnterCodeForClient(
+                                onTap: () {
+                                  onButtonTap(4);
+                                },
+                              ),
+                            ),
+                            //----------3-------------
+                            RegisterationCompany(
+                              onTap: () {
+                                setState(() {
+                                  showOtp = !showOtp;
+                                });
+                              },
+                              showOtp: showOtp,
+                            ),
+                            //----------4-----------
+                            RegisterationClient(
+                              onTap: () {
+                                showOtp = !showOtp;
+                              },
+                              showOtp: showOtp,
+                            ),
+                            //---------5------------
+                            DeleteWorkers(
+                              onTap: () {
+                                setState(() {
+                                  showConfirmDelete = !showConfirmDelete;
+                                });
+                              },
+                              showConfirmDelete: showConfirmDelete,
+                              confirmDeleteButton: () {
+                               setState(() {
+                                  showSuccessDialog = !showSuccessDialog;
+                                showConfirmDelete = false;
+                               });
+                              },
+                              deleteIsConfirmed: showSuccessDialog,
+                            ),
 
-                            // //---------6------------
+                            //---------6------------
                             CancelShipment()
                           ],
                         ),

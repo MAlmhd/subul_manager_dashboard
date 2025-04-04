@@ -28,7 +28,7 @@ class UploadImage extends StatelessWidget {
             Expanded(
               child: Text(
                 label,
-                style: Styles.textStyle14.copyWith(color: AppColors.deepGray),
+                style: Styles.textStyle3Sp.copyWith(color: AppColors.deepGray,)
               ),
             ),
             SizedBox(width: size.width / 70),
