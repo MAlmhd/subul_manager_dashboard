@@ -9,6 +9,7 @@ import 'package:subul_manager_dashboard/core/theming/app_colors.dart';
 import 'package:subul_manager_dashboard/core/widgets/side_bar_button.dart';
 import 'package:subul_manager_dashboard/core/widgets/text_logo.dart';
 import 'package:subul_manager_dashboard/features/cancel_shipment/ui/cancel_shipment.dart';
+import 'package:subul_manager_dashboard/features/cancel_shipment/ui/widgets/reason_for_cancellation.dart';
 import 'package:subul_manager_dashboard/features/delete_workers/ui/delete_workers.dart';
 import 'package:subul_manager_dashboard/features/enter_code_for_client/ui/enter_code_for_client.dart';
 import 'package:subul_manager_dashboard/features/enter_code_for_client/ui/widgets/registeration_client.dart';
@@ -31,8 +32,9 @@ class _HomeViewState extends State<HomeView> {
   bool showOtp = false;
   bool showConfirmDelete = false;
   bool showSuccessDialog = false;
-  late Timer _timer; 
- 
+  bool showSuccessDialog2 = false;
+  late Timer _timer;
+
   @override
   void initState() {
     _initializeAnimations();
@@ -159,7 +161,7 @@ class _HomeViewState extends State<HomeView> {
                                 onButtonTap(6);
                               },
                               text: 'الغاء شحنة',
-                              isSelected:  selectedButtonIndex == 6,
+                              isSelected: selectedButtonIndex == 6,
                             ),
                             SizedBox(height: size.height / 16),
                             SideBarButton(
@@ -239,16 +241,34 @@ class _HomeViewState extends State<HomeView> {
                               },
                               showConfirmDelete: showConfirmDelete,
                               confirmDeleteButton: () {
-                               setState(() {
+                                setState(() {
                                   showSuccessDialog = !showSuccessDialog;
-                                showConfirmDelete = false;
-                               });
+                                  showConfirmDelete = false;
+                                });
                               },
                               deleteIsConfirmed: showSuccessDialog,
                             ),
 
                             //---------6------------
-                            CancelShipment()
+                            CancelShipment(
+                              onTap: () {
+                                onButtonTap(7);
+                              },
+                            ),
+                            //-------------7----------
+                            Padding(
+                              padding: EdgeInsets.only(top: 200.h),
+                              child: ReasonForCancellation(
+                                onTap: () async{
+                                  showSuccessDialog2 = !showSuccessDialog2;
+                                 await Future.delayed(Duration(seconds: 2));
+                                  if (showSuccessDialog2) {
+                                    onButtonTap(6);
+                                  }
+                                },
+                                showSuccesDialog: showSuccessDialog2,
+                              ),
+                            ),
                           ],
                         ),
                       ),

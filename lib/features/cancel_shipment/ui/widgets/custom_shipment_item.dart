@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
@@ -8,8 +7,8 @@ import 'package:subul_manager_dashboard/core/helpers/styles.dart';
 import 'package:subul_manager_dashboard/core/theming/app_colors.dart';
 
 class CustomShipmentItem extends StatelessWidget {
-  const CustomShipmentItem({super.key});
-
+  const CustomShipmentItem({super.key, });
+ 
   @override
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
@@ -34,17 +33,14 @@ class CustomShipmentItem extends StatelessWidget {
                   borderRadius: BorderRadius.circular(cornerRadius),
                 ),
                 child: Center(
-                  child: Text(
-                    'مكتملة',
-                    style: Styles.textStyle4Sp
-                  ),
+                  child: Text('مكتملة', style: Styles.textStyle4Sp),
                 ),
               ),
               SizedBox(width: size.width / 10),
               Text(
                 '4',
                 overflow: TextOverflow.visible,
-                style: Styles.textStyle5Sp
+                style: Styles.textStyle5Sp,
               ),
               SizedBox(width: size.width / 10),
               Flexible(

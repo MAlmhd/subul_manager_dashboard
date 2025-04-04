@@ -5,7 +5,8 @@ import 'package:subul_manager_dashboard/features/cancel_shipment/ui/widgets/cust
 import 'package:subul_manager_dashboard/features/cancel_shipment/ui/widgets/title_of_columns.dart';
 
 class CancelShipment extends StatelessWidget {
-  const CancelShipment({super.key});
+  const CancelShipment({super.key, required this.onTap});
+  final Function() onTap;
 
   @override
   Widget build(BuildContext context) {
@@ -30,7 +31,13 @@ class CancelShipment extends StatelessWidget {
             itemBuilder:
                 (context, index) => Padding(
                   padding: EdgeInsets.only(bottom: 12.h),
-                  child: CustomShipmentItem(),
+                  child: MouseRegion(
+                    cursor: SystemMouseCursors.click,
+                    child: GestureDetector(
+                      onTap: onTap,
+                      child: CustomShipmentItem(),
+                    ),
+                  ),
                 ),
             itemCount: 10,
           ),
