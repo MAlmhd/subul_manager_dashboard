@@ -8,4 +8,7 @@ abstract class AssetsData {
   static const everett = 'assets/fonts/Everett Regular.ttf';
   static const searchIcon = 'assets/images/Icon_search.svg';
   static const box = 'assets/images/Group 2085662591.svg';
+  static const notesIcon = "assets/images/notes.svg";
+  static const boxShipmmentIcon = 'assets/images/box_shippment.svg';
+  static const money = 'assets/images/tdesign_money-filled.svg';
 }

@@ -5,6 +5,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:subul_manager_dashboard/core/helpers/assets_data.dart';
 import 'package:subul_manager_dashboard/core/helpers/constants.dart';
+import 'package:subul_manager_dashboard/core/helpers/extensions.dart';
+import 'package:subul_manager_dashboard/core/routing/routes.dart';
 import 'package:subul_manager_dashboard/core/theming/app_colors.dart';
 import 'package:subul_manager_dashboard/core/widgets/side_bar_button.dart';
 import 'package:subul_manager_dashboard/core/widgets/text_logo.dart';
@@ -166,7 +168,7 @@ class _HomeViewState extends State<HomeView> {
                             SizedBox(height: size.height / 16),
                             SideBarButton(
                               onTap: () {
-                                // onButtonTap(5);
+                                context.pushNamed(Routes.trackShipmentsHome);
                               },
                               text: 'الشحنات',
                               isSelected: false, // selectedButtonIndex == 5,
@@ -174,7 +176,7 @@ class _HomeViewState extends State<HomeView> {
                             SizedBox(height: size.height / 16),
                             SideBarButton(
                               onTap: () {
-                                // onButtonTap(6);
+                               
                               },
                               text: 'الشحنات الواردة',
                               isSelected: false, // selectedButtonIndex == 6,
@@ -259,9 +261,9 @@ class _HomeViewState extends State<HomeView> {
                             Padding(
                               padding: EdgeInsets.only(top: 200.h),
                               child: ReasonForCancellation(
-                                onTap: () async{
+                                onTap: () async {
                                   showSuccessDialog2 = !showSuccessDialog2;
-                                 await Future.delayed(Duration(seconds: 2));
+                                  await Future.delayed(Duration(seconds: 2));
                                   if (showSuccessDialog2) {
                                     onButtonTap(6);
                                   }

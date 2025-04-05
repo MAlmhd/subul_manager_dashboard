@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:subul_manager_dashboard/core/helpers/styles.dart';
 import 'package:subul_manager_dashboard/core/theming/app_colors.dart';
 
-class TextLogo extends StatelessWidget {
-  const TextLogo({super.key});
+class ShippmentsLogo extends StatelessWidget {
+  const ShippmentsLogo({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -21,12 +23,8 @@ class TextLogo extends StatelessWidget {
             end: Alignment.centerRight,
           ).createShader(Rect.fromLTWH(0, 0, bounds.width, bounds.height)),
       child: Text(
-        "S U B U L",
-        style: TextStyle(
-          fontSize: 12.sp,
-          fontWeight: FontWeight.bold,
-          color: Colors.white,
-        ),
+        "الشحنات",
+        style: Styles.textStyle7Sp.copyWith(color: AppColors.white),
       ),
     );
   }
