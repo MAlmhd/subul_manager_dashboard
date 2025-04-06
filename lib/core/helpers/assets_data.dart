@@ -11,4 +11,6 @@ abstract class AssetsData {
   static const notesIcon = "assets/images/notes.svg";
   static const boxShipmmentIcon = 'assets/images/box_shippment.svg';
   static const money = 'assets/images/tdesign_money-filled.svg';
+
+  static const purbleBox = 'assets/images/purble_box.svg';
 }

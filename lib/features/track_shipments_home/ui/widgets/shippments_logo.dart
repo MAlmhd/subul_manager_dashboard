@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:subul_manager_dashboard/core/helpers/styles.dart';
 import 'package:subul_manager_dashboard/core/theming/app_colors.dart';
 

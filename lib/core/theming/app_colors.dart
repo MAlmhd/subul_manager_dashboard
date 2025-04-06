@@ -17,5 +17,5 @@ abstract class AppColors {
   static const Color lightGray2 = Color(0xFFECECEC);
 
   static const Color mediumGray = Color(0xFF898A8D);
-
+  static const Color gunmetal = Color(0XFF424D59);
 }
