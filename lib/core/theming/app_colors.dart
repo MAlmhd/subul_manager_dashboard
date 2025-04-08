@@ -1,5 +1,7 @@
 import 'dart:ui';
 
+import 'package:flutter/material.dart';
+
 abstract class AppColors {
   static const Color deepPurple = Color(0xFF29206F);
   static const Color goldenYellow = Color(0xFFF0A613);
@@ -18,4 +20,5 @@ abstract class AppColors {
 
   static const Color mediumGray = Color(0xFF898A8D);
   static const Color gunmetal = Color(0XFF424D59);
+  static const Color teal = Colors.teal;
 }

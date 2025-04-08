@@ -18,62 +18,127 @@ class BillOfShippment extends StatelessWidget {
         color: AppColors.lightGray2,
         borderRadius: BorderRadius.circular(cornerRadius),
       ),
-      child: Column(
-        children: [
-          Expanded(
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: [
-                Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  // mainAxisSize: MainAxisSize.max,
-                  crossAxisAlignment: CrossAxisAlignment.end,
-                  children: [
-                    Text('7575757577', style: Styles.textStyle6Sp),
-                    Text('احمد', style: Styles.textStyle6Sp),
-                    Text('4', style: Styles.textStyle6Sp),
-                    Container(
-                      width: 30.w,
-                      height: 35.h,
-                      decoration: BoxDecoration(
-                        color: AppColors.green,
-                        borderRadius: BorderRadius.circular(cornerRadius),
-                      ),
-                      child: Center(
-                        child: Text('مكتملة', style: Styles.textStyle5Sp),
-                      ),
+      child: Padding(
+        padding: EdgeInsets.symmetric(horizontal: 30.w),
+        child: Column(
+          children: [
+            Expanded(
+              child: Row(
+                children: [
+                  Expanded(
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      // mainAxisSize: MainAxisSize.max,
+                      crossAxisAlignment: CrossAxisAlignment.end,
+                      children: [
+                        Text(
+                          '7575757577',
+                          style: Styles.textStyle6Sp,
+                          overflow: TextOverflow.visible,
+                          softWrap: true,
+                        ),
+                        Text(
+                          'احمد',
+                          style: Styles.textStyle6Sp,
+                          overflow: TextOverflow.visible,
+                          softWrap: true,
+                        ),
+                        Text(
+                          '4',
+                          style: Styles.textStyle6Sp,
+                          overflow: TextOverflow.visible,
+                          softWrap: true,
+                        ),
+                        Container(
+                          width: 30.w,
+                          height: 35.h,
+                          decoration: BoxDecoration(
+                            color: AppColors.green,
+                            borderRadius: BorderRadius.circular(cornerRadius),
+                          ),
+                          child: Center(
+                            child: Text(
+                              'مكتملة',
+                              style: Styles.textStyle5Sp,
+                              overflow: TextOverflow.visible,
+                              softWrap: true,
+                            ),
+                          ),
+                        ),
+                        Text(
+                          'شحن ودفع',
+                          style: Styles.textStyle6Sp,
+                          overflow: TextOverflow.visible,
+                          softWrap: true,
+                        ),
+                      ],
                     ),
-                    Text('شحن ودفع', style: Styles.textStyle6Sp),
-                  ],
-                ),
-                Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  // mainAxisSize: MainAxisSize.max,
-                  crossAxisAlignment: CrossAxisAlignment.end,
-                  children: [
-                    Text('كود الشحنة', style: Styles.textStyle6Sp),
-                    Text('العميل', style: Styles.textStyle6Sp),
-                    Text('عدد الطرود', style: Styles.textStyle6Sp),
-                    Text('حالة الشحنة', style: Styles.textStyle6Sp),
-                    Text('نوع الشحن', style: Styles.textStyle6Sp),
-                  ],
-                ),
-              ],
+                  ),
+                  SizedBox(width: size.width / 20),
+                  Expanded(
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      // mainAxisSize: MainAxisSize.max,
+                      crossAxisAlignment: CrossAxisAlignment.end,
+                      children: [
+                        Text(
+                          'كود الشحنة',
+                          style: Styles.textStyle6Sp,
+                          overflow: TextOverflow.visible,
+                          softWrap: true,
+                        ),
+                        Text(
+                          'العميل',
+                          style: Styles.textStyle6Sp,
+                          overflow: TextOverflow.visible,
+                          softWrap: true,
+                        ),
+                        Text(
+                          'عدد الطرود',
+                          style: Styles.textStyle6Sp,
+                          overflow: TextOverflow.visible,
+                          softWrap: true,
+                        ),
+                        Text(
+                          'حالة الشحنة',
+                          style: Styles.textStyle6Sp,
+                          overflow: TextOverflow.visible,
+                          softWrap: true,
+                        ),
+                        Text(
+                          'نوع الشحن',
+                          style: Styles.textStyle6Sp,
+                          overflow: TextOverflow.ellipsis,
+                          //  softWrap: true,
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
             ),
-          ),
-          Container(
-            width: 60.w,
-            height: 50.h,
 
-            decoration: BoxDecoration(
-              color: Colors.transparent,
-              borderRadius: BorderRadius.circular(cornerRadius),
-              border: Border.all(color: AppColors.deepPurple, width: 1),
+            Container(
+              width: 60.w,
+              height: 50.h,
+
+              decoration: BoxDecoration(
+                color: Colors.transparent,
+                borderRadius: BorderRadius.circular(cornerRadius),
+                border: Border.all(color: AppColors.deepPurple, width: 1),
+              ),
+              child: Center(
+                child: Text(
+                  'الفاتورة',
+                  style: Styles.textStyle6Sp,
+                  overflow: TextOverflow.visible,
+                  softWrap: true,
+                ),
+              ),
             ),
-            child: Center(child: Text('الفاتورة', style: Styles.textStyle6Sp)),
-          ),
-          SizedBox(height: size.height / 24),
-        ],
+            SizedBox(height: size.height / 24),
+          ],
+        ),
       ),
     );
   }
