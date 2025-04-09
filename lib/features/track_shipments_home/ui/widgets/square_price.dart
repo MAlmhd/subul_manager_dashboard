@@ -23,7 +23,8 @@ class PriceSquare extends StatelessWidget {
             borderRadius: BorderRadius.circular(4),
           ),
           child: Center(
-            child: Text(price.toString(), style: Styles.textStyle5Sp),
+            child: Text(price.toString(), style: Styles.textStyle5Sp,overflow: TextOverflow.clip,
+          maxLines: 1,),
           ),
         ),
       ),

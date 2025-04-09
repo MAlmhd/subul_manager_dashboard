@@ -9,7 +9,18 @@ import 'package:subul_manager_dashboard/features/track_shipments_home/ui/widgets
 import 'package:subul_manager_dashboard/features/track_shipments_home/ui/widgets/square_price.dart';
 
 class PayTheBill extends StatefulWidget {
-  const PayTheBill({super.key});
+  const PayTheBill({
+    super.key,
+    required this.onTap,
+    required this.showDetailsOfBill,
+    required this.showBillFile,
+    required this.showDetailsofBillWidget,
+  });
+  final Function() onTap;
+
+  final bool showBillFile;
+  final bool showDetailsOfBill;
+  final Function() showDetailsofBillWidget;
 
   @override
   State<PayTheBill> createState() => _PayTheBillState();
@@ -20,6 +31,7 @@ class _PayTheBillState extends State<PayTheBill> {
 
   TextEditingController priceController = TextEditingController();
   int selectedPrice = 100;
+
   void selectPrice(int price) {
     setState(() {
       selectedPrice = price;
@@ -49,8 +61,8 @@ class _PayTheBillState extends State<PayTheBill> {
           Text(
             'أدخل المبلغ',
             style: Styles.textStyle6Sp,
-            overflow: TextOverflow.visible,
-            softWrap: true,
+            overflow: TextOverflow.clip,
+            maxLines: 1,
           ),
 
           Container(
@@ -132,8 +144,8 @@ class _PayTheBillState extends State<PayTheBill> {
                     'الرجاء تحديد إذا كانت الشحنة تشمل ضرائب أم لا',
                     style: Styles.textStyle4Sp,
                     textAlign: TextAlign.start,
-                    overflow: TextOverflow.visible,
-                    softWrap: true,
+                    overflow: TextOverflow.clip,
+                    maxLines: 1,
                   ),
                 ),
                 SizedBox(width: size.width / 50),
@@ -151,8 +163,8 @@ class _PayTheBillState extends State<PayTheBill> {
                     'تشمل الضريبة؟',
                     style: Styles.textStyle4Sp,
                     textAlign: TextAlign.start,
-                    overflow: TextOverflow.visible,
-                    softWrap: true,
+                    overflow: TextOverflow.clip,
+                    maxLines: 1,
                   ),
                 ),
                 //  SizedBox(width: size.width / 160),
@@ -171,45 +183,76 @@ class _PayTheBillState extends State<PayTheBill> {
           ),
           Padding(
             padding: EdgeInsets.symmetric(horizontal: 30.w),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Container(
-                  width: 20.w,
-                  height: 30.h,
-                  decoration: BoxDecoration(
-                    color: AppColors.deepPurple,
-                    borderRadius: BorderRadius.circular(cornerRadius),
-                  ),
-                  child: Center(
-                    child: Text(
-                      'أدخل التاريخ',
-                      style: Styles.textStyle3Sp.copyWith(
-                        color: AppColors.lightGray2,
-                        fontWeight: FontWeight.normal,
+            child:
+                widget.showBillFile
+                    ? MouseRegion(
+                      cursor: SystemMouseCursors.click,
+                      child: GestureDetector(
+                        onTap: widget.showDetailsofBillWidget,
+                        child: Container(
+                          width: 60.w,
+                          height: 40.h,
+                          decoration: BoxDecoration(
+                            color: AppColors.deepPurple,
+                            borderRadius: BorderRadius.circular(cornerRadius),
+                          ),
+                          child: Center(
+                            child: Text(
+                              'عرض ملف الفاتورة',
+                              style: Styles.textStyle3Sp.copyWith(
+                                color: AppColors.white,
+                              ),
+                            ),
+                          ),
+                        ),
                       ),
-                      textAlign: TextAlign.start,
-                      overflow: TextOverflow.visible,
-                      softWrap: true,
-                    ),
-                  ),
-                ),
+                    )
+                    : Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        MouseRegion(
+                          cursor: SystemMouseCursors.click,
+                          child: GestureDetector(
+                            onTap: widget.onTap,
+                            child: Container(
+                              width: 20.w,
+                              height: 30.h,
+                              decoration: BoxDecoration(
+                                color: AppColors.deepPurple,
+                                borderRadius: BorderRadius.circular(
+                                  cornerRadius,
+                                ),
+                              ),
+                              child: Center(
+                                child: Text(
+                                  'أدخل التاريخ',
+                                  style: Styles.textStyle3Sp.copyWith(
+                                    color: AppColors.lightGray2,
+                                    fontWeight: FontWeight.normal,
+                                  ),
+                                  textAlign: TextAlign.start,
+                                  overflow: TextOverflow.clip,
+                                  maxLines: 1,
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
 
-                Expanded(
-                  child: Text(
-                    'هل يمكن دفع الفاتورة الان؟',
-                    style: Styles.textStyle4Sp.copyWith(
-                      fontWeight: FontWeight.normal,
+                        Expanded(
+                          child: Text(
+                            'هل يمكن دفع الفاتورة الان؟',
+                            style: Styles.textStyle4Sp.copyWith(
+                              fontWeight: FontWeight.normal,
+                            ),
+                            textAlign: TextAlign.end,
+                            overflow: TextOverflow.clip,
+                            maxLines: 1,
+                          ),
+                        ),
+                        CustomRadio(isSelected: true),
+                      ],
                     ),
-                    textAlign: TextAlign.end,
-                    overflow: TextOverflow.clip,
-                    maxLines: 1,
-                    softWrap: true,
-                  ),
-                ),
-                CustomRadio(isSelected: true),
-              ],
-            ),
           ),
         ],
       ),

@@ -6,7 +6,8 @@ import 'package:subul_manager_dashboard/core/helpers/styles.dart';
 import 'package:subul_manager_dashboard/core/theming/app_colors.dart';
 
 class BillOfShippment extends StatelessWidget {
-  const BillOfShippment({super.key});
+  const BillOfShippment({super.key, required this.onTap});
+  final Function() onTap;
 
   @override
   Widget build(BuildContext context) {
@@ -34,20 +35,20 @@ class BillOfShippment extends StatelessWidget {
                         Text(
                           '7575757577',
                           style: Styles.textStyle6Sp,
-                          overflow: TextOverflow.visible,
-                          softWrap: true,
+                          overflow: TextOverflow.clip,
+                          maxLines: 1,
                         ),
                         Text(
                           'احمد',
                           style: Styles.textStyle6Sp,
-                          overflow: TextOverflow.visible,
-                          softWrap: true,
+                          overflow: TextOverflow.clip,
+                          maxLines: 1,
                         ),
                         Text(
                           '4',
                           style: Styles.textStyle6Sp,
-                          overflow: TextOverflow.visible,
-                          softWrap: true,
+                          overflow: TextOverflow.clip,
+                          maxLines: 1,
                         ),
                         Container(
                           width: 30.w,
@@ -60,16 +61,16 @@ class BillOfShippment extends StatelessWidget {
                             child: Text(
                               'مكتملة',
                               style: Styles.textStyle5Sp,
-                              overflow: TextOverflow.visible,
-                              softWrap: true,
+                              overflow: TextOverflow.clip,
+                              maxLines: 1,
                             ),
                           ),
                         ),
                         Text(
                           'شحن ودفع',
                           style: Styles.textStyle6Sp,
-                          overflow: TextOverflow.visible,
-                          softWrap: true,
+                          overflow: TextOverflow.clip,
+                          maxLines: 1,
                         ),
                       ],
                     ),
@@ -84,32 +85,32 @@ class BillOfShippment extends StatelessWidget {
                         Text(
                           'كود الشحنة',
                           style: Styles.textStyle6Sp,
-                          overflow: TextOverflow.visible,
-                          softWrap: true,
+                          overflow: TextOverflow.clip,
+                          maxLines: 1,
                         ),
                         Text(
                           'العميل',
                           style: Styles.textStyle6Sp,
-                          overflow: TextOverflow.visible,
-                          softWrap: true,
+                          overflow: TextOverflow.clip,
+                          maxLines: 1,
                         ),
                         Text(
                           'عدد الطرود',
                           style: Styles.textStyle6Sp,
-                          overflow: TextOverflow.visible,
-                          softWrap: true,
+                          overflow: TextOverflow.clip,
+                          maxLines: 1,
                         ),
                         Text(
                           'حالة الشحنة',
                           style: Styles.textStyle6Sp,
-                          overflow: TextOverflow.visible,
-                          softWrap: true,
+                          overflow: TextOverflow.clip,
+                          maxLines: 1,
                         ),
                         Text(
                           'نوع الشحن',
                           style: Styles.textStyle6Sp,
-                          overflow: TextOverflow.ellipsis,
-                          //  softWrap: true,
+                          overflow: TextOverflow.clip,
+                          maxLines: 1,
                         ),
                       ],
                     ),
@@ -118,21 +119,27 @@ class BillOfShippment extends StatelessWidget {
               ),
             ),
 
-            Container(
-              width: 60.w,
-              height: 50.h,
-
-              decoration: BoxDecoration(
-                color: Colors.transparent,
-                borderRadius: BorderRadius.circular(cornerRadius),
-                border: Border.all(color: AppColors.deepPurple, width: 1),
-              ),
-              child: Center(
-                child: Text(
-                  'الفاتورة',
-                  style: Styles.textStyle6Sp,
-                  overflow: TextOverflow.visible,
-                  softWrap: true,
+            MouseRegion(
+              cursor: SystemMouseCursors.click,
+              child: GestureDetector(
+                onTap: onTap,
+                child: Container(
+                  width: 60.w,
+                  height: 50.h,
+                
+                  decoration: BoxDecoration(
+                    color: Colors.transparent,
+                    borderRadius: BorderRadius.circular(cornerRadius),
+                    border: Border.all(color: AppColors.deepPurple, width: 1),
+                  ),
+                  child: Center(
+                    child: Text(
+                      'الفاتورة',
+                      style: Styles.textStyle6Sp,
+                      overflow: TextOverflow.clip,
+                      maxLines: 1,
+                    ),
+                  ),
                 ),
               ),
             ),

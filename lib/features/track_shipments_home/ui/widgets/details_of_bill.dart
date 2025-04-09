@@ -28,7 +28,12 @@ class DetailsOfBill extends StatelessWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
-                  Text(':ملف الفاتورة', style: Styles.textStyle5Sp),
+                  Text(
+                    ':ملف الفاتورة',
+                    style: Styles.textStyle5Sp,
+                    overflow: TextOverflow.clip,
+                    maxLines: 1,
+                  ),
                   SizedBox(width: size.width / 60),
                   CircleAvatar(
                     maxRadius: 5.w,
@@ -50,7 +55,12 @@ class DetailsOfBill extends StatelessWidget {
                         size: size.width / 5,
                       ),
                       SizedBox(height: size.height / 20),
-                      Text('كود الاستلام', style: Styles.textStyle5Sp),
+                      Text(
+                        'كود الاستلام',
+                        style: Styles.textStyle5Sp,
+                        overflow: TextOverflow.clip,
+                        maxLines: 1,
+                      ),
                       SizedBox(height: size.height / 20),
                       Container(
                         width: 70.w,
@@ -67,6 +77,8 @@ class DetailsOfBill extends StatelessWidget {
                                 '5 طرود',
                                 textDirection: TextDirection.rtl,
                                 style: Styles.textStyle4Sp,
+                                overflow: TextOverflow.clip,
+                                maxLines: 1,
                               ),
                               SizedBox(width: size.width / 70),
                               SvgPicture.asset(
@@ -90,16 +102,22 @@ class DetailsOfBill extends StatelessWidget {
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.end,
                             children: [
-                              Text(
-                                'اسم المورد : حسام',
-                                textDirection: TextDirection.rtl,
-                                style: Styles.textStyle4Sp,
+                              Flexible(
+                                child: Text(
+                                  'اسم المورد : حسام',
+                                  textDirection: TextDirection.rtl,
+                                  style: Styles.textStyle4Sp,
+                                  overflow: TextOverflow.clip,
+                                  maxLines: 1,
+                                ),
                               ),
                               SizedBox(width: size.width / 70),
-                              Icon(
-                                Icons.person_outline_sharp,
-                                size: 9.w,
-                                color: AppColors.deepPurple,
+                              Flexible(
+                                child: Icon(
+                                  Icons.person_outline_sharp,
+                                  size: 9.w,
+                                  color: AppColors.deepPurple,
+                                ),
                               ),
                               SizedBox(width: size.width / 50),
                             ],
@@ -121,6 +139,8 @@ class DetailsOfBill extends StatelessWidget {
                           child: Text(
                             'تم تحديد موعد التسليم 22/7/2024',
                             style: Styles.textStyle4Sp,
+                            overflow: TextOverflow.clip,
+                            maxLines: 1,
                           ),
                         ),
                       ),
@@ -136,6 +156,8 @@ class DetailsOfBill extends StatelessWidget {
                           child: Text(
                             '200 \$ مئتان دولار',
                             style: Styles.textStyle4Sp,
+                            overflow: TextOverflow.clip,
+                            maxLines: 1,
                           ),
                         ),
                       ),
@@ -151,6 +173,8 @@ class DetailsOfBill extends StatelessWidget {
                           child: Text(
                             'رقم الاستلام: 5224',
                             style: Styles.textStyle4Sp,
+                            overflow: TextOverflow.clip,
+                            maxLines: 1,
                           ),
                         ),
                       ),
@@ -166,6 +190,8 @@ class DetailsOfBill extends StatelessWidget {
                           child: Text(
                             'اسم العميل : محمد ابراهيم المحمود',
                             style: Styles.textStyle4Sp,
+                            overflow: TextOverflow.clip,
+                            maxLines: 1,
                           ),
                         ),
                       ),
@@ -181,6 +207,8 @@ class DetailsOfBill extends StatelessWidget {
                           child: Text(
                             'رقم العميل : 45725272425',
                             style: Styles.textStyle4Sp,
+                            overflow: TextOverflow.clip,
+                            maxLines: 1,
                           ),
                         ),
                       ),
@@ -188,9 +216,16 @@ class DetailsOfBill extends StatelessWidget {
                       Text(
                         'اسم المستلم : محمد المحمود ',
                         style: Styles.textStyle5Sp,
+                        overflow: TextOverflow.clip,
+                        maxLines: 1,
                       ),
                       SizedBox(height: size.height / 10),
-                      Text('توقيع المستلم : محمد', style: Styles.textStyle5Sp),
+                      Text(
+                        'توقيع المستلم : محمد',
+                        style: Styles.textStyle5Sp,
+                        overflow: TextOverflow.clip,
+                        maxLines: 1,
+                      ),
                     ],
                   ),
                 ],

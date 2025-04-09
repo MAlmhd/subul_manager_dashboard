@@ -6,10 +6,12 @@ import 'package:intl/intl.dart';
 import 'package:subul_manager_dashboard/core/helpers/constants.dart';
 import 'package:subul_manager_dashboard/core/helpers/styles.dart';
 import 'package:subul_manager_dashboard/core/theming/app_colors.dart';
+import 'package:subul_manager_dashboard/features/track_shipments_home/ui/widgets/custom_ok_button.dart';
 import 'package:table_calendar/table_calendar.dart';
 
 class CustomCalendar extends StatefulWidget {
-  const CustomCalendar({super.key});
+  const CustomCalendar({super.key, required this.onTap});
+  final Function() onTap;
 
   @override
   State<CustomCalendar> createState() => _CustomCalendarState();
@@ -115,20 +117,7 @@ class _CustomCalendarState extends State<CustomCalendar> {
                 ),
               ),
               SizedBox(height: size.height / 20),
-              Container(
-                width: 60.w,
-                height: 40.h,
-                decoration: BoxDecoration(
-                  color: AppColors.deepPurple,
-                  borderRadius: BorderRadius.circular(cornerRadius),
-                ),
-                child: Center(
-                  child: Text(
-                    'موافق',
-                    style: Styles.textStyle4Sp.copyWith(color: AppColors.white),
-                  ),
-                ),
-              ),
+              CustomOkButton(onTap: widget.onTap),
             ],
           ),
         ),
