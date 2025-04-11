@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:subul_manager_dashboard/core/routing/app_router.dart';
-import 'package:subul_manager_dashboard/features/track_shipments_home/ui/widgets/track_shipments_home.dart';
+import 'package:subul_manager_dashboard/features/receiving_shipments/ui/receiving_shipments.dart';
 import 'package:intl/date_symbol_data_local.dart';
 
 void main() async{
@@ -31,7 +31,7 @@ class MyApp extends StatelessWidget {
             debugShowCheckedModeBanner: false,
             title: 'Subul Manager Dashboard',
             theme: ThemeData(textTheme: GoogleFonts.almaraiTextTheme()),
-            home: TrackShipmentsHome(), //const HomeView(),
+            home:ReceivingShipments()// TrackShipmentsHome(), //const HomeView(),
           ),
     );
   }

@@ -29,12 +29,14 @@ environment:
 # versions available, run `flutter pub outdated`.
 dependencies:
   country_code_picker: ^3.3.0
+  country_flags: ^3.2.0
   cupertino_icons: ^1.0.8
   flutter:
     sdk: flutter
   flutter_dash: ^1.0.0
   flutter_screenutil: ^5.9.3
   flutter_svg: ^2.0.17
+  flutter_switch: ^0.3.2
   google_fonts: ^6.2.1
   iconify_flutter: ^0.0.7
   intl: ^0.20.2

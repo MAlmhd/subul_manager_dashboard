@@ -13,4 +13,8 @@ abstract class AssetsData {
   static const money = 'assets/images/tdesign_money-filled.svg';
 
   static const purbleBox = 'assets/images/purble_box.svg';
+  static const editIcon = 'assets/images/lucide_edit.svg';
+  static const camera = 'assets/images/camera.svg';
+  static const searchNotesBox = 'assets/images/b1.png';
+  static const hand = 'assets/images/hand.svg';
 }
