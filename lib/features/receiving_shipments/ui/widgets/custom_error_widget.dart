@@ -6,15 +6,16 @@ import 'package:subul_manager_dashboard/core/helpers/constants.dart';
 import 'package:subul_manager_dashboard/core/helpers/styles.dart';
 import 'package:subul_manager_dashboard/core/theming/app_colors.dart';
 
-class ReceivedDialog extends StatelessWidget {
-  const ReceivedDialog({super.key, required this.message});
-  final String message;
+class CustomErrorWidget extends StatelessWidget {
+  const CustomErrorWidget({super.key});
 
   @override
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
     return Container(
-      padding: EdgeInsets.symmetric(horizontal: 40.w, vertical: 60.h),
+      width: 140.w,
+      height: 300.h,
+      padding: EdgeInsets.symmetric(horizontal: 4.w, vertical: 10.h),
       decoration: BoxDecoration(
         color: AppColors.lightGray2,
         borderRadius: BorderRadius.circular(cornerRadius),
@@ -23,14 +24,14 @@ class ReceivedDialog extends StatelessWidget {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Text(
-            message,
-            style: Styles.textStyle5Sp.copyWith(color: AppColors.deepPurple),
-            maxLines: 1,
-            overflow: TextOverflow.clip,
+          Flexible(
+            child: Text(
+              'تعذر الاستلام',
+              style: Styles.textStyle5Sp.copyWith(color: AppColors.deepPurple),
+            ),
           ),
-          SizedBox(height: size.height / 20),
-          SvgPicture.asset(AssetsData.hand, width: 25.w),
+          SizedBox(height: size.height / 30),
+          Flexible(child: SvgPicture.asset(AssetsData.error)),
         ],
       ),
     );

@@ -44,7 +44,7 @@ class ThanksWidget extends StatelessWidget {
                   overflow: TextOverflow.clip,
                   textAlign: TextAlign.center,
                 ),
-                CustomOkButton(onTap: onTap),
+                CustomOkButton(onTap: onTap, color: AppColors.deepPurple, label: 'موافق',),
               ],
             ),
           ),

@@ -116,7 +116,7 @@ class _CustomCalendarState extends State<CustomCalendar> {
                 ),
               ),
               SizedBox(height: size.height / 20),
-              CustomOkButton(onTap: widget.onTap),
+              CustomOkButton(onTap: widget.onTap, color: AppColors.deepPurple, label: 'موافق',),
             ],
           ),
         ),

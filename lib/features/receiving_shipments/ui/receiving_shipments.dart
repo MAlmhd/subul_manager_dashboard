@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
@@ -12,16 +14,27 @@ import 'package:subul_manager_dashboard/core/helpers/styles.dart';
 import 'package:subul_manager_dashboard/core/theming/app_colors.dart';
 import 'package:subul_manager_dashboard/core/widgets/custom_calendar.dart';
 import 'package:subul_manager_dashboard/core/widgets/custom_icon_of_side_bar.dart';
+import 'package:subul_manager_dashboard/core/widgets/otp.dart';
 import 'package:subul_manager_dashboard/core/widgets/text_logo.dart';
 import 'package:subul_manager_dashboard/features/receiving_shipments/ui/widgets/confirm_or_failed_receive_shipment.dart';
+import 'package:subul_manager_dashboard/features/receiving_shipments/ui/widgets/custom_error_widget.dart';
 import 'package:subul_manager_dashboard/features/receiving_shipments/ui/widgets/custom_switch_label.dart';
+import 'package:subul_manager_dashboard/features/receiving_shipments/ui/widgets/edit_information_of_receiving_shipments.dart';
 import 'package:subul_manager_dashboard/features/receiving_shipments/ui/widgets/edit_receiving_shipments_table.dart';
 import 'package:subul_manager_dashboard/features/receiving_shipments/ui/widgets/enter_details_of_shipments.dart';
+import 'package:subul_manager_dashboard/features/receiving_shipments/ui/widgets/grid_of_shipments_status_card.dart';
 import 'package:subul_manager_dashboard/features/receiving_shipments/ui/widgets/icon_text_button.dart';
+import 'package:subul_manager_dashboard/features/receiving_shipments/ui/widgets/list_for_selecting_shipments_receiving.dart';
+import 'package:subul_manager_dashboard/features/receiving_shipments/ui/widgets/progress_tracker.dart';
 
 import 'package:subul_manager_dashboard/features/receiving_shipments/ui/widgets/receive_shipments_table.dart';
 import 'package:subul_manager_dashboard/features/receiving_shipments/ui/widgets/received_dialog.dart';
+import 'package:subul_manager_dashboard/features/receiving_shipments/ui/widgets/select_receiving_shipments_item.dart';
+import 'package:subul_manager_dashboard/features/receiving_shipments/ui/widgets/shipment_status_card.dart';
+import 'package:subul_manager_dashboard/features/receiving_shipments/ui/widgets/shipments_delivered_item.dart';
+import 'package:subul_manager_dashboard/features/receiving_shipments/ui/widgets/show_shipments_delivered.dart';
 import 'package:subul_manager_dashboard/features/receiving_shipments/ui/widgets/time_date_booking.dart';
+import 'package:subul_manager_dashboard/features/receiving_shipments/ui/widgets/upload_image_for_shipment.dart';
 import 'package:subul_manager_dashboard/features/track_shipments_home/ui/widgets/custom_ok_button.dart';
 
 class ReceivingShipments extends StatelessWidget {
@@ -86,28 +99,40 @@ class ReceivingShipments extends StatelessWidget {
                   ),
                 ],
               ),
-              IndexedStack(
-                index: 0,
-                children: [
-                  //ReceiveShipmentsTable(),
-                  // EditReceivingShipmentsTable(),
-                  // TimeDateBooking(),
-                  //  ConfirmOrFailedReceiveShipment(),
-                  // ReceivedDialog(),
-                  // EnterDetailsOfShipments(),
-                  // CustomCalendar(
-                  //   onTap: () {
-                  //     showTimePicker(
-                  //       context: context,
-                  //       initialTime: TimeOfDay.now(),
-                  //     );
-                  //   },
-                  // ),
-                  Column(
-                    
-                  ),
+              Expanded(
+                child: IndexedStack(
+                  index: 0,
+                  children: [
+                    //ReceiveShipmentsTable(),
+                    // EditReceivingShipmentsTable(),
+                    // TimeDateBooking(),
+                    //  ConfirmOrFailedReceiveShipment(),
+                    // ReceivedDialog(),
+                    // EnterDetailsOfShipments(),
+                    // CustomCalendar(
+                    //   onTap: () {
+                    //     showTimePicker(
+                    //       context: context,
+                    //       initialTime: TimeOfDay.now(),
+                    //     );
+                    //   },
+                    // ),
+                    // ShowShipmentsDelivered()
+                    // SingleChildScrollView(
+                    //   scrollDirection: Axis.horizontal,
+                    //   child: Row(
+                    //     children: [
+                    //       //GridOfShipmentsStatusCard(),
+                    //       EditInformationOfReceivingShipments(),
+                    //       ListForSelectingShipmentsReceiving(),
+                    //     ],
+                    //   ),
+                    // ),
 
-                ],
+                    //  ReceivedDialog(message: 'هنيئاً ... الآن نحتاج لملئ استمارة تثبيت الاستلام ',),
+                   CustomErrorWidget()
+                  ],
+                ),
               ),
             ],
           ),

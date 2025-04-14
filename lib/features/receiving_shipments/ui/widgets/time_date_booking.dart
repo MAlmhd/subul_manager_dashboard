@@ -251,7 +251,7 @@ class TimeDateBooking extends StatelessWidget {
             ),
           ),
           SizedBox(height: size.height / 50),
-          CustomOkButton(onTap: () {}),
+          CustomOkButton(onTap: () {}, color: AppColors.deepPurple, label: 'موافق',),
         ],
       ),
     );

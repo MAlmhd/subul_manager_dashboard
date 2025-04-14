@@ -14,7 +14,13 @@ abstract class AssetsData {
 
   static const purbleBox = 'assets/images/purble_box.svg';
   static const editIcon = 'assets/images/lucide_edit.svg';
+  static const editIconPurple = 'assets/images/edit_purple_icon.svg';
   static const camera = 'assets/images/camera.svg';
   static const searchNotesBox = 'assets/images/b1.png';
   static const hand = 'assets/images/hand.svg';
+  static const boxx = 'assets/images/boxx.svg';
+  static const checkIcon = 'assets/images/check_icon.svg';
+  static const boxPencilIcon = 'assets/images/box_pen.svg';
+  static const noteBackground = 'assets/images/note_background.svg';
+  static const error = 'assets/images/sorry.svg';
 }
