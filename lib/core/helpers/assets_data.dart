@@ -23,4 +23,8 @@ abstract class AssetsData {
   static const boxPencilIcon = 'assets/images/box_pen.svg';
   static const noteBackground = 'assets/images/note_background.svg';
   static const error = 'assets/images/sorry.svg';
+  static const ballon = 'assets/images/ballon.svg';
+  static const boxNotFilled = 'assets/images/box_not_fiiled.svg';
+  static const person = 'assets/images/person.svg';
+  static const phone = 'assets/images/Phone.svg';
 }

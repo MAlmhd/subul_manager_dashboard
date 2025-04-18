@@ -22,4 +22,6 @@ abstract class AppColors {
   static const Color gunmetal = Color(0XFF424D59);
   static const Color teal = Colors.teal;
   static const Color grayDark = Color(0XFF5D5F5E);
+ 
+  
 }

@@ -4,6 +4,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:subul_manager_dashboard/core/routing/app_router.dart';
 import 'package:subul_manager_dashboard/features/receiving_shipments/ui/receiving_shipments.dart';
 import 'package:intl/date_symbol_data_local.dart';
+import 'package:subul_manager_dashboard/features/warehouse_manager/ui/warehouse_manager.dart';
 
 void main() async{
   WidgetsFlutterBinding.ensureInitialized();
@@ -31,7 +32,7 @@ class MyApp extends StatelessWidget {
             debugShowCheckedModeBanner: false,
             title: 'Subul Manager Dashboard',
             theme: ThemeData(textTheme: GoogleFonts.almaraiTextTheme()),
-            home:ReceivingShipments()// TrackShipmentsHome(), //const HomeView(),
+            home:WarehouseManager()// ReceivingShipments()// TrackShipmentsHome(), //const HomeView(),
           ),
     );
   }
