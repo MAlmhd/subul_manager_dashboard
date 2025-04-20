@@ -5,7 +5,7 @@ import 'package:subul_manager_dashboard/core/helpers/assets_data.dart';
 import 'package:subul_manager_dashboard/core/helpers/constants.dart';
 import 'package:subul_manager_dashboard/core/helpers/styles.dart';
 import 'package:subul_manager_dashboard/core/theming/app_colors.dart';
-import 'package:subul_manager_dashboard/features/receiving_shipments/ui/widgets/icon_text_button.dart';
+import 'package:subul_manager_dashboard/core/widgets/icon_text_button.dart';
 
 class ConfirmOrFailedReceiveShipment extends StatelessWidget {
   const ConfirmOrFailedReceiveShipment({super.key});

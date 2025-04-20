@@ -23,7 +23,7 @@ import 'package:subul_manager_dashboard/features/receiving_shipments/ui/widgets/
 import 'package:subul_manager_dashboard/core/widgets/edit_receiving_shipments_table.dart';
 import 'package:subul_manager_dashboard/features/receiving_shipments/ui/widgets/enter_details_of_shipments.dart';
 import 'package:subul_manager_dashboard/features/receiving_shipments/ui/widgets/grid_of_shipments_status_card.dart';
-import 'package:subul_manager_dashboard/features/receiving_shipments/ui/widgets/icon_text_button.dart';
+import 'package:subul_manager_dashboard/core/widgets/icon_text_button.dart';
 import 'package:subul_manager_dashboard/features/receiving_shipments/ui/widgets/list_for_selecting_shipments_receiving.dart';
 import 'package:subul_manager_dashboard/features/receiving_shipments/ui/widgets/progress_tracker.dart';
 
@@ -53,6 +53,7 @@ class ReceivingShipments extends StatelessWidget {
               begin: Alignment.topCenter,
               end: Alignment.bottomCenter,
             ),
+            
           ),
           child: Row(
             children: [
