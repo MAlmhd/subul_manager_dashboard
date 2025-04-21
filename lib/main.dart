@@ -5,6 +5,7 @@ import 'package:subul_manager_dashboard/core/routing/app_router.dart';
 import 'package:subul_manager_dashboard/features/receiving_shipments/ui/receiving_shipments.dart';
 import 'package:intl/date_symbol_data_local.dart';
 import 'package:subul_manager_dashboard/features/show_all_shipments/ui/show_all_shipments.dart';
+import 'package:subul_manager_dashboard/features/show_all_shipments/ui/widgets/create_shipment.dart';
 import 'package:subul_manager_dashboard/features/warehouse_manager/ui/warehouse_manager.dart';
 
 void main() async{
@@ -33,7 +34,7 @@ class MyApp extends StatelessWidget {
             debugShowCheckedModeBanner: false,
             title: 'Subul Manager Dashboard',
             theme: ThemeData(textTheme: GoogleFonts.almaraiTextTheme()),
-            home:ShowAllShipments(), //WarehouseManager()// ReceivingShipments()// TrackShipmentsHome(), //const HomeView(),
+            home: CreateShipment()// ShowAllShipments(), //WarehouseManager()// ReceivingShipments()// TrackShipmentsHome(), //const HomeView(),
           ),
     );
   }

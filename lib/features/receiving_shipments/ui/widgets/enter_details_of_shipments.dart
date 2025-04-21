@@ -5,7 +5,7 @@ import 'package:iconify_flutter/icons/bi.dart';
 import 'package:subul_manager_dashboard/core/helpers/constants.dart';
 import 'package:subul_manager_dashboard/core/helpers/styles.dart';
 import 'package:subul_manager_dashboard/core/theming/app_colors.dart';
-import 'package:subul_manager_dashboard/features/receiving_shipments/ui/widgets/custom_switch_label.dart';
+import 'package:subul_manager_dashboard/core/widgets/custom_switch_label.dart';
 
 class EnterDetailsOfShipments extends StatelessWidget {
   const EnterDetailsOfShipments({super.key});
@@ -35,8 +35,18 @@ class EnterDetailsOfShipments extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
-              CustomSwitchLabel(label: 'تالف'),
-              CustomSwitchLabel(label: 'تم فتحه'),
+              CustomSwitchLabel(
+                label: 'تالف',
+                textColor: AppColors.black,
+                activeColor: AppColors.deepPurple,
+                disableColor: AppColors.grayDark, isActive: false,
+              ),
+              CustomSwitchLabel(
+                label: 'تم فتحه',
+                textColor: AppColors.black,
+                activeColor: AppColors.deepPurple,
+                disableColor: AppColors.grayDark, isActive: false,
+              ),
             ],
           ),
           SizedBox(height: size.height / 20),

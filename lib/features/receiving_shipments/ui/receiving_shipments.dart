@@ -18,7 +18,7 @@ import 'package:subul_manager_dashboard/core/widgets/otp.dart';
 import 'package:subul_manager_dashboard/core/widgets/text_logo.dart';
 import 'package:subul_manager_dashboard/features/receiving_shipments/ui/widgets/confirm_or_failed_receive_shipment.dart';
 import 'package:subul_manager_dashboard/features/receiving_shipments/ui/widgets/custom_error_widget.dart';
-import 'package:subul_manager_dashboard/features/receiving_shipments/ui/widgets/custom_switch_label.dart';
+import 'package:subul_manager_dashboard/core/widgets/custom_switch_label.dart';
 import 'package:subul_manager_dashboard/features/receiving_shipments/ui/widgets/edit_information_of_receiving_shipments.dart';
 import 'package:subul_manager_dashboard/core/widgets/edit_receiving_shipments_table.dart';
 import 'package:subul_manager_dashboard/features/receiving_shipments/ui/widgets/enter_details_of_shipments.dart';

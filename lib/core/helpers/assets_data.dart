@@ -27,4 +27,8 @@ abstract class AssetsData {
   static const boxNotFilled = 'assets/images/box_not_fiiled.svg';
   static const person = 'assets/images/person.svg';
   static const phone = 'assets/images/Phone.svg';
+  static const aLetter = 'assets/images/a_letter.svg';
+  static const bulb = 'assets/images/bulb.svg';
+  static const outlineBox = 'assets/images/outline_box.svg';
+  static const persons = 'assets/images/persons.svg';
 }
