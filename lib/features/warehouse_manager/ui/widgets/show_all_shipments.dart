@@ -6,8 +6,8 @@ import 'package:subul_manager_dashboard/core/theming/app_colors.dart';
 import 'package:subul_manager_dashboard/core/widgets/custom_search_item.dart';
 import 'package:subul_manager_dashboard/core/widgets/icon_text_button.dart';
 import 'package:subul_manager_dashboard/core/widgets/text_logo.dart';
-import 'package:subul_manager_dashboard/features/show_all_shipments/ui/widgets/custom_item_in_show_all_shipments_table.dart';
-import 'package:subul_manager_dashboard/features/show_all_shipments/ui/widgets/name_of_columns_in_show_all_shipments_table.dart';
+import 'package:subul_manager_dashboard/features/warehouse_manager/ui/widgets/custom_item_in_show_all_shipments_table.dart';
+import 'package:subul_manager_dashboard/features/warehouse_manager/ui/widgets/name_of_columns_in_show_all_shipments_table.dart';
 
 class ShowAllShipments extends StatelessWidget {
   const ShowAllShipments({super.key});

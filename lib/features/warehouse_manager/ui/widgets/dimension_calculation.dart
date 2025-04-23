@@ -9,7 +9,7 @@ import 'package:subul_manager_dashboard/core/helpers/constants.dart';
 import 'package:subul_manager_dashboard/core/helpers/styles.dart' show Styles;
 import 'package:subul_manager_dashboard/core/theming/app_colors.dart';
 import 'package:subul_manager_dashboard/core/widgets/custom_ok_button.dart';
-import 'package:subul_manager_dashboard/features/show_all_shipments/ui/widgets/lableled_remove_add_shipment_widget.dart';
+import 'package:subul_manager_dashboard/features/warehouse_manager/ui/widgets/lableled_remove_add_shipment_widget.dart';
 
 class DimensionCalculation extends StatelessWidget {
   const DimensionCalculation({super.key});
