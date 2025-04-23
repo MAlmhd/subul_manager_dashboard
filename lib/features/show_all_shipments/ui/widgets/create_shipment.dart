@@ -13,6 +13,7 @@ import 'package:subul_manager_dashboard/core/widgets/custom_search_item.dart';
 import 'package:subul_manager_dashboard/core/widgets/custom_switch_label.dart';
 import 'package:subul_manager_dashboard/core/widgets/text_logo.dart';
 import 'package:subul_manager_dashboard/features/show_all_shipments/ui/widgets/custom_note.dart';
+import 'package:subul_manager_dashboard/features/show_all_shipments/ui/widgets/dimension_calculation.dart';
 import 'package:subul_manager_dashboard/features/show_all_shipments/ui/widgets/labeled_icon_text_field.dart';
 import 'package:subul_manager_dashboard/features/show_all_shipments/ui/widgets/labeled_input_field.dart';
 import 'package:subul_manager_dashboard/features/show_all_shipments/ui/widgets/volumetric_weight_calculation.dart';
@@ -369,11 +370,17 @@ class CreateShipment extends StatelessWidget {
               ),
             ),
             //---------------------------
+            if(false)
             Positioned(
               left: 140.w,
               top: 100.h,
               child: VolumetricWeightCalculation(),
             ),
+            if(true)
+            Positioned(
+              left: 140.w,
+              top: 100.h,
+              child: DimensionCalculation()),
           ],
         ),
       ),
