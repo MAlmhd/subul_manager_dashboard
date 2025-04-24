@@ -374,7 +374,7 @@ class CreateShipment extends StatelessWidget {
             Positioned(
               left: 140.w,
               top: 100.h,
-              child: VolumetricWeightCalculation(),
+              child: VolumetricWeightCalculation(showBluryBackground: true,),
             ),
             if(true)
             Positioned(

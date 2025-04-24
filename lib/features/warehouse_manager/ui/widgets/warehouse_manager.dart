@@ -18,6 +18,9 @@ import 'package:subul_manager_dashboard/core/widgets/text_logo.dart';
 import 'package:subul_manager_dashboard/core/widgets/custom_ok_button.dart';
 import 'package:subul_manager_dashboard/features/receiving_shipments/ui/widgets/title_of_columns_receive_shipments.dart';
 import 'package:subul_manager_dashboard/features/warehouse_manager/ui/widgets/card_text_field.dart';
+import 'package:subul_manager_dashboard/features/warehouse_manager/ui/widgets/logistics_entry_screen.dart';
+import 'package:subul_manager_dashboard/features/warehouse_manager/ui/widgets/shipments_info_card.dart';
+import 'package:subul_manager_dashboard/features/warehouse_manager/ui/widgets/subul_receipt_screen.dart';
 import 'package:subul_manager_dashboard/features/warehouse_manager/ui/widgets/upload_number_image_and_name_of_driver_shipment.dart';
 import 'package:subul_manager_dashboard/features/warehouse_manager/ui/widgets/volumetric_weight_calculation.dart';
 import 'package:subul_manager_dashboard/features/warehouse_manager/ui/widgets/add_shipment_form.dart';
@@ -107,82 +110,8 @@ class WarehouseManager extends StatelessWidget {
                     //   ),
                     // ),
                     // EditShippingDetail(),
-                    Column(
-                      children: [
-                        TitleOfColumnsReceiveShipments(),
-                        SizedBox(
-                          width: 300.w,
-                          child: Row(
-                            children: [
-                              Expanded(
-                                child: Container(
-                                  width: size.width / 1.5,
-                                  height: size.height / 11,
-                                  decoration: BoxDecoration(
-                                    color: AppColors.lightGray2,
-                                    borderRadius: BorderRadius.circular(
-                                      cornerRadius,
-                                    ),
-                                  ),
-                                  child: Row(
-                                    mainAxisSize: MainAxisSize.max,
-                                    children: [
-                                      Container(
-                                        height: 2,
-                                        width: 30.w,
-                                        color: AppColors.black,
-                                      ),
-                                      SizedBox(width: size.width / 15),
-                                      Container(
-                                        height: 2,
-                                        width: 30.w,
-                                        color: AppColors.black,
-                                      ),
-                                      SizedBox(width: size.width / 10),
-                                      Text(
-                                        '4',
-                                        style: Styles.textStyle5Sp,
-                                        maxLines: 1,
-                                        overflow: TextOverflow.clip,
-                                      ),
-                                      SizedBox(width: size.width / 6.5),
-                                      Flexible(
-                                        child: Text(
-                                          '24/2/2025',
-                                          style: Styles.textStyle5Sp,
-                                          maxLines: 1,
-                                          overflow: TextOverflow.clip,
-                                        ),
-                                      ),
-                                      SizedBox(width: size.width / 10),
-                                      Flexible(
-                                        child: Text(
-                                          '7575757577',
-                                          style: Styles.textStyle5Sp,
-                                          maxLines: 1,
-                                          overflow: TextOverflow.clip,
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                              ),
-                              SizedBox(width: size.width / 60),
-                              SvgPicture.asset(AssetsData.box, width: 15.w),
-                            ],
-                          ),
-                        ),
-                        SizedBox(height: size.height / 10),
-                        Row(
-                          children: [
-                            UploadNumberImageAndNameOfDriverShipment(
-                             
-                            ),
-                            //  VolumetricWeightCalculation(),
-                          ],
-                        ),
-                      ],
-                    ),
+                  //  LogisticsEntryScreen(),
+                    SubulReceiptScreen(),
                   ],
                 ),
               ),

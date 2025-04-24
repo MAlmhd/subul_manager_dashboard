@@ -34,4 +34,5 @@ abstract class AssetsData {
   static const outlinePurpleBox = 'assets/images/outline_purple_box.svg';
   static const image15 = 'assets/images/image 15.png';
   static const personName = 'assets/images/person_name.svg';
+  static const subulLogo = 'assets/images/subul_logo.png';
 }

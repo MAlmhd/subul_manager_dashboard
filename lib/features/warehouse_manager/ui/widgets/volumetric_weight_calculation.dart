@@ -12,7 +12,8 @@ import 'package:subul_manager_dashboard/core/widgets/custom_ok_button.dart';
 import 'package:subul_manager_dashboard/features/warehouse_manager/ui/widgets/lableled_remove_add_shipment_widget.dart';
 
 class VolumetricWeightCalculation extends StatelessWidget {
-  const VolumetricWeightCalculation({super.key});
+  const VolumetricWeightCalculation({super.key, required this.showBluryBackground});
+  final bool showBluryBackground;
 
   @override
   Widget build(BuildContext context) {
@@ -20,6 +21,7 @@ class VolumetricWeightCalculation extends StatelessWidget {
     return SingleChildScrollView(
       child: Column(
         children: [
+          if(showBluryBackground)
           BackdropFilter(
             filter: ImageFilter.blur(sigmaX: 5.0, sigmaY: 5.0),
             child: Container(),
@@ -27,7 +29,7 @@ class VolumetricWeightCalculation extends StatelessWidget {
           Container(
             width: 130.w,
             height: 800.h,
-            padding: EdgeInsets.symmetric(vertical: 25.h, ),
+            padding: EdgeInsets.symmetric(vertical: 25.h),
             decoration: BoxDecoration(
               color: AppColors.lightGray2,
               borderRadius: BorderRadius.circular(cornerRadius),
