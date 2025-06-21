@@ -1,17 +1,27 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:subul_manager_dashboard/core/routing/app_router.dart';
-import 'package:subul_manager_dashboard/features/receiving_shipments/ui/receiving_shipments.dart';
-import 'package:intl/date_symbol_data_local.dart';
-import 'package:subul_manager_dashboard/features/warehouse_manager/ui/widgets/show_all_shipments.dart';
-import 'package:subul_manager_dashboard/features/warehouse_manager/ui/widgets/create_shipment.dart';
-import 'package:subul_manager_dashboard/features/warehouse_manager/ui/widgets/warehouse_manager.dart';
 
-void main() async{
+import 'package:hive_flutter/hive_flutter.dart';
+import 'package:subul_manager_dashboard/core/helpers/constants.dart';
+import 'package:subul_manager_dashboard/core/routing/app_router.dart';
+import 'package:subul_manager_dashboard/core/utils/service_locator.dart';
+import 'package:intl/date_symbol_data_local.dart';
+import 'package:subul_manager_dashboard/core/utils/simple_bloc_observer.dart';
+import 'package:subul_manager_dashboard/features/register_client/domain/entites/company_entity/company_entity.dart';
+import 'package:subul_manager_dashboard/features/sign_in/presentation/views/sign_in_screen.dart';
+
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await Hive.initFlutter();
+  Hive.registerAdapter(CompanyEntityAdapter());
+  await Hive.openBox<CompanyEntity>(kCompaniesBox);
+  setupServiceLocator();
   await initializeDateFormatting('ar', null);
+  Bloc.observer = SimpleBlocObserver();
   runApp(MyApp(appRouter: AppRouter()));
+ 
 }
 
 class MyApp extends StatelessWidget {
@@ -34,7 +44,8 @@ class MyApp extends StatelessWidget {
             debugShowCheckedModeBanner: false,
             title: 'Subul Manager Dashboard',
             theme: ThemeData(textTheme: GoogleFonts.almaraiTextTheme()),
-            home:WarehouseManager() //CreateShipment()// ShowAllShipments(), //// ReceivingShipments()// TrackShipmentsHome(), //const HomeView(),
+            home:  SignInScreen()
+               // HomeView(), //WarehouseManager() //CreateShipment()// ShowAllShipments(), //// ReceivingShipments()// TrackShipmentsHome(), //const HomeView(),
           ),
     );
   }

@@ -3,7 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:iconify_flutter/icons/game_icons.dart';
 import 'package:iconify_flutter/icons/material_symbols.dart';
 import 'package:subul_manager_dashboard/core/theming/app_colors.dart';
-import 'package:subul_manager_dashboard/features/home_view/ui/widgets/build_circle.dart';
+import 'package:subul_manager_dashboard/features/home_view/presentation/views/widgets/build_circle.dart';
 
 class BuildAnimatedIcons extends StatelessWidget {
   const BuildAnimatedIcons({super.key, required this.step});

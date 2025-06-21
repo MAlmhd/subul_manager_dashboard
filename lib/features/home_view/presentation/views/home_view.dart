@@ -13,12 +13,10 @@ import 'package:subul_manager_dashboard/core/widgets/text_logo.dart';
 import 'package:subul_manager_dashboard/features/cancel_shipment/ui/cancel_shipment.dart';
 import 'package:subul_manager_dashboard/features/cancel_shipment/ui/widgets/reason_for_cancellation.dart';
 import 'package:subul_manager_dashboard/features/delete_workers/ui/delete_workers.dart';
-import 'package:subul_manager_dashboard/features/enter_code_for_client/ui/enter_code_for_client.dart';
-import 'package:subul_manager_dashboard/features/enter_code_for_client/ui/widgets/registeration_client.dart';
-import 'package:subul_manager_dashboard/features/enter_code_for_company/ui/enter_code_for_company.dart';
-import 'package:subul_manager_dashboard/features/enter_code_for_company/ui/widgets/registeration_company.dart';
-import 'package:subul_manager_dashboard/features/home_view/ui/widgets/animations.dart';
-import 'package:subul_manager_dashboard/features/home_view/ui/widgets/toggle_client_company_button.dart';
+import 'package:subul_manager_dashboard/features/register_client/presentation/views/registeration_client.dart';
+import 'package:subul_manager_dashboard/features/home_view/presentation/views/widgets/animations.dart';
+import 'package:subul_manager_dashboard/features/home_view/presentation/views/widgets/toggle_client_company_button.dart';
+import 'package:subul_manager_dashboard/features/register_company/presentation/views/register_company_screen.dart';
 
 class HomeView extends StatefulWidget {
   const HomeView({super.key});
@@ -201,40 +199,14 @@ class _HomeViewState extends State<HomeView> {
                               child: Animations(step: step, opacity: opacity),
                             ),
                             //----------1-------------
-                            Padding(
-                              padding: EdgeInsets.only(top: 200.h),
-                              child: EnterCodeForCompany(
-                                onTap: () {
-                                  onButtonTap(3);
-                                },
-                              ),
+                           RegisterCompanyScreen(
+                              
                             ),
-                            //----------2-------------
-                            Padding(
-                              padding: EdgeInsets.only(top: 200.h),
-                              child: EnterCodeForClient(
-                                onTap: () {
-                                  onButtonTap(4);
-                                },
-                              ),
-                            ),
-                            //----------3-------------
-                            RegisterationCompany(
-                              onTap: () {
-                                setState(() {
-                                  showOtp = !showOtp;
-                                });
-                              },
-                              showOtp: showOtp,
-                            ),
-                            //----------4-----------
+                            //----------2-----------
                             RegisterationClient(
-                              onTap: () {
-                                showOtp = !showOtp;
-                              },
-                              showOtp: showOtp,
+                             
                             ),
-                            //---------5------------
+                            //------------3-------------
                             DeleteWorkers(
                               onTap: () {
                                 setState(() {
@@ -251,13 +223,13 @@ class _HomeViewState extends State<HomeView> {
                               deleteIsConfirmed: showSuccessDialog,
                             ),
 
-                            //---------6------------
+                            //---------4------------
                             CancelShipment(
                               onTap: () {
                                 onButtonTap(7);
                               },
                             ),
-                            //-------------7----------
+                            //-------------5----------
                             Padding(
                               padding: EdgeInsets.only(top: 200.h),
                               child: ReasonForCancellation(

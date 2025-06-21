@@ -4,10 +4,23 @@ import 'package:subul_manager_dashboard/core/helpers/constants.dart';
 import 'package:subul_manager_dashboard/core/helpers/styles.dart';
 import 'package:subul_manager_dashboard/core/theming/app_colors.dart';
 
-class CustomTextFiled extends StatelessWidget {
-  const CustomTextFiled({super.key, required this.label, required this.keyboardType});
+class CustomTextField extends StatelessWidget {
+  const CustomTextField({
+    super.key,
+    required this.label,
+    required this.keyboardType,
+    this.securePassword = false,
+    this.controller,
+    this.validator,
+    this.onChanged,
+  });
+
   final String label;
- final TextInputType keyboardType;
+  final TextInputType keyboardType;
+  final bool securePassword;
+  final TextEditingController? controller;
+  final String? Function(String?)? validator;
+  final Function(String)? onChanged;
 
   @override
   Widget build(BuildContext context) {
@@ -16,9 +29,17 @@ class CustomTextFiled extends StatelessWidget {
       child: Directionality(
         textDirection: TextDirection.rtl,
         child: TextFormField(
+          controller: controller,
           keyboardType: keyboardType,
+          obscureText: securePassword,
           textAlign: TextAlign.right,
-
+          validator: validator ?? (value) {
+            if (value == null || value.trim().isEmpty) {
+              return 'يرجى إدخال $label'; // Arabic: Please enter $label
+            }
+            return null;
+          },
+          onChanged: onChanged,
           decoration: InputDecoration(
             contentPadding: EdgeInsets.symmetric(
               vertical: 20.h,
