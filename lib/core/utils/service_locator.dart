@@ -16,6 +16,15 @@ import 'package:subul_manager_dashboard/features/register_company/data/data_sour
 import 'package:subul_manager_dashboard/features/register_company/data/repos/register_company_repo_impl.dart';
 import 'package:subul_manager_dashboard/features/register_company/domain/repo/register_company_repo.dart';
 import 'package:subul_manager_dashboard/features/register_company/domain/use_case/register_company_use_case.dart';
+import 'package:subul_manager_dashboard/features/show_companies_and_clients/data/data_source/delete_user_data_source/delete_user_remote_data_source.dart';
+import 'package:subul_manager_dashboard/features/show_companies_and_clients/data/data_source/show_companies_and_clients_data_source/show_companies_and_clients_local_data_source.dart';
+import 'package:subul_manager_dashboard/features/show_companies_and_clients/data/data_source/show_companies_and_clients_data_source/show_companies_and_clients_remote_data_source.dart';
+import 'package:subul_manager_dashboard/features/show_companies_and_clients/data/repos/delete_user_repo/delete_user_repo_impl.dart';
+import 'package:subul_manager_dashboard/features/show_companies_and_clients/data/repos/show_companies_and_clients_repo/show_companies_and_clients_repo_impl.dart';
+import 'package:subul_manager_dashboard/features/show_companies_and_clients/domain/repos/delete_user_repo/delete_user_repo.dart';
+import 'package:subul_manager_dashboard/features/show_companies_and_clients/domain/repos/show_companies_and_clients_repo/show_companies_and_clients_repo.dart';
+import 'package:subul_manager_dashboard/features/show_companies_and_clients/domain/use_case/delete_user_use_case/delete_user_use_case.dart';
+import 'package:subul_manager_dashboard/features/show_companies_and_clients/domain/use_case/show_companies_and_clients_use_case/show_companies_and_clients_use_case.dart';
 import 'package:subul_manager_dashboard/features/sign_in/data/data_sources/sign_in_remote_data_source.dart';
 import 'package:subul_manager_dashboard/features/sign_in/data/repos/sign_in_repo_impl.dart';
 import 'package:subul_manager_dashboard/features/sign_in/domain/repos/sign_in_repo.dart';
@@ -91,4 +100,40 @@ void setupServiceLocator() {
   sl.registerLazySingleton<RegisterCompanyUseCase>(
     () => RegisterCompanyUseCase(sl.get<RegisterCompanyRepo>())
   );
+
+  // show companies and clients
+  
+  sl.registerLazySingleton<ShowCompaniesAndClientsRemoteDataSource>(
+    () => ShowCompaniesAndClientsRemoteDataSourceImpl(sl.get<ApiService>()),
+  );
+
+  sl.registerLazySingleton<ShowCompaniesAndClientsLocalDataSource>(
+    () => ShowCompaniesAndClientsLocalDataSourceImpl(),
+  );
+
+  sl.registerLazySingleton<ShowCompaniesAndClientsRepo>(
+    () => ShowCompaniesAndClientsRepoImpl(
+     sl.get<ShowCompaniesAndClientsRemoteDataSource>(),
+     sl.get<ShowCompaniesAndClientsLocalDataSource>()
+    ),
+  );
+
+  sl.registerLazySingleton<ShowCompaniesAndClientsUseCase>(
+    () => ShowCompaniesAndClientsUseCase(sl.get<ShowCompaniesAndClientsRepo>()),
+  );
+
+  // delete user
+
+  sl.registerLazySingleton<DeleteUserRemoteDataSource>(
+    () => DeleteUserRemoteDataSourceImpl(sl.get<ApiService>()),
+  );
+
+  sl.registerLazySingleton<DeleteUserRepo>(
+    () => DeleteUserRepoImpl(sl.get<DeleteUserRemoteDataSource>()),
+  );
+
+  sl.registerLazySingleton<DeleteUserUseCase>(
+    () => DeleteUserUseCase(sl.get<DeleteUserRepo>())
+  );
+
 }

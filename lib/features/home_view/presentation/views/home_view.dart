@@ -12,7 +12,7 @@ import 'package:subul_manager_dashboard/core/widgets/side_bar_button.dart';
 import 'package:subul_manager_dashboard/core/widgets/text_logo.dart';
 import 'package:subul_manager_dashboard/features/cancel_shipment/ui/cancel_shipment.dart';
 import 'package:subul_manager_dashboard/features/cancel_shipment/ui/widgets/reason_for_cancellation.dart';
-import 'package:subul_manager_dashboard/features/delete_workers/ui/delete_workers.dart';
+import 'package:subul_manager_dashboard/features/show_companies_and_clients/presentation/show_companies_and_clients.dart';
 import 'package:subul_manager_dashboard/features/register_client/presentation/views/registeration_client.dart';
 import 'package:subul_manager_dashboard/features/home_view/presentation/views/widgets/animations.dart';
 import 'package:subul_manager_dashboard/features/home_view/presentation/views/widgets/toggle_client_company_button.dart';
@@ -150,18 +150,18 @@ class _HomeViewState extends State<HomeView> {
                             SizedBox(height: size.height / 16),
                             SideBarButton(
                               onTap: () {
-                                onButtonTap(5);
+                                onButtonTap(3);
                               },
                               text: 'حذف عميل',
-                              isSelected: selectedButtonIndex == 5,
+                              isSelected: selectedButtonIndex == 3,
                             ),
                             SizedBox(height: size.height / 16),
                             SideBarButton(
                               onTap: () {
-                                onButtonTap(6);
+                                onButtonTap(4);
                               },
                               text: 'الغاء شحنة',
-                              isSelected: selectedButtonIndex == 6,
+                              isSelected: selectedButtonIndex == 4,
                             ),
                             SizedBox(height: size.height / 16),
                             SideBarButton(
@@ -173,9 +173,7 @@ class _HomeViewState extends State<HomeView> {
                             ),
                             SizedBox(height: size.height / 16),
                             SideBarButton(
-                              onTap: () {
-                               
-                              },
+                              onTap: () {},
                               text: 'الشحنات الواردة',
                               isSelected: false, // selectedButtonIndex == 6,
                             ),
@@ -199,28 +197,24 @@ class _HomeViewState extends State<HomeView> {
                               child: Animations(step: step, opacity: opacity),
                             ),
                             //----------1-------------
-                           RegisterCompanyScreen(
-                              
-                            ),
+                            RegisterCompanyScreen(),
                             //----------2-----------
-                            RegisterationClient(
-                             
-                            ),
+                            RegisterationClient(),
                             //------------3-------------
-                            DeleteWorkers(
-                              onTap: () {
-                                setState(() {
-                                  showConfirmDelete = !showConfirmDelete;
-                                });
-                              },
-                              showConfirmDelete: showConfirmDelete,
-                              confirmDeleteButton: () {
-                                setState(() {
-                                  showSuccessDialog = !showSuccessDialog;
-                                  showConfirmDelete = false;
-                                });
-                              },
-                              deleteIsConfirmed: showSuccessDialog,
+                            ShowCompaniesAndClients(
+                              // onTap: () {
+                              //   setState(() {
+                              //     showConfirmDelete = !showConfirmDelete;
+                              //   });
+                              // },
+                              // showConfirmDelete: showConfirmDelete,
+                              // confirmDeleteButton: () {
+                              //   setState(() {
+                              //     showSuccessDialog = !showSuccessDialog;
+                              //     showConfirmDelete = false;
+                              //   });
+                              // },
+                              // deleteIsConfirmed: showSuccessDialog,
                             ),
 
                             //---------4------------
@@ -230,19 +224,19 @@ class _HomeViewState extends State<HomeView> {
                               },
                             ),
                             //-------------5----------
-                            Padding(
-                              padding: EdgeInsets.only(top: 200.h),
-                              child: ReasonForCancellation(
-                                onTap: () async {
-                                  showSuccessDialog2 = !showSuccessDialog2;
-                                  await Future.delayed(Duration(seconds: 2));
-                                  if (showSuccessDialog2) {
-                                    onButtonTap(6);
-                                  }
-                                },
-                                showSuccesDialog: showSuccessDialog2,
-                              ),
-                            ),
+                            // Padding(
+                            //   padding: EdgeInsets.only(top: 200.h),
+                            //   child: ReasonForCancellation(
+                            //     onTap: () async {
+                            //       showSuccessDialog2 = !showSuccessDialog2;
+                            //       await Future.delayed(Duration(seconds: 2));
+                            //       if (showSuccessDialog2) {
+                            //         onButtonTap(6);
+                            //       }
+                            //     },
+                            //     showSuccesDialog: showSuccessDialog2,
+                            //   ),
+                            // ),
                           ],
                         ),
                       ),

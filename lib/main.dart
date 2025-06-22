@@ -10,6 +10,7 @@ import 'package:subul_manager_dashboard/core/utils/service_locator.dart';
 import 'package:intl/date_symbol_data_local.dart';
 import 'package:subul_manager_dashboard/core/utils/simple_bloc_observer.dart';
 import 'package:subul_manager_dashboard/features/register_client/domain/entites/company_entity/company_entity.dart';
+import 'package:subul_manager_dashboard/features/show_companies_and_clients/domain/entities/comanies_and_clients_entity/companies_and_clients_entity.dart';
 import 'package:subul_manager_dashboard/features/sign_in/presentation/views/sign_in_screen.dart';
 
 void main() async {
@@ -17,6 +18,8 @@ void main() async {
   await Hive.initFlutter();
   Hive.registerAdapter(CompanyEntityAdapter());
   await Hive.openBox<CompanyEntity>(kCompaniesBox);
+  Hive.registerAdapter(CompaniesAndClientsEntityAdapter());
+  await Hive.openBox<CompaniesAndClientsEntity>(kCompaniesAndClients);
   setupServiceLocator();
   await initializeDateFormatting('ar', null);
   Bloc.observer = SimpleBlocObserver();

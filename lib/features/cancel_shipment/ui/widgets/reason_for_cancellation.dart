@@ -4,7 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:subul_manager_dashboard/core/helpers/constants.dart';
 import 'package:subul_manager_dashboard/core/helpers/styles.dart';
 import 'package:subul_manager_dashboard/core/theming/app_colors.dart';
-import 'package:subul_manager_dashboard/features/delete_workers/ui/widgets/success_dialog.dart';
+import 'package:subul_manager_dashboard/features/show_companies_and_clients/presentation/views/widgets/success_dialog.dart';
 
 class ReasonForCancellation extends StatelessWidget {
   const ReasonForCancellation({

@@ -1,9 +1,8 @@
 import 'package:hive/hive.dart';
-import 'package:subul_manager_dashboard/features/register_client/domain/entites/company_entity/company_entity.dart';
 
-void saveData(List<CompanyEntity> companies, String boxName) {
-  // 
-    var box = Hive.box<CompanyEntity>(boxName);
-    box.clear();
-    box.addAll(companies);
-  }
+
+void saveData<T>(List<T> items, String boxName) {
+  final box = Hive.box<T>(boxName);
+  box.clear();
+  box.addAll(items);
+}
