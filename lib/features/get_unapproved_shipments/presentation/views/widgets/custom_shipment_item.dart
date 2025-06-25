@@ -5,10 +5,12 @@ import 'package:subul_manager_dashboard/core/helpers/assets_data.dart';
 import 'package:subul_manager_dashboard/core/helpers/constants.dart';
 import 'package:subul_manager_dashboard/core/helpers/styles.dart';
 import 'package:subul_manager_dashboard/core/theming/app_colors.dart';
+import 'package:subul_manager_dashboard/features/get_unapproved_shipments/domain/entities/un_approved_shipments_entity.dart';
 
 class CustomShipmentItem extends StatelessWidget {
-  const CustomShipmentItem({super.key, });
- 
+  const CustomShipmentItem({super.key, required this.unApprovedShipmentsEntity});
+  final UnApprovedShipmentsEntity unApprovedShipmentsEntity;
+
   @override
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
@@ -33,19 +35,19 @@ class CustomShipmentItem extends StatelessWidget {
                   borderRadius: BorderRadius.circular(cornerRadius),
                 ),
                 child: Center(
-                  child: Text('مكتملة', style: Styles.textStyle4Sp),
+                  child: Text(unApprovedShipmentsEntity.statusOfShipment, style: Styles.textStyle4Sp),
                 ),
               ),
               SizedBox(width: size.width / 10),
               Text(
-                '4',
+                unApprovedShipmentsEntity.numberOfShipments.toString(),
                 overflow: TextOverflow.visible,
                 style: Styles.textStyle5Sp,
               ),
               SizedBox(width: size.width / 10),
               Flexible(
                 child: Text(
-                  'محمد ابراهيم المحمود',
+                  unApprovedShipmentsEntity.nameOfCustomer,
                   style: Styles.textStyle5Sp,
                   softWrap: true,
                   overflow: TextOverflow.visible,
@@ -54,7 +56,7 @@ class CustomShipmentItem extends StatelessWidget {
               SizedBox(width: size.width / 40),
               Flexible(
                 child: Text(
-                  '74747437345',
+                  unApprovedShipmentsEntity.trackingString,
                   softWrap: true,
                   style: Styles.textStyle5Sp,
                   overflow: TextOverflow.visible,

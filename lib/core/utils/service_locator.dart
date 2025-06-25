@@ -3,6 +3,11 @@ import 'package:get_it/get_it.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:subul_manager_dashboard/core/data/auth_local_data_source.dart';
 import 'package:subul_manager_dashboard/core/utils/api_service.dart';
+import 'package:subul_manager_dashboard/features/get_unapproved_shipments/data/data_source/get_unapproved_shipments_local_data_source.dart';
+import 'package:subul_manager_dashboard/features/get_unapproved_shipments/data/data_source/get_unapproved_shipments_remote_data_source.dart';
+import 'package:subul_manager_dashboard/features/get_unapproved_shipments/data/repos/get_unapproved_shipments_repo_impl.dart';
+import 'package:subul_manager_dashboard/features/get_unapproved_shipments/domain/repos/get_unapproved_shipments_repo.dart';
+import 'package:subul_manager_dashboard/features/get_unapproved_shipments/domain/use_case/get_unapproved_shipments_use_case.dart';
 import 'package:subul_manager_dashboard/features/register_client/data/data_source/get_companies_data_source/get_companies_local_data_source.dart';
 import 'package:subul_manager_dashboard/features/register_client/data/data_source/get_companies_data_source/get_companies_remote_data_source.dart';
 import 'package:subul_manager_dashboard/features/register_client/data/data_source/register_client_data_source/register_client_remote_data_source.dart';
@@ -162,5 +167,25 @@ void setupServiceLocator() {
     () => GetApprovedShipmentsUseCase(sl.get<GetApprovedShipmentsRepo>()),
   );
 
+
+  // get unapproved shipments
+  sl.registerLazySingleton<GetUnapprovedShipmentsRemoteDataSource>(
+    () => GetUnapprovedShipmentsRemoteDataSourceImpl(sl.get<ApiService>()),
+  );
+
+  sl.registerLazySingleton<GetUnapprovedShipmentsLocalDataSource>(
+    () => GetUnapprovedShipmentsLocalDataSourceImpl(),
+  );
+
+  sl.registerLazySingleton<GetUnapprovedShipmentsRepo>(
+    () => GetUnapprovedShipmentsRepoImpl(
+     sl.get<GetUnapprovedShipmentsRemoteDataSource>(),
+     sl.get<GetUnapprovedShipmentsLocalDataSource>()
+    ),
+  );
+
+  sl.registerLazySingleton<GetUnapprovedShipmentsUseCase>(
+    () => GetUnapprovedShipmentsUseCase(sl.get<GetUnapprovedShipmentsRepo>()),
+  );
 
 }
