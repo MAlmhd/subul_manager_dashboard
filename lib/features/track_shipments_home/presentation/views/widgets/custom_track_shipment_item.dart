@@ -5,9 +5,11 @@ import 'package:subul_manager_dashboard/core/helpers/assets_data.dart';
 import 'package:subul_manager_dashboard/core/helpers/constants.dart';
 import 'package:subul_manager_dashboard/core/helpers/styles.dart';
 import 'package:subul_manager_dashboard/core/theming/app_colors.dart';
+import 'package:subul_manager_dashboard/features/track_shipments_home/domain/entities/approved_shipment_entity/approved_shipment_entity.dart';
 
 class CustomTrackShipmentItem extends StatelessWidget {
-  const CustomTrackShipmentItem({super.key});
+  const CustomTrackShipmentItem({super.key, required this.approvedShipmentEntity});
+  final ApprovedShipmentEntity approvedShipmentEntity;
 
   @override
   Widget build(BuildContext context) {
@@ -30,7 +32,7 @@ class CustomTrackShipmentItem extends StatelessWidget {
                   children: [
                     SvgPicture.asset(AssetsData.money, width: 8.w),
                     SizedBox(width: size.width / 70),
-                    Text('شحن ودفع', style: Styles.textStyle5Sp),
+                    Text(approvedShipmentEntity.typeOfShipment, style: Styles.textStyle5Sp),
                   ],
                 ),
                 SizedBox(width: size.width / 20),
@@ -42,19 +44,19 @@ class CustomTrackShipmentItem extends StatelessWidget {
                     borderRadius: BorderRadius.circular(cornerRadius),
                   ),
                   child: Center(
-                    child: Text('مكتملة', style: Styles.textStyle4Sp),
+                    child: Text(approvedShipmentEntity.statusOfShipment, style: Styles.textStyle4Sp),
                   ),
                 ),
                 SizedBox(width: size.width / 10),
                 Text(
-                  '4',
+                  approvedShipmentEntity.numberOfShipment.toString(),
                   overflow: TextOverflow.visible,
                   style: Styles.textStyle5Sp,
                 ),
                 SizedBox(width: size.width / 10),
                 Flexible(
                   child: Text(
-                    'محمد ابراهيم المحمود',
+                    approvedShipmentEntity.nameOfCustomer,
                     style: Styles.textStyle5Sp,
                     softWrap: true,
                   ),
@@ -62,7 +64,7 @@ class CustomTrackShipmentItem extends StatelessWidget {
                 SizedBox(width: size.width / 40),
                 Flexible(
                   child: Text(
-                    '74747437345',
+                    approvedShipmentEntity.trackingString,
                     softWrap: true,
                     style: Styles.textStyle5Sp,
                     overflow: TextOverflow.visible,

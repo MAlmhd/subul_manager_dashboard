@@ -1,20 +1,22 @@
-import 'dart:ui';
-
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:subul_manager_dashboard/core/helpers/assets_data.dart';
 import 'package:subul_manager_dashboard/core/theming/app_colors.dart';
+import 'package:subul_manager_dashboard/core/utils/service_locator.dart';
 import 'package:subul_manager_dashboard/core/widgets/custom_icon_of_side_bar.dart';
 import 'package:subul_manager_dashboard/core/widgets/custom_search_item.dart';
 import 'package:subul_manager_dashboard/core/widgets/text_logo.dart';
-import 'package:subul_manager_dashboard/features/track_shipments_home/ui/widgets/bill_of_shippment.dart';
+import 'package:subul_manager_dashboard/features/track_shipments_home/domain/use_case/get_approved_shipments_use_case/get_approved_shipments_use_case.dart';
+import 'package:subul_manager_dashboard/features/track_shipments_home/presentation/manager/get_approved_shipment/get_approved_shipment_cubit.dart';
+import 'package:subul_manager_dashboard/features/track_shipments_home/presentation/views/widgets/bill_of_shippment.dart';
 import 'package:subul_manager_dashboard/core/widgets/custom_calendar.dart';
-import 'package:subul_manager_dashboard/features/track_shipments_home/ui/widgets/details_of_bill.dart';
-import 'package:subul_manager_dashboard/features/track_shipments_home/ui/widgets/pay_the_bill.dart';
-import 'package:subul_manager_dashboard/features/track_shipments_home/ui/widgets/shippments_logo.dart';
-import 'package:subul_manager_dashboard/features/track_shipments_home/ui/widgets/show_pickup_time.dart';
-import 'package:subul_manager_dashboard/features/track_shipments_home/ui/widgets/show_shippments.dart';
-import 'package:subul_manager_dashboard/features/track_shipments_home/ui/widgets/thanks_widget.dart';
+import 'package:subul_manager_dashboard/features/track_shipments_home/presentation/views/widgets/details_of_bill.dart';
+import 'package:subul_manager_dashboard/features/track_shipments_home/presentation/views/widgets/pay_the_bill.dart';
+import 'package:subul_manager_dashboard/features/track_shipments_home/presentation/views/widgets/shippments_logo.dart';
+import 'package:subul_manager_dashboard/features/track_shipments_home/presentation/views/widgets/show_pickup_time.dart';
+import 'package:subul_manager_dashboard/features/track_shipments_home/presentation/views/widgets/show_shippments.dart';
+import 'package:subul_manager_dashboard/features/track_shipments_home/presentation/views/widgets/thanks_widget.dart';
 
 class TrackShipmentsHome extends StatefulWidget {
   const TrackShipmentsHome({super.key});
@@ -134,10 +136,13 @@ class _TrackShipmentsHomeState extends State<TrackShipmentsHome> {
                   index: selectedButtonIndex,
                   children: [
                     Container(),
-                    ShowShippments(
-                      onTap: () {
-                        onButtonTap(2);
-                      },
+                    BlocProvider(
+                      create: (context) => GetApprovedShipmentCubit(sl.get<GetApprovedShipmentsUseCase>())..getApprovedShipments(),
+                      child: ShowShippments(
+                        onTap: () {
+                          onButtonTap(2);
+                        },
+                      ),
                     ),
                     Stack(
                       children: [

@@ -29,6 +29,11 @@ import 'package:subul_manager_dashboard/features/sign_in/data/data_sources/sign_
 import 'package:subul_manager_dashboard/features/sign_in/data/repos/sign_in_repo_impl.dart';
 import 'package:subul_manager_dashboard/features/sign_in/domain/repos/sign_in_repo.dart';
 import 'package:subul_manager_dashboard/features/sign_in/domain/use_cases/sign_in_use_case.dart';
+import 'package:subul_manager_dashboard/features/track_shipments_home/data/data_source/get_approved_shipments_data_source/get_approved_shipments_local_data_source.dart';
+import 'package:subul_manager_dashboard/features/track_shipments_home/data/data_source/get_approved_shipments_data_source/get_approved_shipments_remote_data_source.dart';
+import 'package:subul_manager_dashboard/features/track_shipments_home/data/repo/get_approved_shipments_repo/get_approved_shipments_repo_impl.dart';
+import 'package:subul_manager_dashboard/features/track_shipments_home/domain/repos/get_approved_shipments_repo/get_approved_shipments_repo.dart';
+import 'package:subul_manager_dashboard/features/track_shipments_home/domain/use_case/get_approved_shipments_use_case/get_approved_shipments_use_case.dart';
 
 final GetIt sl = GetIt.instance;
 
@@ -135,5 +140,27 @@ void setupServiceLocator() {
   sl.registerLazySingleton<DeleteUserUseCase>(
     () => DeleteUserUseCase(sl.get<DeleteUserRepo>())
   );
+
+  // get approved shipments
+  
+  sl.registerLazySingleton<GetApprovedShipmentsRemoteDataSource>(
+    () => GetApprovedShipmentsRemoteDataSourceImpl(sl.get<ApiService>()),
+  );
+
+  sl.registerLazySingleton<GetApprovedShipmentsLocalDataSource>(
+    () => GetApprovedShipmentsLocalDataSourceImpl(),
+  );
+
+  sl.registerLazySingleton<GetApprovedShipmentsRepo>(
+    () => GetApprovedShipmentsRepoImpl(
+     sl.get<GetApprovedShipmentsRemoteDataSource>(),
+     sl.get<GetApprovedShipmentsLocalDataSource>()
+    ),
+  );
+
+  sl.registerLazySingleton<GetApprovedShipmentsUseCase>(
+    () => GetApprovedShipmentsUseCase(sl.get<GetApprovedShipmentsRepo>()),
+  );
+
 
 }

@@ -23,6 +23,9 @@ class ShowCompaniesAndClientsRemoteDataSourceImpl
       headers: {'Authorization': 'Bearer $token'},
     );
     List<CompaniesAndClientsEntity> clients = [];
+    if (data['data'] == null) {
+      return [];
+    }
     for (var element in data['data']) {
       clients.add(CompaniesAndClientsModel.fromJson(element));
     }

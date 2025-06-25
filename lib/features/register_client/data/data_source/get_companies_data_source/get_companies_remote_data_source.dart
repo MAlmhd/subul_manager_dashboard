@@ -1,5 +1,3 @@
-
-
 import 'package:subul_manager_dashboard/core/data/auth_local_data_source.dart';
 import 'package:subul_manager_dashboard/core/utils/functions/save_data.dart';
 import 'package:subul_manager_dashboard/core/helpers/constants.dart';
@@ -22,11 +20,13 @@ class GetCompaniesRemoteDataSourceImpl implements GetCompaniesRemoteDataSource {
     final token = await sl.get<AuthLocalDataSource>().getToken();
     var data = await _apiService.get(
       endPoint: 'getAll/companies',
-      headers: {
-        'Authorization': 'Bearer $token',
-      },
+      headers: {'Authorization': 'Bearer $token'},
     );
+
     List<CompanyEntity> companies = [];
+    if (data['data'] == null) {
+      return [];
+    }
     for (var company in data['data']) {
       companies.add(CompanyModel.fromJson(company));
     }
