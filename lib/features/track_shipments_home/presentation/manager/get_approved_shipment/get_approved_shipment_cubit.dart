@@ -10,9 +10,10 @@ class GetApprovedShipmentCubit extends Cubit<GetApprovedShipmentState> {
     : super(GetApprovedShipmentInitial());
   final GetApprovedShipmentsUseCase getApprovedShipmentsUseCase;
 
-  Future<void> getApprovedShipments() async {
+  Future<void> getApprovedShipments([String? searchItem]) async {
     emit(GetApprovedShipmentLoading());
-    var result = await getApprovedShipmentsUseCase.call();
+    final query = (searchItem?.trim().isEmpty ?? true) ? null : searchItem;
+    var result = await getApprovedShipmentsUseCase.call(query);
     result.fold(
       (failure) {
         emit(GetApprovedShipmentFailure(failure.message));

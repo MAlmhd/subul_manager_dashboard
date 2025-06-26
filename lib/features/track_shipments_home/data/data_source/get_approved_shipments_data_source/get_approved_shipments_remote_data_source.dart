@@ -7,7 +7,7 @@ import 'package:subul_manager_dashboard/features/track_shipments_home/data/model
 import 'package:subul_manager_dashboard/features/track_shipments_home/domain/entities/approved_shipment_entity/approved_shipment_entity.dart';
 
 abstract class GetApprovedShipmentsRemoteDataSource {
-  Future<List<ApprovedShipmentEntity>> getApprovedShipment();
+  Future<List<ApprovedShipmentEntity>> getApprovedShipment(String? searchItem);
 }
 
 class GetApprovedShipmentsRemoteDataSourceImpl
@@ -16,9 +16,22 @@ class GetApprovedShipmentsRemoteDataSourceImpl
 
   GetApprovedShipmentsRemoteDataSourceImpl(this._apiService);
   @override
-  Future<List<ApprovedShipmentEntity>> getApprovedShipment() async {
-     final token = await sl.get<AuthLocalDataSource>().getToken();
-   var data = await _apiService.get(endPoint: 'get/approved/shipments',headers: {'Authorization': 'Bearer $token'});
+  Future<List<ApprovedShipmentEntity>> getApprovedShipment(
+    String? searchItem,
+  ) async {
+    final token = await sl.get<AuthLocalDataSource>().getToken();
+    var data;
+    if (searchItem == null) {
+       data = await _apiService.get(
+        endPoint: 'get/approved/shipments',
+        headers: {'Authorization': 'Bearer $token'},
+      );
+    } else {
+      data = await _apiService.get(
+        endPoint: 'get/approved/shipments?search=$searchItem',
+        headers: {'Authorization': 'Bearer $token'},
+      );
+    }
     List<ApprovedShipmentEntity> shipments = [];
     if (data['data'] == null) {
       return [];

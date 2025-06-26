@@ -5,14 +5,15 @@ import 'package:subul_manager_dashboard/features/get_unapproved_shipments/domain
 import 'package:subul_manager_dashboard/features/get_unapproved_shipments/domain/repos/get_unapproved_shipments_repo.dart';
 
 class GetUnapprovedShipmentsUseCase
-    extends UseCase<List<UnApprovedShipmentsEntity>, NoParam> {
+    extends UseCase<List<UnApprovedShipmentsEntity>, String?> {
   final GetUnapprovedShipmentsRepo getUnapprovedShipmentsRepo;
 
   GetUnapprovedShipmentsUseCase(this.getUnapprovedShipmentsRepo);
+  
   @override
-  Future<Either<Failure, List<UnApprovedShipmentsEntity>>> call([
-    NoParam? params,
-  ]) async {
+  Future<Either<Failure, List<UnApprovedShipmentsEntity>>> call([String? params]) async{
     return await getUnapprovedShipmentsRepo.getUnapprovedShipments();
   }
+ 
+  
 }

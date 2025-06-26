@@ -9,9 +9,9 @@ class GetUnapprovedShipmentsCubit extends Cubit<GetUnapprovedShipmentsState> {
   GetUnapprovedShipmentsCubit(this.getUnapprovedShipmentsUseCase) : super(GetUnapprovedShipmentsInitial());
   final GetUnapprovedShipmentsUseCase getUnapprovedShipmentsUseCase;
 
-  Future<void> getUnapprovedShipments() async {
+  Future<void> getUnapprovedShipments([String? searchItem]) async {
     emit(GetUnapprovedShipmentsLoading());
-    var result = await getUnapprovedShipmentsUseCase.call();
+    var result = await getUnapprovedShipmentsUseCase.call(searchItem);
     result.fold(
       (failure) {
         emit(GetUnapprovedShipmentsFailure(failure.message));

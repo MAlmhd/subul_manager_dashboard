@@ -5,17 +5,15 @@ import 'package:subul_manager_dashboard/features/track_shipments_home/domain/ent
 import 'package:subul_manager_dashboard/features/track_shipments_home/domain/repos/get_approved_shipments_repo/get_approved_shipments_repo.dart';
 
 class GetApprovedShipmentsUseCase
-    extends UseCase<List<ApprovedShipmentEntity>, NoParam> {
+    extends UseCase<List<ApprovedShipmentEntity>, String?> {
   final GetApprovedShipmentsRepo getApprovedShipmentsRepo;
 
   GetApprovedShipmentsUseCase(this.getApprovedShipmentsRepo);
+
   @override
   Future<Either<Failure, List<ApprovedShipmentEntity>>> call([
-    NoParam? params,
+    String? params,
   ]) async {
-    return await getApprovedShipmentsRepo.getApprovedShipments();
+    return await getApprovedShipmentsRepo.getApprovedShipments(params);
   }
 }
-
- 
-

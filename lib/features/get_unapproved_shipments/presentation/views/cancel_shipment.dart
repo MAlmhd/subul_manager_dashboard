@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+import 'package:subul_manager_dashboard/core/helpers/assets_data.dart';
 import 'package:subul_manager_dashboard/core/utils/functions/show_snack_bar.dart';
 import 'package:subul_manager_dashboard/core/utils/service_locator.dart';
 import 'package:subul_manager_dashboard/core/widgets/custom_progress_indicator.dart';
@@ -18,58 +20,69 @@ class CancelShipment extends StatelessWidget {
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
     return BlocProvider(
-      create:
-          (context) => GetUnapprovedShipmentsCubit(
-            sl.get<GetUnapprovedShipmentsUseCase>(),
-          )..getUnapprovedShipments(),
-      child: Column(
-        children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.end,
+      create: (context) => GetUnapprovedShipmentsCubit(
+        sl.get<GetUnapprovedShipmentsUseCase>(),
+      )..getUnapprovedShipments(),
+      child: Builder(
+        builder: (context) {
+          return Column(
             children: [
-              Padding(
-                padding: EdgeInsets.only(right: 10.w),
-                child: CustomSearchItem(),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  Padding(
+                    padding: EdgeInsets.only(right: 10.w),
+                    child: CustomSearchItem(
+                      svgPicture: SvgPicture.asset(AssetsData.searchIcon),
+                      onChanged: (item) {
+                        final query = item.trim().isEmpty ? null : item.trim();
+                        context
+                            .read<GetUnapprovedShipmentsCubit>()
+                            .getUnapprovedShipments(query);
+                      },
+                    ),
+                  ),
+                ],
               ),
-            ],
-          ),
-          SizedBox(height: size.height / 8),
-          TitleOfColumns(),
-          SizedBox(height: size.height / 50),
-          SizedBox(
-            height: 800.h,
-            child: BlocConsumer<
-              GetUnapprovedShipmentsCubit,
-              GetUnapprovedShipmentsState
-            >(
-              listener: (context, state) {
-                if (state is GetUnapprovedShipmentsFailure) {
-                  showSnackBar(context, state.message, Colors.red);
-                }
-              },
-              builder: (context, state) {
-                if (state is GetUnapprovedShipmentsSuccess) {
-                  return ListView.builder(
-                    itemBuilder:
-                        (context, index) => Padding(
+              SizedBox(height: size.height / 8),
+              TitleOfColumns(),
+              SizedBox(height: size.height / 50),
+              SizedBox(
+                height: 800.h,
+                child: BlocConsumer<GetUnapprovedShipmentsCubit,
+                    GetUnapprovedShipmentsState>(
+                  listener: (context, state) {
+                    if (state is GetUnapprovedShipmentsFailure) {
+                      showSnackBar(context, state.message, Colors.red);
+                    }
+                  },
+                  builder: (context, state) {
+                    if (state is GetUnapprovedShipmentsSuccess) {
+                      return ListView.builder(
+                        itemCount: state.shipments.length,
+                        itemBuilder: (context, index) => Padding(
                           padding: EdgeInsets.only(bottom: 12.h),
                           child: MouseRegion(
                             cursor: SystemMouseCursors.click,
                             child: GestureDetector(
                               onTap: onTap,
-                              child: CustomShipmentItem(unApprovedShipmentsEntity: state.shipments[index],),
+                              child: CustomShipmentItem(
+                                unApprovedShipmentsEntity:
+                                    state.shipments[index],
+                              ),
                             ),
                           ),
                         ),
-                    itemCount: state.shipments.length,
-                  );
-                } else {
-                  return CustomProgressIndicator();
-                }
-              },
-            ),
-          ),
-        ],
+                      );
+                    } else {
+                      return CustomProgressIndicator();
+                    }
+                  },
+                ),
+              ),
+            ],
+          );
+        },
       ),
     );
   }

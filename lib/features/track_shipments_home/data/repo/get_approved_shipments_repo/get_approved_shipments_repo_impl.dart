@@ -11,20 +11,31 @@ class GetApprovedShipmentsRepoImpl implements GetApprovedShipmentsRepo {
   getApprovedShipmentsRemoteDataSource;
   final GetApprovedShipmentsLocalDataSource getApprovedShipmentsLocalDataSource;
 
-  GetApprovedShipmentsRepoImpl(this.getApprovedShipmentsRemoteDataSource, this.getApprovedShipmentsLocalDataSource);
+  GetApprovedShipmentsRepoImpl(
+    this.getApprovedShipmentsRemoteDataSource,
+    this.getApprovedShipmentsLocalDataSource,
+  );
   @override
-  Future<Either<Failure, List<ApprovedShipmentEntity>>> getApprovedShipments() async{
-   try {
+  Future<Either<Failure, List<ApprovedShipmentEntity>>> getApprovedShipments(
+    String? searchItem,
+  ) async {
+    try {
       List<ApprovedShipmentEntity> shipments;
+      if (searchItem != null) {
+        shipments = await getApprovedShipmentsRemoteDataSource
+            .getApprovedShipment(searchItem);
+        return right(shipments);
+      }
+
       shipments = getApprovedShipmentsLocalDataSource.getApprovedShipments();
-      
+
       if (shipments.isNotEmpty) {
         return right(shipments);
-      }                            
-      
+      }
 
-      shipments = await getApprovedShipmentsRemoteDataSource.getApprovedShipment();
-      
+      shipments = await getApprovedShipmentsRemoteDataSource
+          .getApprovedShipment(searchItem);
+
       return right(shipments);
     } catch (e) {
       if (e is DioException) {

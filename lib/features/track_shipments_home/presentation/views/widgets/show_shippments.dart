@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
+
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/svg.dart';
+import 'package:subul_manager_dashboard/core/helpers/assets_data.dart';
 import 'package:subul_manager_dashboard/core/utils/functions/show_snack_bar.dart';
 import 'package:subul_manager_dashboard/core/widgets/custom_progress_indicator.dart';
 import 'package:subul_manager_dashboard/core/widgets/custom_search_item.dart';
@@ -23,7 +25,11 @@ class ShowShippments extends StatelessWidget {
           padding: EdgeInsets.only(right: 25.w),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.end,
-            children: [CustomSearchItem()],
+            children: [CustomSearchItem(svgPicture: SvgPicture.asset(AssetsData.searchIcon,),onChanged: (searchText) {
+    context.read<GetApprovedShipmentCubit>().getApprovedShipments(
+      searchText.trim().isEmpty ? null : searchText,
+    );
+  },)],
           ),
         ),
         SizedBox(height: size.height / 30),

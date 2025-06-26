@@ -18,9 +18,15 @@ class GetUnapprovedShipmentsRepoImpl implements GetUnapprovedShipmentsRepo {
   );
   @override
   Future<Either<Failure, List<UnApprovedShipmentsEntity>>>
-  getUnapprovedShipments() async {
+  getUnapprovedShipments([String? searchItem]) async {
     try {
       List<UnApprovedShipmentsEntity> shipments;
+      if (searchItem != null) {
+        shipments =
+            await getUnapprovedShipmentsRemoteDataSource
+                .getUnapprovedShipments(searchItem);
+        return right(shipments);
+      }
       shipments =
           getUnapprovedShipmentsLocalDataSource.getUnapprovedShipments();
 

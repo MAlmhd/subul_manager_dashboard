@@ -9,13 +9,14 @@ class CustomSearchItem extends StatelessWidget {
     this.icon,
     this.svgPicture,
     this.backgoundColor,
-    this.hintText, this.textColor,
+    this.hintText, this.textColor, this.onChanged,
   });
   final Icon? icon;
   final SvgPicture? svgPicture;
   final Color? backgoundColor;
   final Color? textColor;
   final String? hintText;
+  final Function(String)? onChanged;
 
   @override
   Widget build(BuildContext context) {
@@ -29,6 +30,7 @@ class CustomSearchItem extends StatelessWidget {
       ),
 
       child: TextField(
+        onChanged: onChanged,
         textAlign: TextAlign.right,
 
         decoration: InputDecoration(
