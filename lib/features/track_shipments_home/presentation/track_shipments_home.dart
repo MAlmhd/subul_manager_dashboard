@@ -139,117 +139,115 @@ class _TrackShipmentsHomeState extends State<TrackShipmentsHome> {
                     BlocProvider(
                       create: (context) => GetApprovedShipmentCubit(sl.get<GetApprovedShipmentsUseCase>())..getApprovedShipments(),
                       child: ShowShippments(
-                        onTap: () {
-                          onButtonTap(2);
-                        },
+                       
                       ),
                     ),
-                    Stack(
-                      children: [
-                        Column(
-                          children: [
-                            Padding(
-                              padding: EdgeInsets.only(right: 25.w),
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.end,
-                                children: [CustomSearchItem()],
-                              ),
-                            ),
-                            SizedBox(height: size.height / 5),
-                            Padding(
-                              padding: EdgeInsets.only(right: 80.w),
-                              child: ShippmentsLogo(),
-                            ),
-                            SizedBox(height: size.height / 5),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                if (showPayTheBill)
-                                  Expanded(
-                                    child: Padding(
-                                      padding: EdgeInsets.only(right: 5.w),
-                                      child: Center(
-                                        child: PayTheBill(
-                                          onTap: () {
-                                            setState(() {
-                                              showCalendar = !showCalendar;
-                                            });
-                                          },
-                                          showBillFile: showBillFile,
-                                          showDetailsOfBill: showDetailsOfBill,
-                                          showDetailsofBillWidget: () {
-                                            setState(() {
-                                              showDetailsOfBill =
-                                                  !showDetailsOfBill;
-                                            });
-                                          },
-                                        ),
-                                      ),
-                                    ),
-                                  ),
-                                Expanded(
-                                  child: Center(
-                                    child: BillOfShippment(
-                                      onTap: () {
-                                        setState(() {
-                                          showPayTheBill = !showPayTheBill;
-                                        });
-                                      },
-                                    ),
-                                  ),
-                                ),
-                              ],
-                            ),
-                            SizedBox(height: size.height / 20),
-                            if (showDetailsOfBill)
-                              SizedBox(
-                                height: 500.h,
-                                child: SingleChildScrollView(
-                                  child: DetailsOfBill(),
-                                ),
-                              ),
-                          ],
-                        ),
+                    // Stack(
+                    //   children: [
+                    //     Column(
+                    //       children: [
+                    //         Padding(
+                    //           padding: EdgeInsets.only(right: 25.w),
+                    //           child: Row(
+                    //             mainAxisAlignment: MainAxisAlignment.end,
+                    //             children: [CustomSearchItem()],
+                    //           ),
+                    //         ),
+                    //         SizedBox(height: size.height / 5),
+                    //         Padding(
+                    //           padding: EdgeInsets.only(right: 80.w),
+                    //           child: ShippmentsLogo(),
+                    //         ),
+                    //         SizedBox(height: size.height / 5),
+                    //         Row(
+                    //           mainAxisAlignment: MainAxisAlignment.center,
+                    //           children: [
+                    //             if (showPayTheBill)
+                    //               Expanded(
+                    //                 child: Padding(
+                    //                   padding: EdgeInsets.only(right: 5.w),
+                    //                   child: Center(
+                    //                     child: PayTheBill(
+                    //                       onTap: () {
+                    //                         setState(() {
+                    //                           showCalendar = !showCalendar;
+                    //                         });
+                    //                       },
+                    //                       showBillFile: showBillFile,
+                    //                       showDetailsOfBill: showDetailsOfBill,
+                    //                       showDetailsofBillWidget: () {
+                    //                         setState(() {
+                    //                           showDetailsOfBill =
+                    //                               !showDetailsOfBill;
+                    //                         });
+                    //                       },
+                    //                     ),
+                    //                   ),
+                    //                 ),
+                    //               ),
+                    //             Expanded(
+                    //               child: Center(
+                    //                 child: BillOfShippment(
+                    //                   onTap: () {
+                    //                     setState(() {
+                    //                       showPayTheBill = !showPayTheBill;
+                    //                     });
+                    //                   },
+                    //                 ),
+                    //               ),
+                    //             ),
+                    //           ],
+                    //         ),
+                    //         SizedBox(height: size.height / 20),
+                    //         if (showDetailsOfBill)
+                    //           SizedBox(
+                    //             height: 500.h,
+                    //             child: SingleChildScrollView(
+                    //               child: DetailsOfBill(),
+                    //             ),
+                    //           ),
+                    //       ],
+                    //     ),
 
-                        // if (showDetailsOfBill)// Align(alignment: Alignment.bottomCenter,child: DetailsOfBill(),),
-                        if (showPayTheBill && showCalendar)
-                          Align(
-                            alignment: Alignment.center,
-                            child: CustomCalendar(
-                              onTap: () {
-                                setState(() {
-                                  showPickupWidget = !showPickupWidget;
-                                  showCalendar = false;
-                                });
-                              },
-                            ),
-                          ),
-                        if (showPickupWidget)
-                          Align(
-                            alignment: Alignment.center,
-                            child: ShowPickupTime(
-                              onTap: () {
-                                setState(() {
-                                  showThanksWidget = !showThanksWidget;
-                                });
-                              },
-                            ),
-                          ),
-                        if (showThanksWidget)
-                          Align(
-                            alignment: Alignment.center,
-                            child: ThanksWidget(
-                              onTap: () {
-                                setState(() {
-                                  showPickupWidget = false;
-                                  showThanksWidget = false;
-                                  showBillFile = true;
-                                });
-                              },
-                            ),
-                          ),
-                      ],
-                    ),
+                    //     // if (showDetailsOfBill)// Align(alignment: Alignment.bottomCenter,child: DetailsOfBill(),),
+                    //     if (showPayTheBill && showCalendar)
+                    //       Align(
+                    //         alignment: Alignment.center,
+                    //         child: CustomCalendar(
+                    //           onTap: () {
+                    //             setState(() {
+                    //               showPickupWidget = !showPickupWidget;
+                    //               showCalendar = false;
+                    //             });
+                    //           },
+                    //         ),
+                    //       ),
+                    //     if (showPickupWidget)
+                    //       Align(
+                    //         alignment: Alignment.center,
+                    //         child: ShowPickupTime(
+                    //           onTap: () {
+                    //             setState(() {
+                    //               showThanksWidget = !showThanksWidget;
+                    //             });
+                    //           },
+                    //         ),
+                    //       ),
+                    //     if (showThanksWidget)
+                    //       Align(
+                    //         alignment: Alignment.center,
+                    //         child: ThanksWidget(
+                    //           onTap: () {
+                    //             setState(() {
+                    //               showPickupWidget = false;
+                    //               showThanksWidget = false;
+                    //               showBillFile = true;
+                    //             });
+                    //           },
+                    //         ),
+                    //       ),
+                    //   ],
+                    // ),
                     // Column(
                     //   children: [
                     //     // Padding(

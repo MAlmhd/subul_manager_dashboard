@@ -4,10 +4,13 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:subul_manager_dashboard/core/helpers/constants.dart';
 import 'package:subul_manager_dashboard/core/helpers/styles.dart';
 import 'package:subul_manager_dashboard/core/theming/app_colors.dart';
+import 'package:subul_manager_dashboard/core/utils/functions/show_overlay.dart';
+import 'package:subul_manager_dashboard/features/track_shipments_home/domain/entities/approved_shipment_entity/approved_shipment_entity.dart';
+import 'package:subul_manager_dashboard/features/track_shipments_home/presentation/views/widgets/pay_the_bill.dart';
 
 class BillOfShippment extends StatelessWidget {
-  const BillOfShippment({super.key, required this.onTap});
-  final Function() onTap;
+  const BillOfShippment({super.key, required this.approvedShipmentEntity});
+  final ApprovedShipmentEntity approvedShipmentEntity;
 
   @override
   Widget build(BuildContext context) {
@@ -33,19 +36,19 @@ class BillOfShippment extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.end,
                       children: [
                         Text(
-                          '7575757577',
+                          approvedShipmentEntity.trackingString,
                           style: Styles.textStyle6Sp,
                           overflow: TextOverflow.clip,
                           maxLines: 1,
                         ),
                         Text(
-                          'احمد',
+                          approvedShipmentEntity.nameOfCustomer,
                           style: Styles.textStyle6Sp,
                           overflow: TextOverflow.clip,
                           maxLines: 1,
                         ),
                         Text(
-                          '4',
+                          approvedShipmentEntity.numberOfShipment.toString(),
                           style: Styles.textStyle6Sp,
                           overflow: TextOverflow.clip,
                           maxLines: 1,
@@ -59,7 +62,7 @@ class BillOfShippment extends StatelessWidget {
                           ),
                           child: Center(
                             child: Text(
-                              'مكتملة',
+                              approvedShipmentEntity.statusOfShipment,
                               style: Styles.textStyle5Sp,
                               overflow: TextOverflow.clip,
                               maxLines: 1,
@@ -67,7 +70,7 @@ class BillOfShippment extends StatelessWidget {
                           ),
                         ),
                         Text(
-                          'شحن ودفع',
+                          approvedShipmentEntity.typeOfShipment,
                           style: Styles.textStyle6Sp,
                           overflow: TextOverflow.clip,
                           maxLines: 1,
@@ -122,11 +125,13 @@ class BillOfShippment extends StatelessWidget {
             MouseRegion(
               cursor: SystemMouseCursors.click,
               child: GestureDetector(
-                onTap: onTap,
+                onTap: (){
+                  showOverlay(context, PayTheBill(approvedShipmentEntity: approvedShipmentEntity,));
+                },
                 child: Container(
                   width: 60.w,
                   height: 50.h,
-                
+
                   decoration: BoxDecoration(
                     color: Colors.transparent,
                     borderRadius: BorderRadius.circular(cornerRadius),

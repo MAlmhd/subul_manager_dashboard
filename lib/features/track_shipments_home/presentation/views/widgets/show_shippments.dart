@@ -4,17 +4,25 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:subul_manager_dashboard/core/helpers/assets_data.dart';
+import 'package:subul_manager_dashboard/core/utils/functions/show_overlay.dart';
 import 'package:subul_manager_dashboard/core/utils/functions/show_snack_bar.dart';
 import 'package:subul_manager_dashboard/core/widgets/custom_progress_indicator.dart';
 import 'package:subul_manager_dashboard/core/widgets/custom_search_item.dart';
 import 'package:subul_manager_dashboard/features/track_shipments_home/presentation/manager/get_approved_shipment/get_approved_shipment_cubit.dart';
+import 'package:subul_manager_dashboard/features/track_shipments_home/presentation/views/widgets/bill_of_shippment.dart';
 import 'package:subul_manager_dashboard/features/track_shipments_home/presentation/views/widgets/custom_track_shipment_item.dart';
 import 'package:subul_manager_dashboard/features/track_shipments_home/presentation/views/widgets/shippments_logo.dart';
 import 'package:subul_manager_dashboard/features/track_shipments_home/presentation/views/widgets/title_of_columns_in_track_shippments.dart';
 
-class ShowShippments extends StatelessWidget {
-  const ShowShippments({super.key, required this.onTap});
-  final Function() onTap;
+class ShowShippments extends StatefulWidget {
+  const ShowShippments({super.key});
+
+  @override
+  State<ShowShippments> createState() => _ShowShippmentsState();
+}
+
+class _ShowShippmentsState extends State<ShowShippments> {
+
 
   @override
   Widget build(BuildContext context) {
@@ -57,7 +65,10 @@ class ShowShippments extends StatelessWidget {
                             child: MouseRegion(
                               cursor: SystemMouseCursors.click,
                               child: GestureDetector(
-                                onTap: onTap,
+                                onTap: ()
+                                {
+                                  showOverlay(context, BillOfShippment(approvedShipmentEntity: state.shipments[index],));
+                                },
                                 child: CustomTrackShipmentItem(approvedShipmentEntity: state.shipments[index],),
                               ),
                             ),
