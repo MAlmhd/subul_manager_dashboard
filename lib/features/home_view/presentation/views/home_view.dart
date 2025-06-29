@@ -10,6 +10,7 @@ import 'package:subul_manager_dashboard/core/routing/routes.dart';
 import 'package:subul_manager_dashboard/core/theming/app_colors.dart';
 import 'package:subul_manager_dashboard/core/widgets/side_bar_button.dart';
 import 'package:subul_manager_dashboard/core/widgets/text_logo.dart';
+import 'package:subul_manager_dashboard/features/get_rejected_shipments/presentation/views/show_rejected_shipments_screen.dart';
 import 'package:subul_manager_dashboard/features/get_unapproved_shipments/presentation/views/cancel_shipment.dart';
 import 'package:subul_manager_dashboard/features/show_companies_and_clients/presentation/show_companies_and_clients.dart';
 import 'package:subul_manager_dashboard/features/register_client/presentation/views/registeration_client.dart';
@@ -168,13 +169,15 @@ class _HomeViewState extends State<HomeView> {
                                 context.pushNamed(Routes.trackShipmentsHome);
                               },
                               text: 'الشحنات',
-                              isSelected: false, // selectedButtonIndex == 5,
+                              isSelected: false, 
                             ),
                             SizedBox(height: size.height / 16),
                             SideBarButton(
-                              onTap: () {},
-                              text: 'الشحنات الواردة',
-                              isSelected: false, // selectedButtonIndex == 6,
+                              onTap: () {
+                                 onButtonTap(5);
+                              },
+                              text: 'الشحنات المرفوضة',
+                              isSelected:  selectedButtonIndex == 5,
                             ),
                             SizedBox(height: size.height / 16),
                             Image.asset(
@@ -222,6 +225,9 @@ class _HomeViewState extends State<HomeView> {
                                 onButtonTap(7);
                               },
                             ),
+
+                            // ----------5-----------
+                            ShowRejectedShipmentsScreen(),
                             //-------------5----------
                             // Padding(
                             //   padding: EdgeInsets.only(top: 200.h),

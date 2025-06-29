@@ -10,7 +10,7 @@ import 'package:subul_manager_dashboard/core/widgets/custom_search_item.dart';
 import 'package:subul_manager_dashboard/features/get_unapproved_shipments/domain/use_case/get_unapproved_shipments_use_case.dart';
 import 'package:subul_manager_dashboard/features/get_unapproved_shipments/presentation/manager/cubit/get_unapproved_shipments_cubit.dart';
 import 'package:subul_manager_dashboard/features/get_unapproved_shipments/presentation/views/widgets/custom_shipment_item.dart';
-import 'package:subul_manager_dashboard/features/get_unapproved_shipments/presentation/views/widgets/title_of_columns.dart';
+import 'package:subul_manager_dashboard/core/widgets/title_of_columns.dart';
 
 class CancelShipment extends StatelessWidget {
   const CancelShipment({super.key, required this.onTap});
@@ -67,8 +67,7 @@ class CancelShipment extends StatelessWidget {
                             child: GestureDetector(
                               onTap: onTap,
                               child: CustomShipmentItem(
-                                unApprovedShipmentsEntity:
-                                    state.shipments[index],
+                                unApprovedShipment: state.shipments[index]
                               ),
                             ),
                           ),

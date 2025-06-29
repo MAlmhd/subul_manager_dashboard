@@ -5,11 +5,11 @@ import 'package:subul_manager_dashboard/core/helpers/assets_data.dart';
 import 'package:subul_manager_dashboard/core/helpers/constants.dart';
 import 'package:subul_manager_dashboard/core/helpers/styles.dart';
 import 'package:subul_manager_dashboard/core/theming/app_colors.dart';
-import 'package:subul_manager_dashboard/features/get_unapproved_shipments/domain/entities/un_approved_shipments_entity.dart';
+import 'package:subul_manager_dashboard/features/get_rejected_shipments/domain/entities/rejected_shipment_entity.dart';
 
 class CustomShipmentItem extends StatelessWidget {
-  const CustomShipmentItem({super.key, required this.unApprovedShipment});
-  final UnApprovedShipmentsEntity unApprovedShipment;
+  const CustomShipmentItem({super.key, required this.rejectedShipmentEntity});
+  final RejectedShipmentEntity rejectedShipmentEntity;
 
   @override
   Widget build(BuildContext context) {
@@ -35,19 +35,22 @@ class CustomShipmentItem extends StatelessWidget {
                   borderRadius: BorderRadius.circular(cornerRadius),
                 ),
                 child: Center(
-                  child: Text(unApprovedShipment.statusOfShipment, style: Styles.textStyle4Sp),
+                  child: Text(
+                    rejectedShipmentEntity.status,
+                    style: Styles.textStyle4Sp,
+                  ),
                 ),
               ),
               SizedBox(width: size.width / 10),
               Text(
-                unApprovedShipment.numberOfShipments.toString(),
+                rejectedShipmentEntity.declaredParcelsCount.toString(),
                 overflow: TextOverflow.visible,
                 style: Styles.textStyle5Sp,
               ),
               SizedBox(width: size.width / 10),
               Flexible(
                 child: Text(
-                  unApprovedShipment.nameOfCustomer,
+                  rejectedShipmentEntity.customerName,
                   style: Styles.textStyle5Sp,
                   softWrap: true,
                   overflow: TextOverflow.visible,
@@ -56,7 +59,7 @@ class CustomShipmentItem extends StatelessWidget {
               SizedBox(width: size.width / 40),
               Flexible(
                 child: Text(
-                  unApprovedShipment.trackingString,
+                  rejectedShipmentEntity.trackingNumber,
                   softWrap: true,
                   style: Styles.textStyle5Sp,
                   overflow: TextOverflow.visible,

@@ -3,6 +3,11 @@ import 'package:get_it/get_it.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:subul_manager_dashboard/core/data/auth_local_data_source.dart';
 import 'package:subul_manager_dashboard/core/utils/api_service.dart';
+import 'package:subul_manager_dashboard/features/get_rejected_shipments/data/data_source/get_rejected_shipments_local_data_source.dart';
+import 'package:subul_manager_dashboard/features/get_rejected_shipments/data/data_source/get_rejected_shipments_remote_data_source.dart';
+import 'package:subul_manager_dashboard/features/get_rejected_shipments/data/repos/get_rejected_shipments_repo_impl.dart';
+import 'package:subul_manager_dashboard/features/get_rejected_shipments/domain/repos/get_rejected_shipments_repo.dart';
+import 'package:subul_manager_dashboard/features/get_rejected_shipments/domain/use_case/get_rejected_shipments_use_case.dart';
 import 'package:subul_manager_dashboard/features/get_unapproved_shipments/data/data_source/get_unapproved_shipments_local_data_source.dart';
 import 'package:subul_manager_dashboard/features/get_unapproved_shipments/data/data_source/get_unapproved_shipments_remote_data_source.dart';
 import 'package:subul_manager_dashboard/features/get_unapproved_shipments/data/repos/get_unapproved_shipments_repo_impl.dart';
@@ -210,5 +215,31 @@ void setupServiceLocator() {
   sl.registerLazySingleton<CreateInvoiceUseCase>(
     () => CreateInvoiceUseCase(sl.get<CreateInvoiceRepo>()),
   );
+
+
+
+
+
+  
+  // get rejected shipments
+  sl.registerLazySingleton<GetRejectedShipmentsRemoteDataSource>(
+    () => GetRejectedShipmentsRemoteDataSourceImpl(sl.get<ApiService>()),
+  );
+
+  sl.registerLazySingleton<GetRejectedShipmentsLocalDataSource>(
+    () => GetRejectedShipmentsLocalDataSourceImpl(),
+  );
+
+  sl.registerLazySingleton<GetRejectedShipmentsRepo>(
+    () => GetRejectedShipmentsRepoImpl(
+     sl.get<GetRejectedShipmentsRemoteDataSource>(),
+     sl.get<GetRejectedShipmentsLocalDataSource>()
+    ),
+  );
+
+  sl.registerLazySingleton<GetRejectedShipmentsUseCase>(
+    () => GetRejectedShipmentsUseCase(sl.get<GetRejectedShipmentsRepo>()),
+  );
+
 
 }
