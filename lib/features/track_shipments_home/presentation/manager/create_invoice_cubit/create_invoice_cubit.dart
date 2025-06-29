@@ -15,7 +15,7 @@ class CreateInvoiceCubit extends Cubit<CreateInvoiceState> {
     required double amount,
     required bool includesTax,
     required double taxAmount,
-    required DateTime payableAt,
+    required String payableAt,
   }) async {
     emit(CreateInvoiceLoading());
     CreateInvoiceParam createInvoiceParam = CreateInvoiceParam(

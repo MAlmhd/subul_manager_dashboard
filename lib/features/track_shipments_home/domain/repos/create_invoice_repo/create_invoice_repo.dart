@@ -8,5 +8,5 @@ abstract class CreateInvoiceRepo {
   required double amount,
   required bool includesTax,
   required double taxAmount,
-  required DateTime payableAt,});
+  required String payableAt,});
 }

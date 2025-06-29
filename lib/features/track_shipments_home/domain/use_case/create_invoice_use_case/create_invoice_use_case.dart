@@ -27,7 +27,7 @@ class CreateInvoiceParam {
   final double amount;
   final bool includesTax;
   final double taxAmount;
-  final DateTime payableAt;
+  final String payableAt;
 
   CreateInvoiceParam(
     this.customerId,

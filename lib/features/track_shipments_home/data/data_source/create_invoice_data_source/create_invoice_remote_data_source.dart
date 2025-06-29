@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:subul_manager_dashboard/core/data/auth_local_data_source.dart';
 import 'package:subul_manager_dashboard/core/utils/api_service.dart';
 import 'package:subul_manager_dashboard/core/utils/service_locator.dart';
@@ -11,7 +13,7 @@ abstract class CreateInvoiceRemoteDataSource {
     required double amount,
     required bool includesTax,
     required double taxAmount,
-    required DateTime payableAt,
+    required String payableAt,
   });
 }
 
@@ -27,9 +29,10 @@ class CreateInvoiceRemoteDataSourceImpl
     required double amount,
     required bool includesTax,
     required double taxAmount,
-    required DateTime payableAt,
+    required String payableAt,
   }) async {
-    final token = sl.get<AuthLocalDataSource>().getToken();
+    final token = await sl.get<AuthLocalDataSource>().getToken();
+
     var data = await _apiService.post(
       endPoint: 'create/invoice',
       headers: {'Authorization': 'Bearer $token'},
@@ -43,7 +46,7 @@ class CreateInvoiceRemoteDataSourceImpl
       },
     );
 
-    BillEntity bill = BillModel.fromJson(data);
+    BillEntity bill = BillModel.fromJson(data['data']);
     return bill;
   }
 }

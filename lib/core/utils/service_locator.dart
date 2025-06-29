@@ -34,10 +34,14 @@ import 'package:subul_manager_dashboard/features/sign_in/data/data_sources/sign_
 import 'package:subul_manager_dashboard/features/sign_in/data/repos/sign_in_repo_impl.dart';
 import 'package:subul_manager_dashboard/features/sign_in/domain/repos/sign_in_repo.dart';
 import 'package:subul_manager_dashboard/features/sign_in/domain/use_cases/sign_in_use_case.dart';
+import 'package:subul_manager_dashboard/features/track_shipments_home/data/data_source/create_invoice_data_source/create_invoice_remote_data_source.dart';
 import 'package:subul_manager_dashboard/features/track_shipments_home/data/data_source/get_approved_shipments_data_source/get_approved_shipments_local_data_source.dart';
 import 'package:subul_manager_dashboard/features/track_shipments_home/data/data_source/get_approved_shipments_data_source/get_approved_shipments_remote_data_source.dart';
+import 'package:subul_manager_dashboard/features/track_shipments_home/data/repo/create_invoice_repo/create_invoice_repo_impl.dart';
 import 'package:subul_manager_dashboard/features/track_shipments_home/data/repo/get_approved_shipments_repo/get_approved_shipments_repo_impl.dart';
+import 'package:subul_manager_dashboard/features/track_shipments_home/domain/repos/create_invoice_repo/create_invoice_repo.dart';
 import 'package:subul_manager_dashboard/features/track_shipments_home/domain/repos/get_approved_shipments_repo/get_approved_shipments_repo.dart';
+import 'package:subul_manager_dashboard/features/track_shipments_home/domain/use_case/create_invoice_use_case/create_invoice_use_case.dart';
 import 'package:subul_manager_dashboard/features/track_shipments_home/domain/use_case/get_approved_shipments_use_case/get_approved_shipments_use_case.dart';
 
 final GetIt sl = GetIt.instance;
@@ -186,6 +190,25 @@ void setupServiceLocator() {
 
   sl.registerLazySingleton<GetUnapprovedShipmentsUseCase>(
     () => GetUnapprovedShipmentsUseCase(sl.get<GetUnapprovedShipmentsRepo>()),
+  );
+
+
+  // create invoice
+
+  sl.registerLazySingleton<CreateInvoiceRemoteDataSource>(
+    () => CreateInvoiceRemoteDataSourceImpl(sl.get<ApiService>()),
+  );
+
+ 
+
+  sl.registerLazySingleton<CreateInvoiceRepo>(
+    () => CreateInvoiceRepoImpl(
+     sl.get<CreateInvoiceRemoteDataSource>(),
+    ),
+  );
+
+  sl.registerLazySingleton<CreateInvoiceUseCase>(
+    () => CreateInvoiceUseCase(sl.get<CreateInvoiceRepo>()),
   );
 
 }

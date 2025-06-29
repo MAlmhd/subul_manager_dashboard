@@ -16,7 +16,7 @@ class CreateInvoiceRepoImpl implements CreateInvoiceRepo {
     required double amount,
     required bool includesTax,
     required double taxAmount,
-    required DateTime payableAt,
+    required String payableAt,
   }) async {
     try {
       var result = await createInvoiceRemoteDataSource.createInvoice(
