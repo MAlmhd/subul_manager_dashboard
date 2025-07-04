@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:dio/dio.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:subul_manager_dashboard/features/register_company/data/models/basic_response_for_register_company_model.dart';
@@ -54,6 +56,7 @@ class RegisterCompanyRemoteDataSourceImpl
       headers: {'Authorization': 'Bearer $token'},
       data: formData,
     );
+   
 
     RegisterCompanyEntity registerCompanyEntity = RegisterCompanyModel.fromJson(
       response,

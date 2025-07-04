@@ -1,7 +1,6 @@
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 import 'package:subul_manager_dashboard/core/errors/failure.dart';
-import 'package:subul_manager_dashboard/features/track_shipments_home/data/data_source/get_approved_shipments_data_source/get_approved_shipments_local_data_source.dart';
 import 'package:subul_manager_dashboard/features/track_shipments_home/data/data_source/get_approved_shipments_data_source/get_approved_shipments_remote_data_source.dart';
 import 'package:subul_manager_dashboard/features/track_shipments_home/domain/entities/approved_shipment_entity/approved_shipment_entity.dart';
 import 'package:subul_manager_dashboard/features/track_shipments_home/domain/repos/get_approved_shipments_repo/get_approved_shipments_repo.dart';
@@ -9,11 +8,11 @@ import 'package:subul_manager_dashboard/features/track_shipments_home/domain/rep
 class GetApprovedShipmentsRepoImpl implements GetApprovedShipmentsRepo {
   final GetApprovedShipmentsRemoteDataSource
   getApprovedShipmentsRemoteDataSource;
-  final GetApprovedShipmentsLocalDataSource getApprovedShipmentsLocalDataSource;
+  //final GetApprovedShipmentsLocalDataSource getApprovedShipmentsLocalDataSource;
 
   GetApprovedShipmentsRepoImpl(
     this.getApprovedShipmentsRemoteDataSource,
-    this.getApprovedShipmentsLocalDataSource,
+  //  this.getApprovedShipmentsLocalDataSource,
   );
   @override
   Future<Either<Failure, List<ApprovedShipmentEntity>>> getApprovedShipments(
@@ -27,11 +26,11 @@ class GetApprovedShipmentsRepoImpl implements GetApprovedShipmentsRepo {
         return right(shipments);
       }
 
-      shipments = getApprovedShipmentsLocalDataSource.getApprovedShipments();
+      // shipments = getApprovedShipmentsLocalDataSource.getApprovedShipments();
 
-      if (shipments.isNotEmpty) {
-        return right(shipments);
-      }
+      // if (shipments.isNotEmpty) {
+      //   return right(shipments);
+      // }
 
       shipments = await getApprovedShipmentsRemoteDataSource
           .getApprovedShipment(searchItem);

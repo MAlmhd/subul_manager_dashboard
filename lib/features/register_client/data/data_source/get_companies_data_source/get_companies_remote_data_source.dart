@@ -31,7 +31,7 @@ class GetCompaniesRemoteDataSourceImpl implements GetCompaniesRemoteDataSource {
       companies.add(CompanyModel.fromJson(company));
     }
 
-    saveData<CompanyEntity>(companies, kCompaniesBox);
+   // saveData<CompanyEntity>(companies, kCompaniesBox);
 
     return companies;
   }

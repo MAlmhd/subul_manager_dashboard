@@ -33,7 +33,7 @@ class GetRejectedShipmentsRemoteDataSourceImpl
       shipments.add(RejectedShipmentModel.fromJson(element));
     }
 
-    saveData<RejectedShipmentEntity>(shipments, kRejectedShipments);
+  //  saveData<RejectedShipmentEntity>(shipments, kRejectedShipments);
 
     return shipments;
   }

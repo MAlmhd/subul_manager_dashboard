@@ -30,7 +30,7 @@ class ShowCompaniesAndClientsRemoteDataSourceImpl
       clients.add(CompaniesAndClientsModel.fromJson(element));
     }
 
-    saveData<CompaniesAndClientsEntity>(clients, kCompaniesAndClients);
+   // saveData<CompaniesAndClientsEntity>(clients, kCompaniesAndClients);
 
     return clients;
   }

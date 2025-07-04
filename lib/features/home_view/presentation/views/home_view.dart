@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:subul_manager_dashboard/core/helpers/assets_data.dart';
@@ -8,10 +9,14 @@ import 'package:subul_manager_dashboard/core/helpers/constants.dart';
 import 'package:subul_manager_dashboard/core/helpers/extensions.dart';
 import 'package:subul_manager_dashboard/core/routing/routes.dart';
 import 'package:subul_manager_dashboard/core/theming/app_colors.dart';
+import 'package:subul_manager_dashboard/core/utils/service_locator.dart';
 import 'package:subul_manager_dashboard/core/widgets/side_bar_button.dart';
 import 'package:subul_manager_dashboard/core/widgets/text_logo.dart';
+import 'package:subul_manager_dashboard/features/get_customer_shipment/domain/use_case/get_customer_shipments_use_case.dart';
+import 'package:subul_manager_dashboard/features/get_customer_shipment/presentation/manager/get_customer_shipments_cubit/get_customer_shipments_cubit.dart';
+import 'package:subul_manager_dashboard/features/get_customer_shipment/presentation/views/shipments_by_code_screen.dart';
 import 'package:subul_manager_dashboard/features/get_rejected_shipments/presentation/views/show_rejected_shipments_screen.dart';
-import 'package:subul_manager_dashboard/features/get_unapproved_shipments/presentation/views/cancel_shipment.dart';
+import 'package:subul_manager_dashboard/features/get_unapproved_shipments/presentation/views/unapproved_shipments_screen.dart';
 import 'package:subul_manager_dashboard/features/show_companies_and_clients/presentation/show_companies_and_clients.dart';
 import 'package:subul_manager_dashboard/features/register_client/presentation/views/registeration_client.dart';
 import 'package:subul_manager_dashboard/features/home_view/presentation/views/widgets/animations.dart';
@@ -114,7 +119,8 @@ class _HomeViewState extends State<HomeView> {
                             width: 4,
                           ),
                         ),
-                        child: Column(
+                        child: ListView(
+                          padding: EdgeInsets.symmetric(horizontal: size.width / 50),
                           children: [
                             SizedBox(height: size.height / 13),
                             Container(
@@ -169,15 +175,23 @@ class _HomeViewState extends State<HomeView> {
                                 context.pushNamed(Routes.trackShipmentsHome);
                               },
                               text: 'الشحنات',
-                              isSelected: false, 
+                              isSelected: false,
                             ),
                             SizedBox(height: size.height / 16),
                             SideBarButton(
                               onTap: () {
-                                 onButtonTap(5);
+                                onButtonTap(5);
                               },
                               text: 'الشحنات المرفوضة',
-                              isSelected:  selectedButtonIndex == 5,
+                              isSelected: selectedButtonIndex == 5,
+                            ),
+                            SizedBox(height: size.height / 16),
+                            SideBarButton(
+                              onTap: () {
+                                onButtonTap(6);
+                              },
+                              text: 'شحنات زبون معين',
+                              isSelected: selectedButtonIndex == 6,
                             ),
                             SizedBox(height: size.height / 16),
                             Image.asset(
@@ -220,11 +234,7 @@ class _HomeViewState extends State<HomeView> {
                             ),
 
                             //---------4------------
-                            CancelShipment(
-                              onTap: () {
-                                onButtonTap(7);
-                              },
-                            ),
+                            UnApprovedShipmentsScreen(),
 
                             // ----------5-----------
                             ShowRejectedShipmentsScreen(),
@@ -242,6 +252,11 @@ class _HomeViewState extends State<HomeView> {
                             //     showSuccesDialog: showSuccessDialog2,
                             //   ),
                             // ),
+                            //--------6------------
+                            BlocProvider(
+                              create: (context) => GetCustomerShipmentsCubit(sl.get<GetCustomerShipmentsUseCase>()),
+                              child: ShipmentsByCodeScreen(),
+                            ),
                           ],
                         ),
                       ),

@@ -3,17 +3,26 @@ import 'package:get_it/get_it.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:subul_manager_dashboard/core/data/auth_local_data_source.dart';
 import 'package:subul_manager_dashboard/core/utils/api_service.dart';
-import 'package:subul_manager_dashboard/features/get_rejected_shipments/data/data_source/get_rejected_shipments_local_data_source.dart';
+import 'package:subul_manager_dashboard/features/get_customer_shipment/data/data_source/get_customer_shipments_remote_data_source.dart';
+import 'package:subul_manager_dashboard/features/get_customer_shipment/data/repos/get_customer_shipments_repo_impl.dart';
+import 'package:subul_manager_dashboard/features/get_customer_shipment/domain/repos/get_customer_shipments.dart';
+import 'package:subul_manager_dashboard/features/get_customer_shipment/domain/use_case/get_customer_shipments_use_case.dart';
 import 'package:subul_manager_dashboard/features/get_rejected_shipments/data/data_source/get_rejected_shipments_remote_data_source.dart';
 import 'package:subul_manager_dashboard/features/get_rejected_shipments/data/repos/get_rejected_shipments_repo_impl.dart';
 import 'package:subul_manager_dashboard/features/get_rejected_shipments/domain/repos/get_rejected_shipments_repo.dart';
 import 'package:subul_manager_dashboard/features/get_rejected_shipments/domain/use_case/get_rejected_shipments_use_case.dart';
-import 'package:subul_manager_dashboard/features/get_unapproved_shipments/data/data_source/get_unapproved_shipments_local_data_source.dart';
-import 'package:subul_manager_dashboard/features/get_unapproved_shipments/data/data_source/get_unapproved_shipments_remote_data_source.dart';
-import 'package:subul_manager_dashboard/features/get_unapproved_shipments/data/repos/get_unapproved_shipments_repo_impl.dart';
-import 'package:subul_manager_dashboard/features/get_unapproved_shipments/domain/repos/get_unapproved_shipments_repo.dart';
-import 'package:subul_manager_dashboard/features/get_unapproved_shipments/domain/use_case/get_unapproved_shipments_use_case.dart';
-import 'package:subul_manager_dashboard/features/register_client/data/data_source/get_companies_data_source/get_companies_local_data_source.dart';
+import 'package:subul_manager_dashboard/features/get_unapproved_shipments/data/data_source/approve_shipment_data_source/approve_shipment_remote_data_source.dart';
+import 'package:subul_manager_dashboard/features/get_unapproved_shipments/data/data_source/get_unapproved_shipments_data_source/get_unapproved_shipments_remote_data_source.dart';
+import 'package:subul_manager_dashboard/features/get_unapproved_shipments/data/data_source/reject_shipment_data_soure/reject_shipment_remote_data_source.dart';
+import 'package:subul_manager_dashboard/features/get_unapproved_shipments/data/repos/approve_shipment_repo_impl/approve_shipment_repo_impl.dart' show ApproveShipmentRepoImpl;
+import 'package:subul_manager_dashboard/features/get_unapproved_shipments/data/repos/get_unapproved_shipments_repo_impl/get_unapproved_shipments_repo_impl.dart';
+import 'package:subul_manager_dashboard/features/get_unapproved_shipments/data/repos/reject_shipment_repo_impl/reject_shipment_repo_impl.dart';
+import 'package:subul_manager_dashboard/features/get_unapproved_shipments/domain/repos/approve_shipment_repo/approve_shipment_repo.dart';
+import 'package:subul_manager_dashboard/features/get_unapproved_shipments/domain/repos/get_unapproved_shipment_repo/get_unapproved_shipments_repo.dart';
+import 'package:subul_manager_dashboard/features/get_unapproved_shipments/domain/repos/reject_shipment_repo/reject_shipment_repo.dart';
+import 'package:subul_manager_dashboard/features/get_unapproved_shipments/domain/use_case/approve_shipment_use_case/approve_shipment_use_case.dart';
+import 'package:subul_manager_dashboard/features/get_unapproved_shipments/domain/use_case/get_unapproved_shipments_use_case/get_unapproved_shipments_use_case.dart';
+import 'package:subul_manager_dashboard/features/get_unapproved_shipments/domain/use_case/reject_shipment_use_case/reject_shipment_use_case.dart';
 import 'package:subul_manager_dashboard/features/register_client/data/data_source/get_companies_data_source/get_companies_remote_data_source.dart';
 import 'package:subul_manager_dashboard/features/register_client/data/data_source/register_client_data_source/register_client_remote_data_source.dart';
 import 'package:subul_manager_dashboard/features/register_client/data/repos/get_companies_repo/get_companies_repo_impl.dart';
@@ -27,7 +36,6 @@ import 'package:subul_manager_dashboard/features/register_company/data/repos/reg
 import 'package:subul_manager_dashboard/features/register_company/domain/repo/register_company_repo.dart';
 import 'package:subul_manager_dashboard/features/register_company/domain/use_case/register_company_use_case.dart';
 import 'package:subul_manager_dashboard/features/show_companies_and_clients/data/data_source/delete_user_data_source/delete_user_remote_data_source.dart';
-import 'package:subul_manager_dashboard/features/show_companies_and_clients/data/data_source/show_companies_and_clients_data_source/show_companies_and_clients_local_data_source.dart';
 import 'package:subul_manager_dashboard/features/show_companies_and_clients/data/data_source/show_companies_and_clients_data_source/show_companies_and_clients_remote_data_source.dart';
 import 'package:subul_manager_dashboard/features/show_companies_and_clients/data/repos/delete_user_repo/delete_user_repo_impl.dart';
 import 'package:subul_manager_dashboard/features/show_companies_and_clients/data/repos/show_companies_and_clients_repo/show_companies_and_clients_repo_impl.dart';
@@ -40,7 +48,6 @@ import 'package:subul_manager_dashboard/features/sign_in/data/repos/sign_in_repo
 import 'package:subul_manager_dashboard/features/sign_in/domain/repos/sign_in_repo.dart';
 import 'package:subul_manager_dashboard/features/sign_in/domain/use_cases/sign_in_use_case.dart';
 import 'package:subul_manager_dashboard/features/track_shipments_home/data/data_source/create_invoice_data_source/create_invoice_remote_data_source.dart';
-import 'package:subul_manager_dashboard/features/track_shipments_home/data/data_source/get_approved_shipments_data_source/get_approved_shipments_local_data_source.dart';
 import 'package:subul_manager_dashboard/features/track_shipments_home/data/data_source/get_approved_shipments_data_source/get_approved_shipments_remote_data_source.dart';
 import 'package:subul_manager_dashboard/features/track_shipments_home/data/repo/create_invoice_repo/create_invoice_repo_impl.dart';
 import 'package:subul_manager_dashboard/features/track_shipments_home/data/repo/get_approved_shipments_repo/get_approved_shipments_repo_impl.dart';
@@ -80,13 +87,13 @@ void setupServiceLocator() {
     () => GetCompaniesRemoteDataSourceImpl(sl.get<ApiService>()),
   );
 
-  sl.registerLazySingleton<GetCompaniesLocalDataSource>(
-    () => GetCompaniesLocalDataSourceImpl(),
-  );
+  // sl.registerLazySingleton<GetCompaniesLocalDataSource>(
+  //   () => GetCompaniesLocalDataSourceImpl(),
+  // );
 
   sl.registerLazySingleton<GetCompaniesRepo>(
     () => GetCompaniesRepoImpl(
-      getCompaniesLocalDataSource: sl.get<GetCompaniesLocalDataSource>(),
+     // getCompaniesLocalDataSource: sl.get<GetCompaniesLocalDataSource>(),
       getCompaniesRemoteDataSource: sl.get<GetCompaniesRemoteDataSource>(),
     ),
   );
@@ -126,14 +133,14 @@ void setupServiceLocator() {
     () => ShowCompaniesAndClientsRemoteDataSourceImpl(sl.get<ApiService>()),
   );
 
-  sl.registerLazySingleton<ShowCompaniesAndClientsLocalDataSource>(
-    () => ShowCompaniesAndClientsLocalDataSourceImpl(),
-  );
+  // sl.registerLazySingleton<ShowCompaniesAndClientsLocalDataSource>(
+  //   () => ShowCompaniesAndClientsLocalDataSourceImpl(),
+  // );
 
   sl.registerLazySingleton<ShowCompaniesAndClientsRepo>(
     () => ShowCompaniesAndClientsRepoImpl(
      sl.get<ShowCompaniesAndClientsRemoteDataSource>(),
-     sl.get<ShowCompaniesAndClientsLocalDataSource>()
+   //  sl.get<ShowCompaniesAndClientsLocalDataSource>()
     ),
   );
 
@@ -147,8 +154,14 @@ void setupServiceLocator() {
     () => DeleteUserRemoteDataSourceImpl(sl.get<ApiService>()),
   );
 
+  // sl.registerLazySingleton<DeleteUserLocalDataSource>(
+  //   () => DeleteUserLocalDataSourceImpl(),
+  // );
+
   sl.registerLazySingleton<DeleteUserRepo>(
-    () => DeleteUserRepoImpl(sl.get<DeleteUserRemoteDataSource>()),
+    () => DeleteUserRepoImpl(sl.get<DeleteUserRemoteDataSource>(),
+    //sl.get<DeleteUserLocalDataSource>()
+    ),
   );
 
   sl.registerLazySingleton<DeleteUserUseCase>(
@@ -161,14 +174,14 @@ void setupServiceLocator() {
     () => GetApprovedShipmentsRemoteDataSourceImpl(sl.get<ApiService>()),
   );
 
-  sl.registerLazySingleton<GetApprovedShipmentsLocalDataSource>(
-    () => GetApprovedShipmentsLocalDataSourceImpl(),
-  );
+  // sl.registerLazySingleton<GetApprovedShipmentsLocalDataSource>(
+  //   () => GetApprovedShipmentsLocalDataSourceImpl(),
+  // );
 
   sl.registerLazySingleton<GetApprovedShipmentsRepo>(
     () => GetApprovedShipmentsRepoImpl(
      sl.get<GetApprovedShipmentsRemoteDataSource>(),
-     sl.get<GetApprovedShipmentsLocalDataSource>()
+   //  sl.get<GetApprovedShipmentsLocalDataSource>()
     ),
   );
 
@@ -182,14 +195,14 @@ void setupServiceLocator() {
     () => GetUnapprovedShipmentsRemoteDataSourceImpl(sl.get<ApiService>()),
   );
 
-  sl.registerLazySingleton<GetUnapprovedShipmentsLocalDataSource>(
-    () => GetUnapprovedShipmentsLocalDataSourceImpl(),
-  );
+  // sl.registerLazySingleton<GetUnapprovedShipmentsLocalDataSource>(
+  //   () => GetUnapprovedShipmentsLocalDataSourceImpl(),
+  // );
 
   sl.registerLazySingleton<GetUnapprovedShipmentsRepo>(
     () => GetUnapprovedShipmentsRepoImpl(
      sl.get<GetUnapprovedShipmentsRemoteDataSource>(),
-     sl.get<GetUnapprovedShipmentsLocalDataSource>()
+   //  sl.get<GetUnapprovedShipmentsLocalDataSource>()
     ),
   );
 
@@ -226,20 +239,80 @@ void setupServiceLocator() {
     () => GetRejectedShipmentsRemoteDataSourceImpl(sl.get<ApiService>()),
   );
 
-  sl.registerLazySingleton<GetRejectedShipmentsLocalDataSource>(
-    () => GetRejectedShipmentsLocalDataSourceImpl(),
-  );
+  // sl.registerLazySingleton<GetRejectedShipmentsLocalDataSource>(
+  //   () => GetRejectedShipmentsLocalDataSourceImpl(),
+  // );
 
   sl.registerLazySingleton<GetRejectedShipmentsRepo>(
     () => GetRejectedShipmentsRepoImpl(
      sl.get<GetRejectedShipmentsRemoteDataSource>(),
-     sl.get<GetRejectedShipmentsLocalDataSource>()
+    // sl.get<GetRejectedShipmentsLocalDataSource>()
     ),
   );
 
   sl.registerLazySingleton<GetRejectedShipmentsUseCase>(
     () => GetRejectedShipmentsUseCase(sl.get<GetRejectedShipmentsRepo>()),
   );
+
+
+
+
+
+   // approve shipment
+  sl.registerLazySingleton<ApproveShipmentRemoteDataSource>(
+    () => ApproveShipmentRemoteDataSourceImpl(sl.get<ApiService>()),
+  );
+
+  
+
+  sl.registerLazySingleton<ApproveShipmentRepo>(
+    () => ApproveShipmentRepoImpl(
+     sl.get<ApproveShipmentRemoteDataSource>(),
+    ),
+  );
+
+  sl.registerLazySingleton<ApproveShipmentUseCase>(
+    () => ApproveShipmentUseCase(sl.get<ApproveShipmentRepo>()),
+  );
+
+
+
+  // reject shipment
+  sl.registerLazySingleton<RejectShipmentRemoteDataSource>(
+    () => RejectShipmentRemoteDataSourceImpl(sl.get<ApiService>()),
+  );
+
+  
+
+  sl.registerLazySingleton<RejectShipmentRepo>(
+    () => RejectShipmentRepoImpl(
+     sl.get<RejectShipmentRemoteDataSource>(),
+    ),
+  );
+
+  sl.registerLazySingleton<RejectShipmentUseCase>(
+    () => RejectShipmentUseCase(sl.get<RejectShipmentRepo>()),
+  );
+
+
+
+  // get shipments by code
+  sl.registerLazySingleton<GetCustomerShipmentsRemoteDataSource>(
+    () => GetCustomerShipmentsRemoteDataSourceImpl(sl.get<ApiService>()),
+  );
+
+  
+
+  sl.registerLazySingleton<GetCustomerShipmentsRepo>(
+    () => GetCustomerShipmentsRepoImpl(
+     sl.get<GetCustomerShipmentsRemoteDataSource>(),
+    ),
+  );
+
+  sl.registerLazySingleton<GetCustomerShipmentsUseCase>(
+    () => GetCustomerShipmentsUseCase(sl.get<GetCustomerShipmentsRepo>()),
+  );
+
 
 
 }

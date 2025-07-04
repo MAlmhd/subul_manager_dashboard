@@ -10,7 +10,7 @@ import 'package:subul_manager_dashboard/core/utils/service_locator.dart';
 import 'package:intl/date_symbol_data_local.dart';
 import 'package:subul_manager_dashboard/core/utils/simple_bloc_observer.dart';
 import 'package:subul_manager_dashboard/features/get_rejected_shipments/domain/entities/rejected_shipment_entity.dart';
-import 'package:subul_manager_dashboard/features/get_unapproved_shipments/domain/entities/un_approved_shipments_entity.dart';
+import 'package:subul_manager_dashboard/features/get_unapproved_shipments/domain/entities/un_approved_shipment_entity/un_approved_shipments_entity.dart';
 import 'package:subul_manager_dashboard/features/register_client/domain/entites/company_entity/company_entity.dart';
 import 'package:subul_manager_dashboard/features/show_companies_and_clients/domain/entities/comanies_and_clients_entity/companies_and_clients_entity.dart';
 import 'package:subul_manager_dashboard/features/sign_in/presentation/views/sign_in_screen.dart';

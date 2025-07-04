@@ -40,7 +40,7 @@ class GetApprovedShipmentsRemoteDataSourceImpl
       shipments.add(ApprovedShipmentModel.fromJson(element));
     }
 
-    saveData<ApprovedShipmentEntity>(shipments, kApprovedShipments);
+   // saveData<ApprovedShipmentEntity>(shipments, kApprovedShipments);
 
     return shipments;
   }

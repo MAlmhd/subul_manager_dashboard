@@ -61,10 +61,7 @@ class ShowRejectedShipmentsScreen extends StatelessWidget {
                           padding: EdgeInsets.only(bottom: 12.h),
                           child: MouseRegion(
                             cursor: SystemMouseCursors.click,
-                            child: GestureDetector(
-                              onTap: (){},
-                              child: CustomShipmentItem(rejectedShipmentEntity:state.shipments[index] )
-                            ),
+                            child: CustomShipmentItem(rejectedShipmentEntity:state.shipments[index] ),
                           ),
                         ),
                       );

@@ -1,11 +1,11 @@
-import 'package:subul_manager_dashboard/features/get_unapproved_shipments/domain/entities/un_approved_shipments_entity.dart';
+import 'package:subul_manager_dashboard/features/get_unapproved_shipments/domain/entities/un_approved_shipment_entity/un_approved_shipments_entity.dart';
 
 class UnapprovedShipmentModel extends UnApprovedShipmentsEntity{
   final int id;
   final String trackingNumber;
   final String type;
   final int customerId;
-  final String customerName;
+  final String? customerName;
   final String status;
   final int declaredParcelsCount;
   final DateTime createdAt;
@@ -19,7 +19,7 @@ class UnapprovedShipmentModel extends UnApprovedShipmentsEntity{
     required this.status,
     required this.declaredParcelsCount,
     required this.createdAt,
-  }) : super(id, trackingNumber, type, customerId, customerName, status,declaredParcelsCount);
+  }) : super(id, trackingNumber, type, customerId, customerName ?? "No Name", status,declaredParcelsCount);
 
   factory UnapprovedShipmentModel.fromJson(Map<String, dynamic> json) {
     return UnapprovedShipmentModel(
