@@ -14,7 +14,7 @@ class CreateInvoiceCubit extends Cubit<CreateInvoiceState> {
     required int shipmentId,
     required double amount,
     required bool includesTax,
-    required double taxAmount,
+
     required String payableAt,
   }) async {
     emit(CreateInvoiceLoading());
@@ -23,7 +23,7 @@ class CreateInvoiceCubit extends Cubit<CreateInvoiceState> {
       shipmentId,
       amount,
       includesTax,
-      taxAmount,
+     
       payableAt,
     );
     var result = await createInvoiceUseCase.call(createInvoiceParam);

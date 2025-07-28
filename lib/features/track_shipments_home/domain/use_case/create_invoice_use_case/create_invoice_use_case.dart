@@ -15,7 +15,6 @@ class CreateInvoiceUseCase extends UseCase<BillEntity, CreateInvoiceParam> {
       shipmentId: params.shipmentId,
       amount: params.amount,
       includesTax: params.includesTax,
-      taxAmount: params.taxAmount,
       payableAt: params.payableAt,
     );
   }
@@ -26,7 +25,7 @@ class CreateInvoiceParam {
   final int shipmentId;
   final double amount;
   final bool includesTax;
-  final double taxAmount;
+
   final String payableAt;
 
   CreateInvoiceParam(
@@ -34,7 +33,7 @@ class CreateInvoiceParam {
     this.shipmentId,
     this.amount,
     this.includesTax,
-    this.taxAmount,
+
     this.payableAt,
   );
 }

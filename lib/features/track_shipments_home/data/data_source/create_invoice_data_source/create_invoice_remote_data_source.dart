@@ -12,7 +12,7 @@ abstract class CreateInvoiceRemoteDataSource {
     required int shipmentId,
     required double amount,
     required bool includesTax,
-    required double taxAmount,
+
     required String payableAt,
   });
 }
@@ -28,7 +28,6 @@ class CreateInvoiceRemoteDataSourceImpl
     required int shipmentId,
     required double amount,
     required bool includesTax,
-    required double taxAmount,
     required String payableAt,
   }) async {
     final token = await sl.get<AuthLocalDataSource>().getToken();
@@ -41,10 +40,10 @@ class CreateInvoiceRemoteDataSourceImpl
         'shipment_id': shipmentId,
         'amount': amount,
         'includes_tax': includesTax,
-        'tax_amount': taxAmount,
         'payable_at': payableAt,
       },
     );
+   
 
     BillEntity bill = BillModel.fromJson(data['data']);
     return bill;

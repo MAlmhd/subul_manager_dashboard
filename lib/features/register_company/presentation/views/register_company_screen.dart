@@ -13,7 +13,6 @@ import 'package:subul_manager_dashboard/core/widgets/custom_progress_indicator.d
 import 'package:subul_manager_dashboard/core/widgets/custom_text_field.dart';
 import 'package:subul_manager_dashboard/core/widgets/upload_image.dart';
 import 'package:subul_manager_dashboard/features/register_client/domain/use_cases/register_client_use_case.dart';
-import 'package:subul_manager_dashboard/features/register_client/presentation/manager/register_client_cubit/register_client_cubit.dart';
 import 'package:subul_manager_dashboard/features/register_company/domain/use_case/register_company_use_case.dart';
 import 'package:subul_manager_dashboard/features/register_company/presentation/manager/register_company_cubit/register_company_cubit.dart';
 
@@ -49,6 +48,23 @@ class _RegisterCompanyScreenState extends State<RegisterCompanyScreen> {
     super.dispose();
   }
 
+  void clearForm() {
+    firstNameController.clear();
+
+    addressController.clear();
+    phoneController.clear();
+    emailController.clear();
+    passwordController.clear();
+
+    timeZoneController.clear();
+
+    setState(() {
+      profileImage = null;
+
+      imageBytesProfile = null;
+    });
+  }
+
   Future<void> pickImage() async {
     final ImagePicker picker = ImagePicker();
     final XFile? selectedImage = await picker.pickImage(
@@ -80,6 +96,7 @@ class _RegisterCompanyScreenState extends State<RegisterCompanyScreen> {
               state.registerCompanyEntity.message,
               Colors.green,
             );
+            clearForm();
           }
         },
         builder: (context, state) {
@@ -173,15 +190,17 @@ class _RegisterCompanyScreenState extends State<RegisterCompanyScreen> {
                         return;
                       }
 
-                     await context.read<RegisterCompanyCubit>().registerCompany(
-                        firstName: firstNameController.text,
-                        email: emailController.text,
-                        password: passwordController.text,
-                        phone: phoneController.text,
-                        address: addressController.text,
-                        timeZone: timeZoneController.text,
-                        prophilePhoto: profileImage!,
-                      );
+                      await context
+                          .read<RegisterCompanyCubit>()
+                          .registerCompany(
+                            firstName: firstNameController.text,
+                            email: emailController.text,
+                            password: passwordController.text,
+                            phone: phoneController.text,
+                            address: addressController.text,
+                            timeZone: timeZoneController.text,
+                            prophilePhoto: profileImage!,
+                          );
                     },
 
                     child:

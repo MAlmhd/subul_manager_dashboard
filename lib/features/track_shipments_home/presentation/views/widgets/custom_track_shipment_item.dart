@@ -1,14 +1,20 @@
-import 'package:flutter/widgets.dart';
+import 'package:flutter/material.dart';
+
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:subul_manager_dashboard/core/helpers/assets_data.dart';
 import 'package:subul_manager_dashboard/core/helpers/constants.dart';
+import 'package:subul_manager_dashboard/core/helpers/extensions.dart';
 import 'package:subul_manager_dashboard/core/helpers/styles.dart';
+import 'package:subul_manager_dashboard/core/routing/routes.dart';
 import 'package:subul_manager_dashboard/core/theming/app_colors.dart';
 import 'package:subul_manager_dashboard/features/track_shipments_home/domain/entities/approved_shipment_entity/approved_shipment_entity.dart';
 
 class CustomTrackShipmentItem extends StatelessWidget {
-  const CustomTrackShipmentItem({super.key, required this.approvedShipmentEntity});
+  const CustomTrackShipmentItem({
+    super.key,
+    required this.approvedShipmentEntity,
+  });
   final ApprovedShipmentEntity approvedShipmentEntity;
 
   @override
@@ -32,7 +38,10 @@ class CustomTrackShipmentItem extends StatelessWidget {
                   children: [
                     SvgPicture.asset(AssetsData.money, width: 8.w),
                     SizedBox(width: size.width / 70),
-                    Text(approvedShipmentEntity.typeOfShipment, style: Styles.textStyle5Sp),
+                    Text(
+                      approvedShipmentEntity.typeOfShipment,
+                      style: Styles.textStyle5Sp,
+                    ),
                   ],
                 ),
                 SizedBox(width: size.width / 20),
@@ -44,7 +53,10 @@ class CustomTrackShipmentItem extends StatelessWidget {
                     borderRadius: BorderRadius.circular(cornerRadius),
                   ),
                   child: Center(
-                    child: Text(approvedShipmentEntity.statusOfShipment, style: Styles.textStyle4Sp),
+                    child: Text(
+                      approvedShipmentEntity.statusOfShipment,
+                      style: Styles.textStyle4Sp,
+                    ),
                   ),
                 ),
                 SizedBox(width: size.width / 10),
@@ -67,19 +79,34 @@ class CustomTrackShipmentItem extends StatelessWidget {
                     approvedShipmentEntity.trackingString,
                     softWrap: true,
                     style: Styles.textStyle5Sp,
-                    overflow: TextOverflow.visible,
+                    overflow: TextOverflow.ellipsis,
+                    maxLines: 1,
                   ),
                 ),
               ],
             ),
           ),
-          SizedBox(width: size.width / 20),
-          Flexible(
-            child: SvgPicture.asset(
-              AssetsData.box,
-              fit: BoxFit.cover,
-              width: 70.w,
-              height: 70.h,
+          SizedBox(width: size.width / 50),
+
+          PopupMenuButton<int>(
+            onSelected: (value) {
+              if (value == 1) {
+                context.pushNamed(Routes.payTheBill,arguments: approvedShipmentEntity);
+              } else if (value == 2) {
+                // تنفيذ الخيار الثاني
+              }
+            },
+            itemBuilder:
+                (context) => [
+                  PopupMenuItem(value: 1, child: Text("انشاء فاتورة")),
+                  PopupMenuItem(value: 2, child: Text("عرض الفواتير")),
+                ],
+            child: const Center(
+              child: Icon(
+                Icons.more_vert, // الثلاث نقاط الرأسية
+                color: AppColors.deepPurple, // نفس لون النقاط الظاهر في الصورة
+                size: 18,
+              ),
             ),
           ),
         ],

@@ -3,9 +3,9 @@ import 'package:subul_manager_dashboard/features/home_view/presentation/views/wi
 import 'package:subul_manager_dashboard/features/home_view/presentation/views/widgets/build_animated_welcome_text.dart';
 
 class Animations extends StatelessWidget {
-  const Animations({super.key, required this.step, required this.opacity});
-  final int step;
-  final double opacity;
+  const Animations({super.key,});
+  // final int step;
+  // final double opacity;
 
   @override
   Widget build(BuildContext context) {
@@ -13,11 +13,11 @@ class Animations extends StatelessWidget {
     return Column(
     //  mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        BuildAnimatedWelcomeText(opacity: opacity),
+        BuildAnimatedWelcomeText(),
         SizedBox(
           height: size.height / 12,
         ),
-        BuildAnimatedIcons(step: step),
+        BuildAnimatedIcons(),
       ],
     );
   }

@@ -28,17 +28,17 @@ class BillModel extends BillEntity {
     required this.createdAt,
     required this.id,
   }) : super(
-          idOfCustomer: customerId,
-          idOfShipment: shipmentId,
-          numberOfInvoice: invoiceNumber,
-          amount: amount,
-          isIncludTax: includesTax,
-          amountOfTax: taxAmount,
-          totalAmount: totalAmount,
-          dateOfPay: payableAt,
-          status: status,
-          id: id,
-        );
+         idOfCustomer: customerId,
+         idOfShipment: shipmentId,
+         numberOfInvoice: invoiceNumber,
+         amount: amount,
+         isIncludTax: includesTax,
+         amountOfTax: taxAmount,
+         totalAmount: totalAmount,
+         dateOfPay: payableAt,
+         status: status,
+         id: id,
+       );
 
   factory BillModel.fromJson(Map<String, dynamic> json) {
     return BillModel(
@@ -47,8 +47,11 @@ class BillModel extends BillEntity {
       invoiceNumber: json['invoice_number'].toString(),
       amount: int.parse(json['amount'].toString()),
       includesTax: json['includes_tax'].toString() == "1",
-      taxAmount: double.parse(json['tax_amount'].toString()),
-      totalAmount: double.parse(json['total_amount'].toString()),
+      taxAmount:
+          double.tryParse(json['tax_amount']?.toString() ?? '0.0') ?? 0.0,
+      totalAmount:
+          double.tryParse(json['total_amount']?.toString() ?? '0.0') ?? 0.0,
+
       payableAt: json['payable_at'].toString(),
       status: json['status'].toString(),
       updatedAt: json['updated_at'].toString(),
@@ -58,17 +61,17 @@ class BillModel extends BillEntity {
   }
 
   Map<String, dynamic> toJson() => {
-        'customer_id': customerId,
-        'shipment_id': shipmentId,
-        'invoice_number': invoiceNumber,
-        'amount': amount,
-        'includes_tax': includesTax ? 1 : 0,
-        'tax_amount': taxAmount,
-        'total_amount': totalAmount,
-        'payable_at': payableAt,
-        'status': status,
-        'updated_at': updatedAt,
-        'created_at': createdAt,
-        'id': id,
-      };
+    'customer_id': customerId,
+    'shipment_id': shipmentId,
+    'invoice_number': invoiceNumber,
+    'amount': amount,
+    'includes_tax': includesTax ? 1 : 0,
+    'tax_amount': taxAmount,
+    'total_amount': totalAmount,
+    'payable_at': payableAt,
+    'status': status,
+    'updated_at': updatedAt,
+    'created_at': createdAt,
+    'id': id,
+  };
 }

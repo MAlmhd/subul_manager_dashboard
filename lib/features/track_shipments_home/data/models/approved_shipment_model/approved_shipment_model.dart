@@ -6,7 +6,7 @@ class ApprovedShipmentModel extends ApprovedShipmentEntity{
   final String type;
   final int customerId;
   final String? customerName;
-  final String status;
+  final String? status;
   final int declaredParcelsCount;
   final DateTime createdAt;
 
@@ -19,7 +19,7 @@ class ApprovedShipmentModel extends ApprovedShipmentEntity{
     required this.status,
     required this.declaredParcelsCount,
     required this.createdAt,
-  }) : super(id, trackingNumber, type, customerId, customerName ?? " No name", status, declaredParcelsCount);
+  }) : super(id, trackingNumber, type, customerId, customerName ?? " No name", status ?? "", declaredParcelsCount);
 
   factory ApprovedShipmentModel.fromJson(Map<String, dynamic> json) {
     return ApprovedShipmentModel(

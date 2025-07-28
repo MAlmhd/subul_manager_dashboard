@@ -6,7 +6,7 @@ class UnapprovedShipmentModel extends UnApprovedShipmentsEntity{
   final String type;
   final int customerId;
   final String? customerName;
-  final String status;
+  final String? status;
   final int declaredParcelsCount;
   final DateTime createdAt;
 
@@ -19,7 +19,7 @@ class UnapprovedShipmentModel extends UnApprovedShipmentsEntity{
     required this.status,
     required this.declaredParcelsCount,
     required this.createdAt,
-  }) : super(id, trackingNumber, type, customerId, customerName ?? "No Name", status,declaredParcelsCount);
+  }) : super(id, trackingNumber, type, customerId, customerName ?? "No Name", status ?? "",declaredParcelsCount);
 
   factory UnapprovedShipmentModel.fromJson(Map<String, dynamic> json) {
     return UnapprovedShipmentModel(

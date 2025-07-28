@@ -32,235 +32,131 @@ class HomeView extends StatefulWidget {
 
 class _HomeViewState extends State<HomeView> {
   int selectedButtonIndex = 0;
-  int step = 0;
-  double opacity = 0;
-  bool showOtp = false;
-  bool showConfirmDelete = false;
-  bool showSuccessDialog = false;
-  bool showSuccessDialog2 = false;
-  late Timer _timer;
+  // int step = 0;
+  // double opacity = 0;
+  // late Timer _timer;
 
   @override
   void initState() {
-    _initializeAnimations();
     super.initState();
+   // _initializeAnimations();
   }
 
-  void _initializeAnimations() {
-    _timer = Timer.periodic(const Duration(milliseconds: 900), (timer) {
-      if (mounted) {
-        setState(() => step++);
-      }
-    });
-    Future.delayed(const Duration(milliseconds: 500), () {
-      setState(() => opacity = 1.0);
-    });
-  }
+  // void _initializeAnimations() {
+  //   _timer = Timer.periodic(const Duration(milliseconds: 900), (timer) {
+  //     if (mounted) setState(() => step++);
+  //   });
+  //   Future.delayed(const Duration(milliseconds: 500), () {
+  //     if (mounted) setState(() => opacity = 1.0);
+  //   });
+  // }
 
   @override
   void dispose() {
-    _timer.cancel();
+   // _timer.cancel();
     super.dispose();
   }
 
   void onButtonTap(int index) {
-    setState(() {
-      selectedButtonIndex = index;
-    });
+    setState(() => selectedButtonIndex = index);
   }
 
   @override
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
-    return Scaffold(
-      body: SingleChildScrollView(
-        child: Stack(
-          children: [
-            Column(
-              children: [
-                SizedBox(height: size.height / 9),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  children: [
-                    Flexible(
-                      child: SvgPicture.asset(
-                        AssetsData.backgroundImage,
-                        fit: BoxFit.contain,
-                      ),
-                    ),
-                  ],
-                ),
-              ],
-            ),
 
-            Padding(
-              padding: EdgeInsets.only(left: size.width / 25),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
+    return Scaffold(
+      body: Padding(
+        padding:  EdgeInsets.symmetric(vertical: 20.h,horizontal: 10.w),
+        child: Row(
+          
+          children: [
+            // Sidebar
+            Container(
+              width: 80.w,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(cornerRadius),
+                border: Border.all(color: AppColors.deepPurple, width: 4),
+              ),
+              child: ListView(
+                padding: EdgeInsets.symmetric(horizontal: size.width / 50),
+                children: [
+                  SizedBox(height: size.height / 13),
+                  Container(
+                    height: 60.h,
+                    decoration: BoxDecoration(
+                      color: AppColors.goldenYellow,
+                      borderRadius: BorderRadius.circular(cornerRadius),
+                    ),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      children: [
+                        ToggleClientCompanyButton(
+                          text: 'شركة',
+                          isSelected: selectedButtonIndex == 1,
+                          onTap: () => onButtonTap(1),
+                        ),
+                        ToggleClientCompanyButton(
+                          text: 'عميل',
+                          isSelected: selectedButtonIndex == 2,
+                          onTap: () => onButtonTap(2),
+                        ),
+                      ],
+                    ),
+                  ),
+                  SizedBox(height: size.height / 16),
+                  SideBarButton(
+                    onTap: () => onButtonTap(3),
+                    text: 'حذف عميل',
+                    isSelected: selectedButtonIndex == 3,
+                  ),
+                  SizedBox(height: size.height / 16),
+                  SideBarButton(
+                    onTap: () => onButtonTap(4),
+                    text: 'الغاء شحنة',
+                    isSelected: selectedButtonIndex == 4,
+                  ),
+                  SizedBox(height: size.height / 16),
+                  SideBarButton(
+                    onTap: () => context.pushNamed(Routes.trackShipmentsHome),
+                    text: 'الشحنات',
+                    isSelected: false,
+                  ),
+                  SizedBox(height: size.height / 16),
+                  SideBarButton(
+                    onTap: () => onButtonTap(5),
+                    text: 'الشحنات المرفوضة',
+                    isSelected: selectedButtonIndex == 5,
+                  ),
+                  SizedBox(height: size.height / 16),
+                  SideBarButton(
+                    onTap: () => onButtonTap(6),
+                    text: 'شحنات زبون معين',
+                    isSelected: selectedButtonIndex == 6,
+                  ),
+                ],
+              ),
+            ),
+        
+            // Main Content
+            Expanded(
+              child: IndexedStack(
+                index: selectedButtonIndex,
                 children: [
                   Padding(
-                    padding: EdgeInsets.only(
-                      left: 14.w,
-                      bottom: size.height / 30,
-                      top: size.height / 30,
-                    ),
-                    child: TextLogo(),
+                    padding: EdgeInsets.only(top: 200.h),
+                    child: Animations(),
                   ),
-
-                  Row(
-                    children: [
-                      Container(
-                        width: 80.w,
-                        height: 700.h,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(cornerRadius),
-                          border: Border.all(
-                            color: AppColors.deepPurple,
-                            width: 4,
-                          ),
-                        ),
-                        child: ListView(
-                          padding: EdgeInsets.symmetric(horizontal: size.width / 50),
-                          children: [
-                            SizedBox(height: size.height / 13),
-                            Container(
-                              width: 65.w,
-                              height: 60.h,
-                              decoration: BoxDecoration(
-                                color: AppColors.goldenYellow,
-                                borderRadius: BorderRadius.circular(
-                                  cornerRadius,
-                                ),
-                              ),
-                              child: Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceAround,
-                                children: [
-                                  ToggleClientCompanyButton(
-                                    text: 'شركة',
-                                    isSelected: selectedButtonIndex == 1,
-                                    onTap: () {
-                                      onButtonTap(1);
-                                    },
-                                  ),
-                                  ToggleClientCompanyButton(
-                                    text: 'عميل',
-                                    isSelected: selectedButtonIndex == 2,
-                                    onTap: () {
-                                      onButtonTap(2);
-                                    },
-                                  ),
-                                ],
-                              ),
-                            ),
-                            SizedBox(height: size.height / 16),
-                            SideBarButton(
-                              onTap: () {
-                                onButtonTap(3);
-                              },
-                              text: 'حذف عميل',
-                              isSelected: selectedButtonIndex == 3,
-                            ),
-                            SizedBox(height: size.height / 16),
-                            SideBarButton(
-                              onTap: () {
-                                onButtonTap(4);
-                              },
-                              text: 'الغاء شحنة',
-                              isSelected: selectedButtonIndex == 4,
-                            ),
-                            SizedBox(height: size.height / 16),
-                            SideBarButton(
-                              onTap: () {
-                                context.pushNamed(Routes.trackShipmentsHome);
-                              },
-                              text: 'الشحنات',
-                              isSelected: false,
-                            ),
-                            SizedBox(height: size.height / 16),
-                            SideBarButton(
-                              onTap: () {
-                                onButtonTap(5);
-                              },
-                              text: 'الشحنات المرفوضة',
-                              isSelected: selectedButtonIndex == 5,
-                            ),
-                            SizedBox(height: size.height / 16),
-                            SideBarButton(
-                              onTap: () {
-                                onButtonTap(6);
-                              },
-                              text: 'شحنات زبون معين',
-                              isSelected: selectedButtonIndex == 6,
-                            ),
-                            SizedBox(height: size.height / 16),
-                            Image.asset(
-                              AssetsData.smallCar,
-                              fit: BoxFit.contain,
-                              width: 120.w,
-                              height: 120.h,
-                            ),
-                          ],
-                        ),
-                      ),
-                      Expanded(
-                        child: IndexedStack(
-                          index: selectedButtonIndex,
-                          children: [
-                            //----------0-------------
-                            Padding(
-                              padding: EdgeInsets.only(top: 200.h),
-                              child: Animations(step: step, opacity: opacity),
-                            ),
-                            //----------1-------------
-                            RegisterCompanyScreen(),
-                            //----------2-----------
-                            RegisterationClient(),
-                            //------------3-------------
-                            ShowCompaniesAndClients(
-                              // onTap: () {
-                              //   setState(() {
-                              //     showConfirmDelete = !showConfirmDelete;
-                              //   });
-                              // },
-                              // showConfirmDelete: showConfirmDelete,
-                              // confirmDeleteButton: () {
-                              //   setState(() {
-                              //     showSuccessDialog = !showSuccessDialog;
-                              //     showConfirmDelete = false;
-                              //   });
-                              // },
-                              // deleteIsConfirmed: showSuccessDialog,
-                            ),
-
-                            //---------4------------
-                            UnApprovedShipmentsScreen(),
-
-                            // ----------5-----------
-                            ShowRejectedShipmentsScreen(),
-                            //-------------5----------
-                            // Padding(
-                            //   padding: EdgeInsets.only(top: 200.h),
-                            //   child: ReasonForCancellation(
-                            //     onTap: () async {
-                            //       showSuccessDialog2 = !showSuccessDialog2;
-                            //       await Future.delayed(Duration(seconds: 2));
-                            //       if (showSuccessDialog2) {
-                            //         onButtonTap(6);
-                            //       }
-                            //     },
-                            //     showSuccesDialog: showSuccessDialog2,
-                            //   ),
-                            // ),
-                            //--------6------------
-                            BlocProvider(
-                              create: (context) => GetCustomerShipmentsCubit(sl.get<GetCustomerShipmentsUseCase>()),
-                              child: ShipmentsByCodeScreen(),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ],
+                  SingleChildScrollView(child: RegisterCompanyScreen()),
+                  SingleChildScrollView(child: RegisterationClient()),
+                  SingleChildScrollView(child: ShowCompaniesAndClients()),
+                  SingleChildScrollView(child: UnApprovedShipmentsScreen()),
+                  SingleChildScrollView(child: ShowRejectedShipmentsScreen()),
+                  BlocProvider(
+                    create: (context) => GetCustomerShipmentsCubit(
+                      sl.get<GetCustomerShipmentsUseCase>(),
+                    ),
+                    child: SingleChildScrollView(child: ShipmentsByCodeScreen()),
                   ),
                 ],
               ),

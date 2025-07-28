@@ -7,6 +7,5 @@ abstract class CreateInvoiceRepo {
   required int shipmentId,
   required double amount,
   required bool includesTax,
-  required double taxAmount,
   required String payableAt,});
 }

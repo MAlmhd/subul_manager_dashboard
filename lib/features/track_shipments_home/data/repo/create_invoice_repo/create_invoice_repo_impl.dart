@@ -15,7 +15,7 @@ class CreateInvoiceRepoImpl implements CreateInvoiceRepo {
     required int shipmentId,
     required double amount,
     required bool includesTax,
-    required double taxAmount,
+
     required String payableAt,
   }) async {
     try {
@@ -24,7 +24,6 @@ class CreateInvoiceRepoImpl implements CreateInvoiceRepo {
         shipmentId: shipmentId,
         amount: amount,
         includesTax: includesTax,
-        taxAmount: taxAmount,
         payableAt: payableAt,
       );
       return right(result);

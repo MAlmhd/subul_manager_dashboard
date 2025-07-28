@@ -1,6 +1,5 @@
 import 'dart:typed_data';
 
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -57,6 +56,25 @@ class _RegisterationClientState extends State<RegisterationClient> {
     super.dispose();
   }
 
+  void clearForm() {
+    firstNameController.clear();
+    lastNameController.clear();
+    addressController.clear();
+    phoneController.clear();
+    emailController.clear();
+    passwordController.clear();
+    genderController.clear();
+    timeZoneController.clear();
+    selectedCompanyId = null;
+
+    setState(() {
+      profileImage = null;
+      identityImage = null;
+      imageBytesProfile = null;
+      imageBytesIdentity = null;
+    });
+  }
+
   Future<void> pickImage(bool isProfile) async {
     final ImagePicker picker = ImagePicker();
     final XFile? selectedImage = await picker.pickImage(
@@ -92,6 +110,7 @@ class _RegisterationClientState extends State<RegisterationClient> {
               state.registerClientEntity.message,
               Colors.green,
             );
+            clearForm();
           }
         },
         builder: (context, state) {

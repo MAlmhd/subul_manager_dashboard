@@ -62,16 +62,7 @@ class _ShowShippmentsState extends State<ShowShippments> {
                       itemBuilder:
                           (context, index) => Padding(
                             padding: EdgeInsets.only(bottom: 15.h),
-                            child: MouseRegion(
-                              cursor: SystemMouseCursors.click,
-                              child: GestureDetector(
-                                onTap: ()
-                                {
-                                  showOverlay(context, BillOfShippment(approvedShipmentEntity: state.shipments[index],));
-                                },
-                                child: CustomTrackShipmentItem(approvedShipmentEntity: state.shipments[index],),
-                              ),
-                            ),
+                            child: CustomTrackShipmentItem(approvedShipmentEntity: state.shipments[index],),
                           ),
                       itemCount: state.shipments.length,
                     );
