@@ -1,8 +1,8 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:subul_manager_dashboard/core/helpers/assets_data.dart';
 import 'package:subul_manager_dashboard/core/utils/functions/show_snack_bar.dart';
 import 'package:subul_manager_dashboard/core/utils/service_locator.dart';
@@ -27,46 +27,80 @@ class UnApprovedShipmentsScreen extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider(
-          create: (context) => GetUnapprovedShipmentsCubit(
-            sl.get<GetUnapprovedShipmentsUseCase>(),
-          )..getUnapprovedShipments(),
+          create:
+              (context) => GetUnapprovedShipmentsCubit(
+                sl.get<GetUnapprovedShipmentsUseCase>(),
+              )..getUnapprovedShipments(),
         ),
         BlocProvider(
-          create: (context) => ApproveShipmentCubit(
-            sl.get<ApproveShipmentUseCase>(),
-          ),
+          create:
+              (context) =>
+                  ApproveShipmentCubit(sl.get<ApproveShipmentUseCase>()),
         ),
         BlocProvider(
-          create: (context) => RejectShipmentCubit(
-            sl.get<RejectShipmentUseCase>(),
-          ),
+          create:
+              (context) => RejectShipmentCubit(sl.get<RejectShipmentUseCase>()),
         ),
       ],
       child: MultiBlocListener(
         listeners: [
           BlocListener<ApproveShipmentCubit, ApproveShipmentState>(
             listener: (context, state) {
-              if (state is! ApproveShipmentLoading && Navigator.canPop(context)) {
+              if (state is! ApproveShipmentLoading &&
+                  Navigator.canPop(context)) {
                 Navigator.pop(context);
               }
               if (state is ApproveShipmentSuccess) {
-                showSnackBar(context, "تمت الموافقة على الشحنة بنجاح", Colors.green);
-                context.read<GetUnapprovedShipmentsCubit>().getUnapprovedShipments();
+                Fluttertoast.showToast(
+                  msg: "تمت الموافقة على الشحنة بنجاح",
+                  toastLength: Toast.LENGTH_SHORT,
+                  gravity: ToastGravity.CENTER,
+                  backgroundColor: Colors.black87,
+                  textColor: Colors.white,
+                  fontSize: 16.0,
+                );
+                context
+                    .read<GetUnapprovedShipmentsCubit>()
+                    .getUnapprovedShipments();
               } else if (state is ApproveShipmentFailure) {
-                showSnackBar(context, state.message, Colors.red);
+                Fluttertoast.showToast(
+                  msg: state.message,
+                  toastLength: Toast.LENGTH_SHORT,
+                  gravity: ToastGravity.CENTER,
+                  backgroundColor: Colors.black87,
+                  textColor: Colors.white,
+                  fontSize: 16.0,
+                );
               }
             },
           ),
           BlocListener<RejectShipmentCubit, RejectShipmentState>(
             listener: (context, state) {
-              if (state is! RejectShipmentLoading && Navigator.canPop(context)) {
+              if (state is! RejectShipmentLoading &&
+                  Navigator.canPop(context)) {
                 Navigator.pop(context);
               }
               if (state is RejectShipmentSuccess) {
-                showSnackBar(context, "تم رفض الشحنة", Colors.green);
-                context.read<GetUnapprovedShipmentsCubit>().getUnapprovedShipments();
+                Fluttertoast.showToast(
+                  msg: 'تم رفض الشحنة',
+                  toastLength: Toast.LENGTH_SHORT,
+                  gravity: ToastGravity.CENTER,
+                  backgroundColor: Colors.black87,
+                  textColor: Colors.white,
+                  fontSize: 16.0,
+                );
+                context
+                    .read<GetUnapprovedShipmentsCubit>()
+                    .getUnapprovedShipments();
               } else if (state is RejectShipmentFailure) {
-                showSnackBar(context, state.message, Colors.red);
+              Fluttertoast.showToast(
+                  msg: state.message,
+                  toastLength: Toast.LENGTH_SHORT,
+                  gravity: ToastGravity.CENTER,
+                  backgroundColor: Colors.black87,
+                  textColor: Colors.white,
+                  fontSize: 16.0,
+                );
               }
             },
           ),
@@ -83,37 +117,51 @@ class UnApprovedShipmentsScreen extends StatelessWidget {
                       child: CustomSearchItem(
                         svgPicture: SvgPicture.asset(AssetsData.searchIcon),
                         onChanged: (item) {
-                          final query = item.trim().isEmpty ? null : item.trim();
-                          context.read<GetUnapprovedShipmentsCubit>().getUnapprovedShipments(query);
+                          final query =
+                              item.trim().isEmpty ? null : item.trim();
+                          context
+                              .read<GetUnapprovedShipmentsCubit>()
+                              .getUnapprovedShipments(query);
                         },
                       ),
                     ),
                   ],
                 ),
                 SizedBox(height: size.height / 8),
-             //   const TitleOfColumns(),
+                //   const TitleOfColumns(),
                 SizedBox(height: size.height / 50),
                 SizedBox(
                   height: 800.h,
-                  child: BlocConsumer<GetUnapprovedShipmentsCubit, GetUnapprovedShipmentsState>(
+                  child: BlocConsumer<
+                    GetUnapprovedShipmentsCubit,
+                    GetUnapprovedShipmentsState
+                  >(
                     listener: (context, state) {
                       if (state is GetUnapprovedShipmentsFailure) {
-                        showSnackBar(context, state.message, Colors.red);
+                       Fluttertoast.showToast(
+                  msg: state.message,
+                  toastLength: Toast.LENGTH_SHORT,
+                  gravity: ToastGravity.CENTER,
+                  backgroundColor: Colors.black87,
+                  textColor: Colors.white,
+                  fontSize: 16.0,
+                );
                       }
                     },
                     builder: (context, state) {
                       if (state is GetUnapprovedShipmentsSuccess) {
                         return ListView.builder(
                           itemCount: state.shipments.length,
-                          itemBuilder: (context, index) => Padding(
-                            padding: EdgeInsets.only(bottom: 12.h),
-                            child: MouseRegion(
-                              cursor: SystemMouseCursors.click,
-                              child: CustomShipmentItem(
-                                unApprovedShipment: state.shipments[index],
+                          itemBuilder:
+                              (context, index) => Padding(
+                                padding: EdgeInsets.only(bottom: 12.h),
+                                child: MouseRegion(
+                                  cursor: SystemMouseCursors.click,
+                                  child: CustomShipmentItem(
+                                    unApprovedShipment: state.shipments[index],
+                                  ),
+                                ),
                               ),
-                            ),
-                          ),
                         );
                       } else {
                         return const CustomProgressIndicator();

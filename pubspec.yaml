@@ -42,6 +42,7 @@ dependencies:
   flutter_secure_storage: ^9.2.4
   flutter_svg: ^2.0.17
   flutter_switch: ^0.3.2
+  fluttertoast: ^8.2.12
   get_it: ^8.0.3
   google_fonts: ^6.2.1
   hive: ^2.2.3

@@ -3,6 +3,7 @@ import 'dart:typed_data';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:subul_manager_dashboard/core/helpers/constants.dart';
 import 'package:subul_manager_dashboard/core/helpers/styles.dart';
@@ -88,14 +89,24 @@ class _RegisterCompanyScreenState extends State<RegisterCompanyScreen> {
       child: BlocConsumer<RegisterCompanyCubit, RegisterCompanyState>(
         listener: (context, state) {
           if (state is RegisterCompanyFailure) {
-            showSnackBar(context, state.message, Colors.red);
+           Fluttertoast.showToast(
+                  msg: state.message,
+                  toastLength: Toast.LENGTH_SHORT,
+                  gravity: ToastGravity.CENTER,
+                  backgroundColor: Colors.black87,
+                  textColor: Colors.white,
+                  fontSize: 16.0,
+                );
           }
           if (state is RegisterCompanySuccess) {
-            showSnackBar(
-              context,
-              state.registerCompanyEntity.message,
-              Colors.green,
-            );
+           Fluttertoast.showToast(
+                  msg:  state.registerCompanyEntity.message,
+                  toastLength: Toast.LENGTH_SHORT,
+                  gravity: ToastGravity.CENTER,
+                  backgroundColor: Colors.black87,
+                  textColor: Colors.white,
+                  fontSize: 16.0,
+                );
             clearForm();
           }
         },
@@ -182,11 +193,14 @@ class _RegisterCompanyScreenState extends State<RegisterCompanyScreen> {
                       }
 
                       if (profileImage == null) {
-                        showSnackBar(
-                          context,
-                          'يرجى إدخال صورتك الشخصية',
-                          Colors.red,
-                        );
+                       Fluttertoast.showToast(
+                  msg: 'يرجى إدخال صورتك الشخصية',
+                  toastLength: Toast.LENGTH_SHORT,
+                  gravity:ToastGravity.CENTER,
+                  backgroundColor: Colors.black87,
+                  textColor: Colors.white,
+                  fontSize: 16.0,
+                );
                         return;
                       }
 

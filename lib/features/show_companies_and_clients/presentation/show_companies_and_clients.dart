@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:subul_manager_dashboard/core/helpers/styles.dart';
 import 'package:subul_manager_dashboard/core/theming/app_colors.dart';
 import 'package:subul_manager_dashboard/core/utils/functions/show_snack_bar.dart';
@@ -32,10 +33,24 @@ class ShowCompaniesAndClients extends StatelessWidget {
       child: BlocListener<DeleteUserCubit, DeleteUserState>(
         listener: (context, deleteState) {
           if (deleteState is DeleteUserSuccess) {
-            showSnackBar(context, 'تم الحذف بنجاح', Colors.green);
+           Fluttertoast.showToast(
+                  msg: 'تم الحذف بنجاح',
+                  toastLength: Toast.LENGTH_SHORT,
+                  gravity: ToastGravity.CENTER,
+                  backgroundColor: Colors.black87,
+                  textColor: Colors.white,
+                  fontSize: 16.0,
+                );
             context.read<ShowCompaniesAndClientsCubit>().showCompaniesAndClients();
           } else if (deleteState is DeleteUserFailure) {
-            showSnackBar(context, deleteState.message, Colors.red);
+            Fluttertoast.showToast(
+                  msg: deleteState.message,
+                  toastLength: Toast.LENGTH_SHORT,
+                  gravity: ToastGravity.CENTER,
+                  backgroundColor: Colors.black87,
+                  textColor: Colors.white,
+                  fontSize: 16.0,
+                );
           }
         },
         child: BlocBuilder<ShowCompaniesAndClientsCubit, ShowCompaniesAndClientsState>(

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:subul_manager_dashboard/core/helpers/assets_data.dart';
 import 'package:subul_manager_dashboard/core/helpers/constants.dart';
 import 'package:subul_manager_dashboard/core/helpers/extensions.dart';
@@ -218,13 +219,23 @@ class _PayTheBillState extends State<PayTheBill> {
                     child: BlocConsumer<CreateInvoiceCubit, CreateInvoiceState>(
                       listener: (context, state) {
                         if (state is CreateInvoiceFailure) {
-                          showSnackBar(context, state.message, Colors.red);
+                         Fluttertoast.showToast(
+                  msg: state.message,
+                  toastLength: Toast.LENGTH_SHORT,
+                  gravity: ToastGravity.CENTER,
+                  backgroundColor: Colors.black87,
+                  textColor: Colors.white,
+                  fontSize: 16.0,
+                );
                         } else if (state is CreateInvoiceSuccess) {
-                          showSnackBar(
-                            context,
-                            "تم إنشاء الفاتورة بنجاح",
-                            Colors.green,
-                          );
+                         Fluttertoast.showToast(
+                  msg: 'تم انشاء الفاتورة بنجاح',
+                  toastLength: Toast.LENGTH_SHORT,
+                  gravity: ToastGravity.CENTER,
+                  backgroundColor: Colors.black87,
+                  textColor: Colors.white,
+                  fontSize: 16.0,
+                );
                           context.pushNamed(Routes.detailsOfBill,arguments: state.bill.id);
                         }
                       },
@@ -236,12 +247,26 @@ class _PayTheBillState extends State<PayTheBill> {
                         return GestureDetector(
                           onTap: () {
                             if (priceController.text.trim().isEmpty) {
-                              showSnackBar(context, "أدخل السعر", Colors.red);
+                            Fluttertoast.showToast(
+                  msg: 'ادخل السعر',
+                  toastLength: Toast.LENGTH_SHORT,
+                  gravity: ToastGravity.CENTER,
+                  backgroundColor: Colors.black87,
+                  textColor: Colors.white,
+                  fontSize: 16.0,
+                );
                               return;
                             }
 
                             if (date == null) {
-                              showSnackBar(context, "أدخل التاريخ", Colors.red);
+                                Fluttertoast.showToast(
+                  msg: 'ادخل التاريخ',
+                  toastLength: Toast.LENGTH_SHORT,
+                  gravity:ToastGravity.CENTER,
+                  backgroundColor: Colors.black87,
+                  textColor: Colors.white,
+                  fontSize: 16.0,
+                );
                               return;
                             }
 
@@ -249,11 +274,14 @@ class _PayTheBillState extends State<PayTheBill> {
                               priceController.text,
                             );
                             if (priceDecimal == null) {
-                              showSnackBar(
-                                context,
-                                "السعر غير صالح",
-                                Colors.red,
-                              );
+                                Fluttertoast.showToast(
+                  msg: 'السعر غير صالح',
+                  toastLength: Toast.LENGTH_SHORT,
+                  gravity: ToastGravity.CENTER,
+                  backgroundColor: Colors.black87,
+                  textColor: Colors.white,
+                  fontSize: 16.0,
+                );
                               return;
                             }
 

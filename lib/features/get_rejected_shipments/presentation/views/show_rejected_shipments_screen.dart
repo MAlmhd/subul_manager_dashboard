@@ -8,18 +8,19 @@ import 'package:subul_manager_dashboard/features/get_rejected_shipments/domain/u
 import 'package:subul_manager_dashboard/features/get_rejected_shipments/presentation/manager/cubit/get_rejected_shipments_cubit.dart';
 import 'package:subul_manager_dashboard/core/widgets/title_of_columns.dart';
 import 'package:subul_manager_dashboard/features/get_rejected_shipments/presentation/views/widgets/custom_shipment_item.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 class ShowRejectedShipmentsScreen extends StatelessWidget {
-  const ShowRejectedShipmentsScreen({super.key,});
-
+  const ShowRejectedShipmentsScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
     return BlocProvider(
-      create: (context) => GetRejectedShipmentsCubit(
-        sl.get<GetRejectedShipmentsUseCase>(),
-      )..getRejectedShipments(),
+      create:
+          (context) =>
+              GetRejectedShipmentsCubit(sl.get<GetRejectedShipmentsUseCase>())
+                ..getRejectedShipments(),
       child: Builder(
         builder: (context) {
           return Column(
@@ -46,24 +47,38 @@ class ShowRejectedShipmentsScreen extends StatelessWidget {
               SizedBox(height: size.height / 50),
               SizedBox(
                 height: 800.h,
-                child: BlocConsumer<GetRejectedShipmentsCubit,
-                    GetRejectedShipmentsState>(
+                child: BlocConsumer<
+                  GetRejectedShipmentsCubit,
+                  GetRejectedShipmentsState
+                >(
                   listener: (context, state) {
                     if (state is GetRejectedShipmentsFailure) {
-                      showSnackBar(context, state.message, Colors.red);
+                      Fluttertoast.showToast(
+                        msg: state.message,
+                        toastLength: Toast.LENGTH_SHORT,
+                        gravity: ToastGravity.CENTER,
+                        backgroundColor: Colors.black87,
+                        textColor: Colors.white,
+                        fontSize: 16.0,
+
+                      );
                     }
                   },
                   builder: (context, state) {
                     if (state is GetRejectedShipmentsSuccess) {
                       return ListView.builder(
                         itemCount: state.shipments.length,
-                        itemBuilder: (context, index) => Padding(
-                          padding: EdgeInsets.only(bottom: 12.h),
-                          child: MouseRegion(
-                            cursor: SystemMouseCursors.click,
-                            child: CustomShipmentItem(rejectedShipmentEntity:state.shipments[index] ),
-                          ),
-                        ),
+                        itemBuilder:
+                            (context, index) => Padding(
+                              padding: EdgeInsets.only(bottom: 12.h),
+                              child: MouseRegion(
+                                cursor: SystemMouseCursors.click,
+                                child: CustomShipmentItem(
+                                  rejectedShipmentEntity:
+                                      state.shipments[index],
+                                ),
+                              ),
+                            ),
                       );
                     } else {
                       return CustomProgressIndicator();

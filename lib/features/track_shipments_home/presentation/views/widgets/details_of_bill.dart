@@ -2,10 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:qr_flutter/qr_flutter.dart';
 import 'package:subul_manager_dashboard/core/helpers/assets_data.dart';
 import 'package:subul_manager_dashboard/core/helpers/constants.dart';
+import 'package:subul_manager_dashboard/core/helpers/extensions.dart';
 import 'package:subul_manager_dashboard/core/helpers/styles.dart';
+import 'package:subul_manager_dashboard/core/routing/routes.dart';
 import 'package:subul_manager_dashboard/core/theming/app_colors.dart';
 import 'package:subul_manager_dashboard/core/utils/functions/show_snack_bar.dart';
 import 'package:subul_manager_dashboard/core/utils/service_locator.dart';
@@ -28,13 +31,22 @@ class DetailsOfBill extends StatelessWidget {
         body: BlocConsumer<GetInvoicesCubit, GetInvoicesState>(
           listener: (context, state) {
             if (state is GetInvoicesFailure) {
-              showSnackBar(context, state.message, Colors.red);
+              Fluttertoast.showToast(
+                msg: state.message,
+                toastLength: Toast.LENGTH_SHORT,
+                gravity: ToastGravity.CENTER,
+                backgroundColor: Colors.black87,
+                textColor: Colors.white,
+                fontSize: 16.0,
+              );
             }
           },
           builder: (context, state) {
             if (state is GetInvoicesSuccess) {
               if (state.invoice.success == false) {
-                return Center(child: Text('لا توجد فاتورة',style: Styles.textStyle7Sp,));
+                return Center(
+                  child: Text('لا توجد فاتورة', style: Styles.textStyle7Sp),
+                );
               }
               return Center(
                 child: SingleChildScrollView(
@@ -280,6 +292,25 @@ class DetailsOfBill extends StatelessWidget {
                                     style: Styles.textStyle5Sp,
                                     overflow: TextOverflow.clip,
                                     maxLines: 1,
+                                  ),
+                                  SizedBox(height: size.height / 6),
+                                  TextButton(
+                                    onPressed: () {
+                                      context.pushNamed(
+                                        Routes.trackShipmentsHome,
+                                      );
+                                    },
+                                    style: ButtonStyle(
+                                      backgroundColor: WidgetStateProperty.all(
+                                        AppColors.deepPurple,
+                                      ),
+                                    ),
+                                    child: Text(
+                                      'رجوع',
+                                      style: Styles.textStyle4Sp.copyWith(
+                                        color: Colors.black,
+                                      ),
+                                    ),
                                   ),
                                 ],
                               ),

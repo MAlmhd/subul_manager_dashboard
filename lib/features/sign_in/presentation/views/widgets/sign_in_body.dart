@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:subul_manager_dashboard/core/helpers/extensions.dart';
 import 'package:subul_manager_dashboard/core/routing/routes.dart';
 import 'package:subul_manager_dashboard/core/theming/app_colors.dart';
@@ -113,7 +114,7 @@ class _SignInBodyState extends State<SignInBody> {
         listener: (BuildContext context, SignInState state) {
           if (state is SignInSuccessState) {
             
-            showSnackBar(context,'تم تسجيل الدخول بنجاح',Colors.green);
+          
             Future.delayed(Duration(seconds: 2));
             context.pushNamedAndRemoveUntil(
               Routes.homeView,
@@ -122,7 +123,14 @@ class _SignInBodyState extends State<SignInBody> {
             // Navigate to another screen if needed
           } else if (state is SignInFailureState) {
            
-            showSnackBar(context,'فشل تسجيل الدخول: ${state.message}',Colors.red,);
+          Fluttertoast.showToast(
+                  msg: state.message,
+                  toastLength: Toast.LENGTH_SHORT,
+                  gravity: ToastGravity.CENTER,
+                  backgroundColor: Colors.black87,
+                  textColor: Colors.white,
+                  fontSize: 16.0,
+                );
           }
         },
       ),

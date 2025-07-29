@@ -88,26 +88,19 @@ class CustomTrackShipmentItem extends StatelessWidget {
           ),
           SizedBox(width: size.width / 50),
 
-          PopupMenuButton<int>(
-            onSelected: (value) {
-              if (value == 1) {
-                context.pushNamed(
-                  Routes.payTheBill,
-                  arguments: approvedShipmentEntity,
-                );
-              } 
+          TextButton(
+            onPressed: () {
+              context.pushNamed(
+                Routes.payTheBill,
+                arguments: approvedShipmentEntity,
+              );
             },
-            itemBuilder:
-                (context) => [
-                  PopupMenuItem(value: 1, child: Text("انشاء فاتورة")),
-                  // PopupMenuItem(value: 2, child: Text("عرض الفاتورة")),
-                ],
-            child: const Center(
-              child: Icon(
-                Icons.more_vert, // الثلاث نقاط الرأسية
-                color: AppColors.deepPurple, // نفس لون النقاط الظاهر في الصورة
-                size: 18,
-              ),
+            style: ButtonStyle(
+              backgroundColor: WidgetStateProperty.all(AppColors.goldenYellow),
+            ),
+            child: Text(
+              'انشاء فاتورة',
+              style: Styles.textStyle4Sp.copyWith(color: Colors.black),
             ),
           ),
         ],
