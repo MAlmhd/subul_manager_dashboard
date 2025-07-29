@@ -49,12 +49,16 @@ import 'package:subul_manager_dashboard/features/sign_in/domain/repos/sign_in_re
 import 'package:subul_manager_dashboard/features/sign_in/domain/use_cases/sign_in_use_case.dart';
 import 'package:subul_manager_dashboard/features/track_shipments_home/data/data_source/create_invoice_data_source/create_invoice_remote_data_source.dart';
 import 'package:subul_manager_dashboard/features/track_shipments_home/data/data_source/get_approved_shipments_data_source/get_approved_shipments_remote_data_source.dart';
+import 'package:subul_manager_dashboard/features/track_shipments_home/data/data_source/get_invoices_data_source/get_invoices_remote_data_source.dart';
 import 'package:subul_manager_dashboard/features/track_shipments_home/data/repo/create_invoice_repo/create_invoice_repo_impl.dart';
 import 'package:subul_manager_dashboard/features/track_shipments_home/data/repo/get_approved_shipments_repo/get_approved_shipments_repo_impl.dart';
+import 'package:subul_manager_dashboard/features/track_shipments_home/data/repo/get_invoices_repo_impl/get_invoices_repo_impl.dart';
 import 'package:subul_manager_dashboard/features/track_shipments_home/domain/repos/create_invoice_repo/create_invoice_repo.dart';
 import 'package:subul_manager_dashboard/features/track_shipments_home/domain/repos/get_approved_shipments_repo/get_approved_shipments_repo.dart';
+import 'package:subul_manager_dashboard/features/track_shipments_home/domain/repos/get_invoices_repo/get_invoices_repo.dart';
 import 'package:subul_manager_dashboard/features/track_shipments_home/domain/use_case/create_invoice_use_case/create_invoice_use_case.dart';
 import 'package:subul_manager_dashboard/features/track_shipments_home/domain/use_case/get_approved_shipments_use_case/get_approved_shipments_use_case.dart';
+import 'package:subul_manager_dashboard/features/track_shipments_home/domain/use_case/get_invoices_use_case/get_invoice_use_case.dart';
 
 final GetIt sl = GetIt.instance;
 
@@ -311,6 +315,27 @@ void setupServiceLocator() {
 
   sl.registerLazySingleton<GetCustomerShipmentsUseCase>(
     () => GetCustomerShipmentsUseCase(sl.get<GetCustomerShipmentsRepo>()),
+  );
+
+
+
+
+  
+  // get invoice
+  sl.registerLazySingleton<GetInvoicesRemoteDataSource>(
+    () => GetInvoicesRemoteDataSourceImpl(sl.get<ApiService>()),
+  );
+
+  
+
+  sl.registerLazySingleton<GetInvoicesRepo>(
+    () => GetInvoicesRepoImpl(
+     sl.get<GetInvoicesRemoteDataSource>(),
+    ),
+  );
+
+  sl.registerLazySingleton<GetInvoiceUseCase>(
+    () => GetInvoiceUseCase(getInvoicesRepo: sl.get<GetInvoicesRepo>()),
   );
 
 

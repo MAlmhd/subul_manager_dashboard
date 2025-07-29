@@ -91,15 +91,16 @@ class CustomTrackShipmentItem extends StatelessWidget {
           PopupMenuButton<int>(
             onSelected: (value) {
               if (value == 1) {
-                context.pushNamed(Routes.payTheBill,arguments: approvedShipmentEntity);
-              } else if (value == 2) {
-                // تنفيذ الخيار الثاني
-              }
+                context.pushNamed(
+                  Routes.payTheBill,
+                  arguments: approvedShipmentEntity,
+                );
+              } 
             },
             itemBuilder:
                 (context) => [
                   PopupMenuItem(value: 1, child: Text("انشاء فاتورة")),
-                  PopupMenuItem(value: 2, child: Text("عرض الفواتير")),
+                  // PopupMenuItem(value: 2, child: Text("عرض الفاتورة")),
                 ],
             child: const Center(
               child: Icon(

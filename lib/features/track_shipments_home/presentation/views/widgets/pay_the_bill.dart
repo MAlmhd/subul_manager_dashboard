@@ -225,7 +225,7 @@ class _PayTheBillState extends State<PayTheBill> {
                             "تم إنشاء الفاتورة بنجاح",
                             Colors.green,
                           );
-                          context.pushNamed(Routes.trackShipmentsHome);
+                          context.pushNamed(Routes.detailsOfBill,arguments: state.bill.id);
                         }
                       },
                       builder: (context, state) {
